@@ -13,6 +13,8 @@
 package org.web3j.eth2.client
 
 import org.glassfish.jersey.client.proxy.WebResourceFactory
+import org.web3j.eth2.client.infrastructure.AuthenticationFilter
+import org.web3j.eth2.client.infrastructure.ClientInvocationHandler
 import java.lang.reflect.Proxy
 
 internal object ClientFactory {
