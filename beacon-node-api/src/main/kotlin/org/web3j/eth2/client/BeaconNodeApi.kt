@@ -43,7 +43,6 @@ interface BeaconNodeApi {
     val validator: ValidatorResource
 
     companion object {
-        fun of(service: ClientService, token: String? = null) =
-                ClientFactory.create(service, token)
+        fun of(service: ClientService, token: String? = null) = ClientFactory.create(service, token)
     }
 }
