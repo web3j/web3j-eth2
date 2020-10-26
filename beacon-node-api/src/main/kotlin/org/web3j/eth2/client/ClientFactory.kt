@@ -17,7 +17,7 @@ import org.web3j.eth2.client.infrastructure.AuthenticationFilter
 import org.web3j.eth2.client.infrastructure.ClientInvocationHandler
 import java.lang.reflect.Proxy
 
-internal object ClientFactory {
+object ClientFactory {
 
     /**
      * Builds a JAX-RS client with the given service and optional token.

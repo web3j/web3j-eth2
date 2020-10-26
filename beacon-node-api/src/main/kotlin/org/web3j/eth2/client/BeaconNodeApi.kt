@@ -1,6 +1,11 @@
 package org.web3j.eth2.client
 
-import org.web3j.eth2.client.resources.*
+import org.web3j.eth2.client.resources.BeaconResource
+import org.web3j.eth2.client.resources.ConfigResource
+import org.web3j.eth2.client.resources.DebugResource
+import org.web3j.eth2.client.resources.EventsResource
+import org.web3j.eth2.client.resources.NodeResource
+import org.web3j.eth2.client.resources.ValidatorResource
 import javax.ws.rs.Path
 
 @Path("/eth/v1")
