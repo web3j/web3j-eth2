@@ -1,0 +1,3 @@
+rootProject.name = 'web3j-eth2'
+
+include 'beacon-node-api'
