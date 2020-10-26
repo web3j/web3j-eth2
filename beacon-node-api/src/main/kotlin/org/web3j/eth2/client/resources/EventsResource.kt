@@ -9,7 +9,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-package org.web3j.eth2.client.apis
+package org.web3j.eth2.client.resources
 
 import org.web3j.eth2.client.infrastructure.ApiClient
 import org.web3j.eth2.client.infrastructure.ClientError
@@ -23,7 +23,7 @@ import org.web3j.eth2.client.infrastructure.ServerException
 import org.web3j.eth2.client.infrastructure.Success
 import org.web3j.eth2.client.infrastructure.toMultiValue
 
-class EventsApi(basePath: kotlin.String = "{server_url}") : ApiClient(basePath) {
+class EventsResource(basePath: kotlin.String = "{server_url}") : ApiClient(basePath) {
 
     /**
      * Subscribe to beacon node events

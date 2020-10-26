@@ -1,6 +1,6 @@
 package org.web3j.eth2.client
 
-import org.web3j.eth2.client.apis.*
+import org.web3j.eth2.client.resources.*
 import javax.ws.rs.Path
 
 @Path("/eth/v1")
@@ -10,37 +10,37 @@ interface BeaconNodeApi {
      * Set of endpoints to query beacon chain.
      */
     @get:Path("beacon")
-    val beacon: BeaconApi
+    val beacon: BeaconResource
 
     /**
      * Endpoints to query chain configuration, specification, and fork schedules.
      */
     @get:Path("config")
-    val config: ConfigApi
+    val config: ConfigResource
 
     /**
      * Set of endpoints to debug chain and shouldn't be exposed publicly.
      */
     @get:Path("debug")
-    val debug: DebugApi
+    val debug: DebugResource
 
     /**
      * Set of endpoints to for event subscription.
      */
     @get:Path("events")
-    val events: EventsApi
+    val events: EventsResource
 
     /**
      * Endpoints to query node related information.
      */
     @get:Path("node")
-    val node: NodeApi
+    val node: NodeResource
 
     /**
      * Endpoints intended for validator clients.
      */
     @get:Path("validator")
-    val validator: ValidatorApi
+    val validator: ValidatorResource
 
     companion object {
         fun of(service: ClientService, token: String? = null) =

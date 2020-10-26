@@ -9,7 +9,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-package org.web3j.eth2.client.apis
+package org.web3j.eth2.client.resources
 
 import org.web3j.eth2.client.infrastructure.ApiClient
 import org.web3j.eth2.client.infrastructure.ClientError
@@ -24,7 +24,7 @@ import org.web3j.eth2.client.models.GetDepositContractResponse
 import org.web3j.eth2.client.models.GetForkScheduleResponse
 import org.web3j.eth2.client.models.GetSpecResponse
 
-class ConfigApi(basePath: kotlin.String = "{server_url}") : ApiClient(basePath) {
+class ConfigResource(basePath: kotlin.String = "{server_url}") : ApiClient(basePath) {
 
     /**
      * Get deposit contract address.
