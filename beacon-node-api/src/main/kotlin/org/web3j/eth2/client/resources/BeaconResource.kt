@@ -482,7 +482,7 @@ class BeaconResource(basePath: String = "{server_url}") : ApiClient(basePath) {
      * @return GetStateValidatorBalancesResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getStateValidatorBalances(stateId: String, id: Array<String>? = null): GetStateValidatorBalancesResponse {
+    fun getStateValidatorBalances(stateId: String, id: Array<String>): GetStateValidatorBalancesResponse {
         val localVariableQuery: MultiValueMap = mapOf("id" to toMultiValue(id.toList(), "multi"))
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -512,7 +512,7 @@ class BeaconResource(basePath: String = "{server_url}") : ApiClient(basePath) {
      * @return GetStateValidatorsResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getStateValidators(stateId: String, id: Array<String>? = null, status: Array<Any>? = null): GetStateValidatorsResponse {
+    fun getStateValidators(stateId: String, id: Array<String>, status: Array<Any>): GetStateValidatorsResponse {
         val localVariableQuery: MultiValueMap = mapOf("id" to toMultiValue(id.toList(), "multi"), "status" to toMultiValue(status.toList(), "multi"))
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
