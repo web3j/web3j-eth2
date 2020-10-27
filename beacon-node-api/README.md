@@ -1,8 +1,8 @@
-# io.swagger.client - Kotlin client library for Eth2 Beacon Node API
+# Kotlin client library for Eth2 Beacon Node API
 
 ## Requires
 
-* Kotlin 1.1.2
+* Kotlin 1.3.x
 * Gradle 3.3
 
 ## Build
