@@ -12,4 +12,4 @@
 package org.web3j.eth2.client.models
 
 
-typealias PeerId = kotlin.String
+typealias PeerId = String

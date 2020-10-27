@@ -20,5 +20,4 @@ data class Body3(
 
         val signedHeader1: Ethv1beaconpoolproposerSlashingsSignedHeader1? = null,
         val signedHeader2: Ethv1beaconpoolproposerSlashingsSignedHeader1? = null
-) {
-}
+) 

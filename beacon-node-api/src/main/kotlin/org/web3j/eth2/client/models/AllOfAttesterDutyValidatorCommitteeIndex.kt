@@ -15,7 +15,4 @@ package org.web3j.eth2.client.models
 /**
  *
  */
-data class AllOfAttesterDutyValidatorCommitteeIndex(
-
-) {
-}
+data class AllOfAttesterDutyValidatorCommitteeIndex 

@@ -23,7 +23,7 @@ import org.web3j.eth2.client.infrastructure.ServerException
 import org.web3j.eth2.client.infrastructure.Success
 import org.web3j.eth2.client.infrastructure.toMultiValue
 
-class EventsResource(basePath: kotlin.String = "{server_url}") : ApiClient(basePath) {
+class EventsResource(basePath: String = "{server_url}") : ApiClient(basePath) {
 
     /**
      * Subscribe to beacon node events
@@ -31,21 +31,21 @@ class EventsResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * Consumers should use [eventsource](https://html.spec.whatwg.org/multipage/server-sent-events.html#the-eventsource-interface)
      * implementation to listen on those events.
      * @param topics Event types to subscribe to
-     * @return kotlin.String
+     * @return String
      */
     @Suppress("UNCHECKED_CAST")
-    fun eventstream(topics: kotlin.Array<kotlin.String>): kotlin.String {
+    fun eventstream(topics: Array<String>): String {
         val localVariableQuery: MultiValueMap = mapOf("topics" to toMultiValue(topics.toList(), "multi"))
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
                 "/eth/v1/events", query = localVariableQuery
         )
-        val response = request<kotlin.String>(
+        val response = request<String>(
                 localVariableConfig
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as kotlin.String
+            ResponseType.Success -> (response as Success<*>).data as String
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String

@@ -18,5 +18,4 @@ package org.web3j.eth2.client.models
 data class ProduceAttestationDataResponse(
 
         val `data`: Ethv1beaconpoolattestationsData? = null
-) {
-}
+) 

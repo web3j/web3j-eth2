@@ -17,6 +17,5 @@ package org.web3j.eth2.client.models
  */
 data class GetPoolVoluntaryExitsResponse(
 
-        val `data`: kotlin.Array<Body4>? = null
-) {
-}
+        val `data`: Array<Body4>? = null
+) 

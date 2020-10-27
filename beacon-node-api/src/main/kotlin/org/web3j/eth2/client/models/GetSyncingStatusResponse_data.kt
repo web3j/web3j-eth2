@@ -21,5 +21,4 @@ data class GetSyncingStatusResponseData(
 
         val headSlot: AllOfGetSyncingStatusResponseDataHeadSlot? = null,
         val syncDistance: AllOfGetSyncingStatusResponseDataSyncDistance? = null
-) {
-}
+) 

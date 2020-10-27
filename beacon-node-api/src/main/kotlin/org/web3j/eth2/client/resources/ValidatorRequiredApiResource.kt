@@ -37,27 +37,27 @@ import org.web3j.eth2.client.models.GetSyncingStatusResponse
 import org.web3j.eth2.client.models.ProduceAttestationDataResponse
 import org.web3j.eth2.client.models.ProduceBlockResponse
 
-class ValidatorRequiredApiResource(basePath: kotlin.String = "{server_url}") : ApiClient(basePath) {
+class ValidatorRequiredApiResource(basePath: String = "{server_url}") : ApiClient(basePath) {
 
     /**
      * Subscribe to beacon node events
      * Provides endpoint to subscribe to beacon node Server-Sent-Events stream. Consumers should use [eventsource](https://html.spec.whatwg.org/multipage/server-sent-events.html#the-eventsource-interface) implementation to listen on those events.
      * @param topics Event types to subscribe to
-     * @return kotlin.String
+     * @return String
      */
     @Suppress("UNCHECKED_CAST")
-    fun eventstream(topics: kotlin.Array<kotlin.String>): kotlin.String {
+    fun eventstream(topics: Array<String>): String {
         val localVariableQuery: MultiValueMap = mapOf("topics" to toMultiValue(topics.toList(), "multi"))
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
                 "/eth/v1/events", query = localVariableQuery
         )
-        val response = request<kotlin.String>(
+        val response = request<String>(
                 localVariableConfig
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as kotlin.String
+            ResponseType.Success -> (response as Success<*>).data as String
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String
@@ -75,7 +75,7 @@ class ValidatorRequiredApiResource(basePath: kotlin.String = "{server_url}") : A
      * @return GetAggregatedAttestationResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getAggregatedAttestation(attestationDataRoot: kotlin.String, slot: kotlin.String): GetAggregatedAttestationResponse {
+    fun getAggregatedAttestation(attestationDataRoot: String, slot: String): GetAggregatedAttestationResponse {
         val localVariableQuery: MultiValueMap = mapOf("attestation_data_root" to listOf("$attestationDataRoot"), "slot" to listOf("$slot"))
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -104,8 +104,8 @@ class ValidatorRequiredApiResource(basePath: kotlin.String = "{server_url}") : A
      * @return GetAttesterDutiesResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getAttesterDuties(body: kotlin.Array<kotlin.String>, epoch: kotlin.String): GetAttesterDutiesResponse {
-        val localVariableBody: kotlin.Any? = body
+    fun getAttesterDuties(body: Array<String>, epoch: String): GetAttesterDutiesResponse {
+        val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,
@@ -160,7 +160,7 @@ class ValidatorRequiredApiResource(basePath: kotlin.String = "{server_url}") : A
      * @return GetProposerDutiesResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getProposerDuties(epoch: kotlin.String): GetProposerDutiesResponse {
+    fun getProposerDuties(epoch: String): GetProposerDutiesResponse {
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -215,7 +215,7 @@ class ValidatorRequiredApiResource(basePath: kotlin.String = "{server_url}") : A
      * @return GetStateForkResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getStateFork(stateId: kotlin.String): GetStateForkResponse {
+    fun getStateFork(stateId: String): GetStateForkResponse {
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -244,7 +244,7 @@ class ValidatorRequiredApiResource(basePath: kotlin.String = "{server_url}") : A
      * @return GetStateValidatorResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getStateValidator(stateId: kotlin.String, validatorId: kotlin.String): GetStateValidatorResponse {
+    fun getStateValidator(stateId: String, validatorId: String): GetStateValidatorResponse {
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -298,8 +298,8 @@ class ValidatorRequiredApiResource(basePath: kotlin.String = "{server_url}") : A
      * @param body  (optional)
      * @return void
      */
-    fun prepareBeaconCommitteeSubnet(body: kotlin.Array<Body6>? = null): Unit {
-        val localVariableBody: kotlin.Any? = body
+    fun prepareBeaconCommitteeSubnet(body: Array<Body6>? = null): Unit {
+        val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,
@@ -328,7 +328,7 @@ class ValidatorRequiredApiResource(basePath: kotlin.String = "{server_url}") : A
      * @return ProduceAttestationDataResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun produceAttestationData(slot: kotlin.String, committeeIndex: kotlin.String): ProduceAttestationDataResponse {
+    fun produceAttestationData(slot: String, committeeIndex: String): ProduceAttestationDataResponse {
         val localVariableQuery: MultiValueMap = mapOf("slot" to listOf("$slot"), "committee_index" to listOf("$committeeIndex"))
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -358,7 +358,7 @@ class ValidatorRequiredApiResource(basePath: kotlin.String = "{server_url}") : A
      * @return ProduceBlockResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun produceBlock(slot: kotlin.String, randaoReveal: kotlin.String, graffiti: kotlin.String? = null): ProduceBlockResponse {
+    fun produceBlock(slot: String, randaoReveal: String, graffiti: String? = null): ProduceBlockResponse {
         val localVariableQuery: MultiValueMap = mapOf("randao_reveal" to listOf("$randaoReveal"), "graffiti" to listOf("$graffiti"))
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -385,8 +385,8 @@ class ValidatorRequiredApiResource(basePath: kotlin.String = "{server_url}") : A
      * @param body  (optional)
      * @return void
      */
-    fun publishAggregateAndProofs(body: kotlin.Array<Body5>? = null): Unit {
-        val localVariableBody: kotlin.Any? = body
+    fun publishAggregateAndProofs(body: Array<Body5>? = null): Unit {
+        val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,
@@ -414,7 +414,7 @@ class ValidatorRequiredApiResource(basePath: kotlin.String = "{server_url}") : A
      * @return void
      */
     fun publishBlock(body: Body): Unit {
-        val localVariableBody: kotlin.Any? = body
+        val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,
@@ -442,7 +442,7 @@ class ValidatorRequiredApiResource(basePath: kotlin.String = "{server_url}") : A
      * @return void
      */
     fun submitPoolAttestations(body: Body1): Unit {
-        val localVariableBody: kotlin.Any? = body
+        val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,

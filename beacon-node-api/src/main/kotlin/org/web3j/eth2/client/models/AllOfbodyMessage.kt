@@ -17,10 +17,6 @@ package org.web3j.eth2.client.models
  * @param body The [`BeaconBlockBody`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblockbody) object from the Eth2.0 spec.
  */
 data class AllOfbodyMessage(
-
         /* The [`BeaconBlockBody`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblockbody) object from the Eth2.0 spec. */
-        val body: kotlin.Any? = null,
-        /* The [`BeaconBlockBody`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblockbody) object from the Eth2.0 spec. */
-        val body: kotlin.Any? = null
-) {
-}
+        val body: Any? = null
+) 

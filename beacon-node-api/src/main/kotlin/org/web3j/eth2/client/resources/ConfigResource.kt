@@ -24,7 +24,7 @@ import org.web3j.eth2.client.models.GetDepositContractResponse
 import org.web3j.eth2.client.models.GetForkScheduleResponse
 import org.web3j.eth2.client.models.GetSpecResponse
 
-class ConfigResource(basePath: kotlin.String = "{server_url}") : ApiClient(basePath) {
+class ConfigResource(basePath: String = "{server_url}") : ApiClient(basePath) {
 
     /**
      * Get deposit contract address.

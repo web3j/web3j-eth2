@@ -15,7 +15,4 @@ package org.web3j.eth2.client.models
 /**
  *
  */
-data class InlineResponse404(
-
-) {
-}
+data class InlineResponse404 

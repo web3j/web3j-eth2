@@ -17,8 +17,5 @@ package org.web3j.eth2.client.models
  * @param bodyRoot
  */
 data class AllOfSignedBeaconBlockHeaderMessage(
-
-        val bodyRoot: kotlin.Any? = null,
-        val bodyRoot: kotlin.Any? = null
-) {
-}
+        val bodyRoot: Any? = null
+) 

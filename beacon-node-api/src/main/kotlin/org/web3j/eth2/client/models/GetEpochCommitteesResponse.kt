@@ -17,6 +17,5 @@ package org.web3j.eth2.client.models
  */
 data class GetEpochCommitteesResponse(
 
-        val `data`: kotlin.Array<GetEpochCommitteesResponseData>? = null
-) {
-}
+        val `data`: Array<GetEpochCommitteesResponseData>? = null
+) 

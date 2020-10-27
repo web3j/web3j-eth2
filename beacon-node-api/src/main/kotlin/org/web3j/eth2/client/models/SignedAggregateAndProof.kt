@@ -20,6 +20,5 @@ package org.web3j.eth2.client.models
 data class SignedAggregateAndProof(
 
         val message: AllOfSignedAggregateAndProofMessage? = null,
-        val signature: kotlin.String? = null
-) {
-}
+        val signature: String? = null
+) 

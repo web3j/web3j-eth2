@@ -19,7 +19,6 @@ package org.web3j.eth2.client.models
  */
 data class GetDebugChainHeadsResponseData(
 
-        val root: kotlin.String? = null,
-        val slot: kotlin.String? = null
-) {
-}
+        val root: String? = null,
+        val slot: String? = null
+) 

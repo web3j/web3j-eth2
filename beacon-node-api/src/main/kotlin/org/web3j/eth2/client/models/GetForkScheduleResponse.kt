@@ -17,6 +17,5 @@ package org.web3j.eth2.client.models
  */
 data class GetForkScheduleResponse(
 
-        val `data`: kotlin.Array<BeaconStateFork>? = null
-) {
-}
+        val `data`: Array<BeaconStateFork>? = null
+) 

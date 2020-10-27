@@ -22,9 +22,8 @@ package org.web3j.eth2.client.models
 data class BeaconBlockBodyData(
 
         /* The validator's BLS public key, uniquely identifying them. _48-bytes, hex encoded with 0x prefix, case insensitive._ */
-        val pubkey: kotlin.String? = null,
+        val pubkey: String? = null,
         val withdrawalCredentials: AllOfBeaconBlockBodyDataWithdrawalCredentials? = null,
         val amount: AllOfBeaconBlockBodyDataAmount? = null,
         val signature: AllOfBeaconBlockBodyDataSignature? = null
-) {
-}
+) 

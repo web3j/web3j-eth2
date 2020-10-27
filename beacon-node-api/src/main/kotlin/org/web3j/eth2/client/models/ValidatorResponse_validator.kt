@@ -26,14 +26,13 @@ package org.web3j.eth2.client.models
 data class ValidatorResponseValidator(
 
         /* The validator's BLS public key, uniquely identifying them. _48-bytes, hex encoded with 0x prefix, case insensitive._ */
-        val pubkey: kotlin.String? = null,
+        val pubkey: String? = null,
         val withdrawalCredentials: AllOfValidatorResponseValidatorWithdrawalCredentials? = null,
         val effectiveBalance: AllOfValidatorResponseValidatorEffectiveBalance? = null,
         /* Was validator slashed (not longer active). */
-        val slashed: kotlin.Boolean? = null,
+        val slashed: Boolean? = null,
         val activationEligibilityEpoch: AllOfValidatorResponseValidatorActivationEligibilityEpoch? = null,
         val activationEpoch: AllOfValidatorResponseValidatorActivationEpoch? = null,
         val exitEpoch: AllOfValidatorResponseValidatorExitEpoch? = null,
         val withdrawableEpoch: AllOfValidatorResponseValidatorWithdrawableEpoch? = null
-) {
-}
+) 

@@ -26,11 +26,10 @@ data class BeaconBlockBody(
 
         val randaoReveal: AllOfBeaconBlockBodyRandaoReveal? = null,
         val eth1Data: BeaconStateEth1Data? = null,
-        val graffiti: kotlin.String? = null,
-        val proposerSlashings: kotlin.Array<Body3>? = null,
-        val attesterSlashings: kotlin.Array<Body2>? = null,
-        val attestations: kotlin.Array<Body1>? = null,
-        val deposits: kotlin.Array<BeaconBlockBodyDeposits>? = null,
-        val voluntaryExits: kotlin.Array<Body4>? = null
-) {
-}
+        val graffiti: String? = null,
+        val proposerSlashings: Array<Body3>? = null,
+        val attesterSlashings: Array<Body2>? = null,
+        val attestations: Array<Body1>? = null,
+        val deposits: Array<BeaconBlockBodyDeposits>? = null,
+        val voluntaryExits: Array<Body4>? = null
+) 

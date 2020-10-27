@@ -1,7 +1,7 @@
 package org.web3j.eth2.client.infrastructure
 
-import kotlin.properties.ReadWriteProperty
-import kotlin.reflect.KProperty
+import properties.ReadWriteProperty
+import reflect.KProperty
 
 object ApplicationDelegates {
     /**

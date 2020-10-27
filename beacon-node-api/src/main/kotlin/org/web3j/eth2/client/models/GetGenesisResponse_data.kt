@@ -21,8 +21,7 @@ package org.web3j.eth2.client.models
 data class GetGenesisResponseData(
 
         val genesisTime: AllOfGetGenesisResponseDataGenesisTime? = null,
-        val genesisValidatorsRoot: kotlin.String? = null,
+        val genesisValidatorsRoot: String? = null,
         /* a fork version number */
-        val genesisForkVersion: kotlin.String? = null
-) {
-}
+        val genesisForkVersion: String? = null
+) 

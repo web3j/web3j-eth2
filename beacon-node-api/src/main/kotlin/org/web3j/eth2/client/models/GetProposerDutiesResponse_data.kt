@@ -21,8 +21,7 @@ package org.web3j.eth2.client.models
 data class GetProposerDutiesResponseData(
 
         /* The validator's BLS public key, uniquely identifying them. _48-bytes, hex encoded with 0x prefix, case insensitive._ */
-        val pubkey: kotlin.String? = null,
+        val pubkey: String? = null,
         val validatorIndex: AllOfGetProposerDutiesResponseDataValidatorIndex? = null,
         val slot: AllOfGetProposerDutiesResponseDataSlot? = null
-) {
-}
+) 

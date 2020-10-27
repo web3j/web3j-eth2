@@ -17,6 +17,5 @@ package org.web3j.eth2.client.models
  */
 data class GetProposerDutiesResponse(
 
-        val `data`: kotlin.Array<GetProposerDutiesResponseData>? = null
-) {
-}
+        val `data`: Array<GetProposerDutiesResponseData>? = null
+) 

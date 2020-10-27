@@ -21,10 +21,9 @@ package org.web3j.eth2.client.models
  */
 data class Body6(
 
-        val committeeIndex: kotlin.String? = null,
+        val committeeIndex: String? = null,
         val committeesAtSlot: AllOfbody6CommitteesAtSlot? = null,
         val slot: AllOfbody6Slot? = null,
         /* Signals to BN that a validator on the VC has been chosed for aggregator role. */
-        val isAggregator: kotlin.Boolean? = null
-) {
-}
+        val isAggregator: Boolean? = null
+) 

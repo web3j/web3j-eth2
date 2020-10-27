@@ -12,4 +12,4 @@
 package org.web3j.eth2.client.models
 
 
-typealias Hex = kotlin.String
+typealias Hex = String

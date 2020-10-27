@@ -17,6 +17,5 @@ package org.web3j.eth2.client.models
  */
 data class GetAttesterDutiesResponse(
 
-        val `data`: kotlin.Array<GetAttesterDutiesResponseData>? = null
-) {
-}
+        val `data`: Array<GetAttesterDutiesResponseData>? = null
+) 

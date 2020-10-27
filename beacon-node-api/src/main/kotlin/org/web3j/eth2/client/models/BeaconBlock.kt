@@ -16,8 +16,5 @@ package org.web3j.eth2.client.models
  * @param body
  */
 data class BeaconBlock(
-
-        val body: BeaconBlockBody? = null,
         val body: BeaconBlockBody? = null
-) {
-}
+) 

@@ -19,6 +19,5 @@ package org.web3j.eth2.client.models
 data class GetSpecResponse(
 
         /* Key value mapping of [spec variables](https://github.com/ethereum/eth2.0-specs/blob/v1.0.0-rc.0/configs/mainnet/phase0.yaml). Values are returned with following format:   - any value starting with 0x in the spec is returned as a hex string   - numeric values are returned as a quoted integer  */
-        val `data`: kotlin.Any? = null
-) {
-}
+        val `data`: Any? = null
+) 

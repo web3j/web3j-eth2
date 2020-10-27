@@ -22,11 +22,10 @@ package org.web3j.eth2.client.models
 data class GetNetworkIdentityResponseData(
 
         /* Cryptographic hash of a peer’s public key. [Read more](https://docs.libp2p.io/concepts/peer-id/) */
-        val peerId: kotlin.String? = null,
+        val peerId: String? = null,
         /* Ethereum node record. [Read more](https://eips.ethereum.org/EIPS/eip-778) */
-        val enr: kotlin.String? = null,
-        val p2pAddresses: kotlin.Array<AllOfGetNetworkIdentityResponseDataP2pAddressesItems>? = null,
-        val discoveryAddresses: kotlin.Array<AllOfGetNetworkIdentityResponseDataDiscoveryAddressesItems>? = null,
+        val enr: String? = null,
+        val p2pAddresses: Array<AllOfGetNetworkIdentityResponseDataP2pAddressesItems>? = null,
+        val discoveryAddresses: Array<AllOfGetNetworkIdentityResponseDataDiscoveryAddressesItems>? = null,
         val metadata: NetworkIdentityMetadata? = null
-) {
-}
+) 

@@ -19,6 +19,5 @@ package org.web3j.eth2.client.models
 data class SignedVoluntaryExit(
 
         val message: Ethv1beaconpoolvoluntaryExitsMessage? = null,
-        val signature: kotlin.String? = null
-) {
-}
+        val signature: String? = null
+) 

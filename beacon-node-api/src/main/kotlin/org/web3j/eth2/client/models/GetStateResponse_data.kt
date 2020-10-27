@@ -37,30 +37,29 @@ package org.web3j.eth2.client.models
  */
 data class GetStateResponseData(
 
-        val genesisTime: kotlin.String? = null,
-        val genesisValidatorsRoot: kotlin.String? = null,
-        val slot: kotlin.String? = null,
+        val genesisTime: String? = null,
+        val genesisValidatorsRoot: String? = null,
+        val slot: String? = null,
         val fork: BeaconStateFork? = null,
         /* The [`BeaconBlockHeader`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblockheader) object from the Eth2.0 spec. */
         val latestBlockHeader: AllOfGetStateResponseDataLatestBlockHeader? = null,
-        val blockRoots: kotlin.Array<AllOfGetStateResponseDataBlockRootsItems>? = null,
-        val stateRoots: kotlin.Array<AllOfGetStateResponseDataStateRootsItems>? = null,
-        val historicalRoots: kotlin.Array<AllOfGetStateResponseDataHistoricalRootsItems>? = null,
+        val blockRoots: Array<AllOfGetStateResponseDataBlockRootsItems>? = null,
+        val stateRoots: Array<AllOfGetStateResponseDataStateRootsItems>? = null,
+        val historicalRoots: Array<AllOfGetStateResponseDataHistoricalRootsItems>? = null,
         val eth1Data: BeaconStateEth1Data? = null,
-        val eth1DataVotes: kotlin.Array<AllOfGetStateResponseDataEth1DataVotesItems>? = null,
-        val eth1DepositIndex: kotlin.String? = null,
-        val validators: kotlin.Array<AllOfGetStateResponseDataValidatorsItems>? = null,
+        val eth1DataVotes: Array<AllOfGetStateResponseDataEth1DataVotesItems>? = null,
+        val eth1DepositIndex: String? = null,
+        val validators: Array<AllOfGetStateResponseDataValidatorsItems>? = null,
         /* Validator balances in gwei */
-        val balances: kotlin.Array<AllOfGetStateResponseDataBalancesItems>? = null,
-        val randaoMixes: kotlin.Array<AllOfGetStateResponseDataRandaoMixesItems>? = null,
+        val balances: Array<AllOfGetStateResponseDataBalancesItems>? = null,
+        val randaoMixes: Array<AllOfGetStateResponseDataRandaoMixesItems>? = null,
         /* Per-epoch sums of slashed effective balances */
-        val slashings: kotlin.Array<AllOfGetStateResponseDataSlashingsItems>? = null,
-        val previousEpochAttestations: kotlin.Array<AllOfGetStateResponseDataPreviousEpochAttestationsItems>? = null,
-        val currentEpochAttestations: kotlin.Array<AllOfGetStateResponseDataCurrentEpochAttestationsItems>? = null,
+        val slashings: Array<AllOfGetStateResponseDataSlashingsItems>? = null,
+        val previousEpochAttestations: Array<AllOfGetStateResponseDataPreviousEpochAttestationsItems>? = null,
+        val currentEpochAttestations: Array<AllOfGetStateResponseDataCurrentEpochAttestationsItems>? = null,
         /* Bit set for every recent justified epoch */
-        val justificationBits: kotlin.String? = null,
+        val justificationBits: String? = null,
         val previousJustifiedCheckpoint: Ethv1beaconpoolattestationsDataSource? = null,
         val currentJustifiedCheckpoint: Ethv1beaconpoolattestationsDataSource? = null,
         val finalizedCheckpoint: Ethv1beaconpoolattestationsDataSource? = null
-) {
-}
+) 

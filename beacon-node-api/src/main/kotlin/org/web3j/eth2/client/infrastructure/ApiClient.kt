@@ -21,7 +21,10 @@ open class ApiClient(val baseUrl: String) {
         val client: OkHttpClient = OkHttpClient()
 
         @JvmStatic
-        var defaultHeaders: Map<String, String> by ApplicationDelegates.setOnce(mapOf(ContentType to JsonMediaType, Accept to JsonMediaType))
+        var defaultHeaders: Map<String, String> by ApplicationDelegates.setOnce(mapOf(
+            ContentType to JsonMediaType, 
+            Accept to JsonMediaType
+        ))
 
         @JvmStatic
         val jsonHeaders: Map<String, String> = mapOf(ContentType to JsonMediaType, Accept to JsonMediaType)
@@ -73,11 +76,11 @@ open class ApiClient(val baseUrl: String) {
         val headers = requestConfig.headers + defaultHeaders
 
         if (headers[ContentType] ?: "" == "") {
-            throw kotlin.IllegalStateException("Missing Content-Type header. This is required.")
+            throw IllegalStateException("Missing Content-Type header. This is required.")
         }
 
         if (headers[Accept] ?: "" == "") {
-            throw kotlin.IllegalStateException("Missing Accept header. This is required.")
+            throw IllegalStateException("Missing Accept header. This is required.")
         }
 
         // TODO: support multiple contentType,accept options here.

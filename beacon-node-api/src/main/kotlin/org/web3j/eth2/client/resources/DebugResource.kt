@@ -23,7 +23,7 @@ import org.web3j.eth2.client.infrastructure.Success
 import org.web3j.eth2.client.models.GetDebugChainHeadsResponse
 import org.web3j.eth2.client.models.GetStateResponse
 
-class DebugResource(basePath: kotlin.String = "{server_url}") : ApiClient(basePath) {
+class DebugResource(basePath: String = "{server_url}") : ApiClient(basePath) {
 
     /**
      * Get fork choice leaves
@@ -59,7 +59,7 @@ class DebugResource(basePath: kotlin.String = "{server_url}") : ApiClient(basePa
      * @return GetStateResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getState(stateId: kotlin.String): GetStateResponse {
+    fun getState(stateId: String): GetStateResponse {
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,

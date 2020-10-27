@@ -19,8 +19,7 @@ package org.web3j.eth2.client.models
  */
 data class GetBlockHeadersResponseData(
 
-        val root: kotlin.String? = null,
-        val canonical: kotlin.Boolean? = null,
+        val root: String? = null,
+        val canonical: Boolean? = null,
         val header: Ethv1beaconpoolproposerSlashingsSignedHeader1? = null
-) {
-}
+) 

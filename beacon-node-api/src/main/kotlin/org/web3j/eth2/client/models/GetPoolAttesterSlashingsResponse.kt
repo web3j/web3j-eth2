@@ -17,6 +17,5 @@ package org.web3j.eth2.client.models
  */
 data class GetPoolAttesterSlashingsResponse(
 
-        val `data`: kotlin.Array<Body2>? = null
-) {
-}
+        val `data`: Array<Body2>? = null
+) 

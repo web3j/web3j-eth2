@@ -17,6 +17,5 @@ package org.web3j.eth2.client.models
  */
 data class GetBlockHeadersResponse(
 
-        val `data`: kotlin.Array<GetBlockHeadersResponseData>? = null
-) {
-}
+        val `data`: Array<GetBlockHeadersResponseData>? = null
+) 

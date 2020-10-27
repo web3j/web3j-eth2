@@ -21,6 +21,5 @@ data class Body(
 
         /* The [`BeaconBlock`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblock) object from the Eth2.0 spec. */
         val message: AllOfbodyMessage? = null,
-        val signature: kotlin.String? = null
-) {
-}
+        val signature: String? = null
+) 

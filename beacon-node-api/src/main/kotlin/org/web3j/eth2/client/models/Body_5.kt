@@ -20,6 +20,5 @@ package org.web3j.eth2.client.models
 data class Body5(
 
         val message: AllOfbody5Message? = null,
-        val signature: kotlin.String? = null
-) {
-}
+        val signature: String? = null
+) 

@@ -19,7 +19,6 @@ package org.web3j.eth2.client.models
 data class BeaconBlockBodyDeposits(
 
         /* Branch in the deposit tree. */
-        val proof: kotlin.Array<AllOfBeaconBlockBodyDepositsProofItems>? = null,
+        val proof: Array<AllOfBeaconBlockBodyDepositsProofItems>? = null,
         val `data`: BeaconBlockBodyData? = null
-) {
-}
+) 

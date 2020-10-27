@@ -17,8 +17,5 @@ package org.web3j.eth2.client.models
  * @param selectionProof
  */
 data class AllOfSignedAggregateAndProofMessage(
-
-        val selectionProof: kotlin.String? = null,
-        val selectionProof: kotlin.String? = null
-) {
-}
+        val selectionProof: String? = null
+) 

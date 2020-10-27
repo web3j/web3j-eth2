@@ -21,8 +21,7 @@ package org.web3j.eth2.client.models
 data class Committee(
 
         val index: AllOfCommitteeIndex? = null,
-        val slot: kotlin.String? = null,
+        val slot: String? = null,
         /* List of validator indices assigned to this committee */
-        val validators: kotlin.Array<kotlin.String>? = null
-) {
-}
+        val validators: Array<String>? = null
+) 

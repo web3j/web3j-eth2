@@ -23,10 +23,10 @@ package org.web3j.eth2.client.models
 data class GetPeersResponseData(
 
         /* Cryptographic hash of a peer’s public key. [Read more](https://docs.libp2p.io/concepts/peer-id/) */
-        val peerId: kotlin.String? = null,
+        val peerId: String? = null,
         val enr: AllOfGetPeersResponseDataEnr? = null,
         /* [Read more](https://docs.libp2p.io/reference/glossary/#multiaddr) */
-        val address: kotlin.String? = null,
+        val address: String? = null,
         val state: GetPeersResponseData.State? = null,
         val direction: GetPeersResponseData.Direction? = null
 ) {
@@ -34,7 +34,7 @@ data class GetPeersResponseData(
      *
      * Values: disconnected,connecting,connected,disconnecting
      */
-    enum class State(val value: kotlin.String) {
+    enum class State(val value: String) {
         disconnected("disconnected"),
         connecting("connecting"),
         connected("connected"),
@@ -45,7 +45,7 @@ data class GetPeersResponseData(
      *
      * Values: inbound,outbound
      */
-    enum class Direction(val value: kotlin.String) {
+    enum class Direction(val value: String) {
         inbound("inbound"),
         outbound("outbound");
     }

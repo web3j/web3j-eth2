@@ -20,8 +20,7 @@ package org.web3j.eth2.client.models
 data class Ethv1beaconpoolattesterSlashingsAttestation1(
 
         /* Attesting validator indices */
-        val attestingIndices: kotlin.Array<kotlin.String>? = null,
+        val attestingIndices: Array<String>? = null,
         val signature: AllOfethv1beaconpoolattesterSlashingsAttestation1Signature? = null,
         val `data`: Ethv1beaconpoolattestationsData? = null
-) {
-}
+) 

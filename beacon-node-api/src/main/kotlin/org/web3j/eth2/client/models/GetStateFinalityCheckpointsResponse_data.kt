@@ -22,5 +22,4 @@ data class GetStateFinalityCheckpointsResponseData(
         val previousJustified: Ethv1beaconpoolattestationsDataSource? = null,
         val currentJustified: Ethv1beaconpoolattestationsDataSource? = null,
         val finalized: Ethv1beaconpoolattestationsDataSource? = null
-) {
-}
+) 

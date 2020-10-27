@@ -21,10 +21,9 @@ package org.web3j.eth2.client.models
  */
 data class Ethv1beaconpoolattestationsData(
 
-        val slot: kotlin.String? = null,
-        val index: kotlin.String? = null,
+        val slot: String? = null,
+        val index: String? = null,
         val beaconBlockRoot: AllOfethv1beaconpoolattestationsDataBeaconBlockRoot? = null,
         val source: Ethv1beaconpoolattestationsDataSource? = null,
         val target: Ethv1beaconpoolattestationsDataSource? = null
-) {
-}
+) 

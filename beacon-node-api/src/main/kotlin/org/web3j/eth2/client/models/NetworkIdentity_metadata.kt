@@ -21,5 +21,4 @@ data class NetworkIdentityMetadata(
 
         val seqNumber: AllOfNetworkIdentityMetadataSeqNumber? = null,
         val attnets: AllOfNetworkIdentityMetadataAttnets? = null
-) {
-}
+) 

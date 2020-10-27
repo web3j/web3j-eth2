@@ -19,6 +19,5 @@ package org.web3j.eth2.client.models
 data class GetVersionResponseData(
 
         /* A string which uniquely identifies the client implementation and its version; similar to [HTTP User-Agent](https://tools.ietf.org/html/rfc7231#section-5.5.3). */
-        val version: kotlin.String? = null
-) {
-}
+        val version: String? = null
+) 

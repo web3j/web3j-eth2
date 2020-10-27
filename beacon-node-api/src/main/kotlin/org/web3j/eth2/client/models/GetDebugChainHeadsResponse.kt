@@ -17,6 +17,5 @@ package org.web3j.eth2.client.models
  */
 data class GetDebugChainHeadsResponse(
 
-        val `data`: kotlin.Array<GetDebugChainHeadsResponseData>? = null
-) {
-}
+        val `data`: Array<GetDebugChainHeadsResponseData>? = null
+) 

@@ -21,9 +21,8 @@ package org.web3j.eth2.client.models
 data class BeaconStateFork(
 
         /* a fork version number */
-        val previousVersion: kotlin.String? = null,
+        val previousVersion: String? = null,
         /* a fork version number */
-        val currentVersion: kotlin.String? = null,
-        val epoch: kotlin.String? = null
-) {
-}
+        val currentVersion: String? = null,
+        val epoch: String? = null
+) 

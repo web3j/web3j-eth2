@@ -26,7 +26,7 @@ import org.web3j.eth2.client.models.GetPeersResponse
 import org.web3j.eth2.client.models.GetSyncingStatusResponse
 import org.web3j.eth2.client.models.GetVersionResponse
 
-class NodeResource(basePath: kotlin.String = "{server_url}") : ApiClient(basePath) {
+class NodeResource(basePath: String = "{server_url}") : ApiClient(basePath) {
 
     /**
      * Get health check
@@ -115,7 +115,7 @@ class NodeResource(basePath: kotlin.String = "{server_url}") : ApiClient(basePat
      * @return GetPeerResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getPeer(peerId: kotlin.String): GetPeerResponse {
+    fun getPeer(peerId: String): GetPeerResponse {
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,

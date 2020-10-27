@@ -17,6 +17,5 @@ package org.web3j.eth2.client.models
  */
 data class GetStateValidatorBalancesResponse(
 
-        val `data`: kotlin.Array<GetStateValidatorBalancesResponseData>? = null
-) {
-}
+        val `data`: Array<GetStateValidatorBalancesResponseData>? = null
+) 

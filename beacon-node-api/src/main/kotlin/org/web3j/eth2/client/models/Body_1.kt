@@ -20,8 +20,7 @@ package org.web3j.eth2.client.models
 data class Body1(
 
         /* Attester aggregation bits. */
-        val aggregationBits: kotlin.String? = null,
+        val aggregationBits: String? = null,
         val signature: AllOfbody1Signature? = null,
         val `data`: Ethv1beaconpoolattestationsData? = null
-) {
-}
+) 

@@ -15,7 +15,4 @@ package org.web3j.eth2.client.models
 /**
  *
  */
-data class AllOfBeaconStateEth1DataBlockHash(
-
-) {
-}
+data class AllOfBeaconStateEth1DataBlockHash 

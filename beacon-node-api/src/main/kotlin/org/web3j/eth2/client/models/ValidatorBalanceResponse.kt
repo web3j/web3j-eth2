@@ -21,5 +21,4 @@ data class ValidatorBalanceResponse(
 
         val index: AllOfValidatorBalanceResponseIndex? = null,
         val balance: AllOfValidatorBalanceResponseBalance? = null
-) {
-}
+) 

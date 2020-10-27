@@ -20,7 +20,6 @@ package org.web3j.eth2.client.models
 data class GetDepositContractResponseData(
 
         /* Id of Eth1 chain on which contract is deployed. */
-        val chainId: kotlin.Int? = null,
+        val chainId: Int? = null,
         val address: AllOfGetDepositContractResponseDataAddress? = null
-) {
-}
+) 

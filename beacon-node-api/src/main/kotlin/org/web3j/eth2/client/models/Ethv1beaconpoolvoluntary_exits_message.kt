@@ -21,5 +21,4 @@ data class Ethv1beaconpoolvoluntaryExitsMessage(
 
         val epoch: AllOfethv1beaconpoolvoluntaryExitsMessageEpoch? = null,
         val validatorIndex: AllOfethv1beaconpoolvoluntaryExitsMessageValidatorIndex? = null
-) {
-}
+) 

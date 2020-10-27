@@ -19,7 +19,6 @@ package org.web3j.eth2.client.models
  */
 data class Ethv1beaconpoolattestationsDataSource(
 
-        val epoch: kotlin.String? = null,
-        val root: kotlin.String? = null
-) {
-}
+        val epoch: String? = null,
+        val root: String? = null
+) 

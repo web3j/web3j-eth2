@@ -19,5 +19,4 @@ package org.web3j.eth2.client.models
 data class GetStateRootResponseData(
 
         val root: AllOfGetStateRootResponseDataRoot? = null
-) {
-}
+) 

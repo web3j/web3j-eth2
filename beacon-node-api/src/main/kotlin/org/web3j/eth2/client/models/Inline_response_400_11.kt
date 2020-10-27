@@ -23,8 +23,7 @@ data class InlineResponse40011(
         /* Either specific error code in case of invalid request or http status code */
         val code: java.math.BigDecimal? = null,
         /* Message describing error */
-        val message: kotlin.String? = null,
+        val message: String? = null,
         /* Optional stacktraces, sent when node is in debug mode */
-        val stacktraces: kotlin.Array<kotlin.String>? = null
-) {
-}
+        val stacktraces: Array<String>? = null
+) 

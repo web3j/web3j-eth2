@@ -21,6 +21,5 @@ data class Ethv1beaconpoolproposerSlashingsSignedHeader1(
 
         /* The [`BeaconBlockHeader`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblockheader) object from the Eth2.0 spec. */
         val message: AllOfethv1beaconpoolproposerSlashingsSignedHeader1Message? = null,
-        val signature: kotlin.String? = null
-) {
-}
+        val signature: String? = null
+) 

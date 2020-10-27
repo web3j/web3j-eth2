@@ -50,7 +50,7 @@ import org.web3j.eth2.client.models.ParentRoot
 import org.web3j.eth2.client.models.Slot
 import org.web3j.eth2.client.models.Slot1
 
-class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(basePath) {
+class BeaconResource(basePath: String = "{server_url}") : ApiClient(basePath) {
 
     /**
      * Get block
@@ -59,7 +59,7 @@ class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * @return GetBlockResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getBlock(blockId: kotlin.String): GetBlockResponse {
+    fun getBlock(blockId: String): GetBlockResponse {
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -87,7 +87,7 @@ class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * @return GetBlockAttestationsResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getBlockAttestations(blockId: kotlin.String): GetBlockAttestationsResponse {
+    fun getBlockAttestations(blockId: String): GetBlockAttestationsResponse {
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -115,7 +115,7 @@ class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * @return GetBlockHeaderResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getBlockHeader(blockId: kotlin.String): GetBlockHeaderResponse {
+    fun getBlockHeader(blockId: String): GetBlockHeaderResponse {
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -172,7 +172,7 @@ class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * @return GetBlockRootResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getBlockRoot(blockId: kotlin.String): GetBlockRootResponse {
+    fun getBlockRoot(blockId: String): GetBlockRootResponse {
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -203,7 +203,7 @@ class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * @return GetEpochCommitteesResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getEpochCommittees(stateId: kotlin.String, epoch: Epoch, index: Index? = null, slot: Slot? = null): GetEpochCommitteesResponse {
+    fun getEpochCommittees(stateId: String, epoch: Epoch, index: Index? = null, slot: Slot? = null): GetEpochCommitteesResponse {
         val localVariableQuery: MultiValueMap = mapOf("index" to listOf("$index"), "slot" to listOf("$slot"))
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -259,7 +259,7 @@ class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * @return GetPoolAttestationsResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getPoolAttestations(slot: kotlin.String? = null, committeeIndex: kotlin.String? = null): GetPoolAttestationsResponse {
+    fun getPoolAttestations(slot: String? = null, committeeIndex: String? = null): GetPoolAttestationsResponse {
         val localVariableQuery: MultiValueMap = mapOf("slot" to listOf("$slot"), "committee_index" to listOf("$committeeIndex"))
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -368,7 +368,7 @@ class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * @return GetStateFinalityCheckpointsResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getStateFinalityCheckpoints(stateId: kotlin.String): GetStateFinalityCheckpointsResponse {
+    fun getStateFinalityCheckpoints(stateId: String): GetStateFinalityCheckpointsResponse {
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -396,7 +396,7 @@ class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * @return GetStateForkResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getStateFork(stateId: kotlin.String): GetStateForkResponse {
+    fun getStateFork(stateId: String): GetStateForkResponse {
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -424,7 +424,7 @@ class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * @return GetStateRootResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getStateRoot(stateId: kotlin.String): GetStateRootResponse {
+    fun getStateRoot(stateId: String): GetStateRootResponse {
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -453,7 +453,7 @@ class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * @return GetStateValidatorResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getStateValidator(stateId: kotlin.String, validatorId: kotlin.String): GetStateValidatorResponse {
+    fun getStateValidator(stateId: String, validatorId: String): GetStateValidatorResponse {
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -482,7 +482,7 @@ class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * @return GetStateValidatorBalancesResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getStateValidatorBalances(stateId: kotlin.String, id: kotlin.Array<kotlin.String>? = null): GetStateValidatorBalancesResponse {
+    fun getStateValidatorBalances(stateId: String, id: Array<String>? = null): GetStateValidatorBalancesResponse {
         val localVariableQuery: MultiValueMap = mapOf("id" to toMultiValue(id.toList(), "multi"))
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -512,7 +512,7 @@ class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * @return GetStateValidatorsResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getStateValidators(stateId: kotlin.String, id: kotlin.Array<kotlin.String>? = null, status: kotlin.Array<kotlin.Any>? = null): GetStateValidatorsResponse {
+    fun getStateValidators(stateId: String, id: Array<String>? = null, status: Array<Any>? = null): GetStateValidatorsResponse {
         val localVariableQuery: MultiValueMap = mapOf("id" to toMultiValue(id.toList(), "multi"), "status" to toMultiValue(status.toList(), "multi"))
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -540,7 +540,7 @@ class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * @return void
      */
     fun publishBlock(body: Body): Unit {
-        val localVariableBody: kotlin.Any? = body
+        val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,
@@ -568,7 +568,7 @@ class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * @return void
      */
     fun submitPoolAttestations(body: Body1): Unit {
-        val localVariableBody: kotlin.Any? = body
+        val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,
@@ -596,7 +596,7 @@ class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * @return void
      */
     fun submitPoolAttesterSlashings(body: Body2): Unit {
-        val localVariableBody: kotlin.Any? = body
+        val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,
@@ -624,7 +624,7 @@ class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * @return void
      */
     fun submitPoolProposerSlashings(body: Body3): Unit {
-        val localVariableBody: kotlin.Any? = body
+        val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,
@@ -652,7 +652,7 @@ class BeaconResource(basePath: kotlin.String = "{server_url}") : ApiClient(baseP
      * @return void
      */
     fun submitPoolVoluntaryExit(body: Body4): Unit {
-        val localVariableBody: kotlin.Any? = body
+        val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,

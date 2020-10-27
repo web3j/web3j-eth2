@@ -12,4 +12,4 @@
 package org.web3j.eth2.client.models
 
 
-typealias Uint64 = kotlin.String
+typealias Uint64 = String

@@ -17,6 +17,5 @@ package org.web3j.eth2.client.models
  */
 data class GetPeersResponse(
 
-        val `data`: kotlin.Array<GetPeersResponseData>? = null
-) {
-}
+        val `data`: Array<GetPeersResponseData>? = null
+) 

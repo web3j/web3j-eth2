@@ -18,5 +18,4 @@ package org.web3j.eth2.client.models
 data class GetVersionResponse(
 
         val `data`: GetVersionResponseData? = null
-) {
-}
+) 

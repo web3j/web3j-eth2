@@ -23,5 +23,4 @@ data class BeaconStateEth1Data(
         val depositRoot: AllOfBeaconStateEth1DataDepositRoot? = null,
         val depositCount: AllOfBeaconStateEth1DataDepositCount? = null,
         val blockHash: AllOfBeaconStateEth1DataBlockHash? = null
-) {
-}
+) 

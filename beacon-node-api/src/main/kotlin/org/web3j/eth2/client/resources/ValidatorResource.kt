@@ -29,7 +29,7 @@ import org.web3j.eth2.client.models.GetProposerDutiesResponse
 import org.web3j.eth2.client.models.ProduceAttestationDataResponse
 import org.web3j.eth2.client.models.ProduceBlockResponse
 
-class ValidatorResource(basePath: kotlin.String = "{server_url}") : ApiClient(basePath) {
+class ValidatorResource(basePath: String = "{server_url}") : ApiClient(basePath) {
 
     /**
      * Get aggregated attestation
@@ -39,7 +39,7 @@ class ValidatorResource(basePath: kotlin.String = "{server_url}") : ApiClient(ba
      * @return GetAggregatedAttestationResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getAggregatedAttestation(attestationDataRoot: kotlin.String, slot: kotlin.String): GetAggregatedAttestationResponse {
+    fun getAggregatedAttestation(attestationDataRoot: String, slot: String): GetAggregatedAttestationResponse {
         val localVariableQuery: MultiValueMap = mapOf("attestation_data_root" to listOf("$attestationDataRoot"), "slot" to listOf("$slot"))
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -68,8 +68,8 @@ class ValidatorResource(basePath: kotlin.String = "{server_url}") : ApiClient(ba
      * @return GetAttesterDutiesResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getAttesterDuties(body: kotlin.Array<kotlin.String>, epoch: kotlin.String): GetAttesterDutiesResponse {
-        val localVariableBody: kotlin.Any? = body
+    fun getAttesterDuties(body: Array<String>, epoch: String): GetAttesterDutiesResponse {
+        val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,
@@ -97,7 +97,7 @@ class ValidatorResource(basePath: kotlin.String = "{server_url}") : ApiClient(ba
      * @return GetProposerDutiesResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getProposerDuties(epoch: kotlin.String): GetProposerDutiesResponse {
+    fun getProposerDuties(epoch: String): GetProposerDutiesResponse {
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -124,8 +124,8 @@ class ValidatorResource(basePath: kotlin.String = "{server_url}") : ApiClient(ba
      * @param body  (optional)
      * @return void
      */
-    fun prepareBeaconCommitteeSubnet(body: kotlin.Array<Body6>? = null): Unit {
-        val localVariableBody: kotlin.Any? = body
+    fun prepareBeaconCommitteeSubnet(body: Array<Body6>? = null): Unit {
+        val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,
@@ -154,7 +154,7 @@ class ValidatorResource(basePath: kotlin.String = "{server_url}") : ApiClient(ba
      * @return ProduceAttestationDataResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun produceAttestationData(slot: kotlin.String, committeeIndex: kotlin.String): ProduceAttestationDataResponse {
+    fun produceAttestationData(slot: String, committeeIndex: String): ProduceAttestationDataResponse {
         val localVariableQuery: MultiValueMap = mapOf("slot" to listOf("$slot"), "committee_index" to listOf("$committeeIndex"))
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -184,7 +184,7 @@ class ValidatorResource(basePath: kotlin.String = "{server_url}") : ApiClient(ba
      * @return ProduceBlockResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun produceBlock(slot: kotlin.String, randaoReveal: kotlin.String, graffiti: kotlin.String? = null): ProduceBlockResponse {
+    fun produceBlock(slot: String, randaoReveal: String, graffiti: String? = null): ProduceBlockResponse {
         val localVariableQuery: MultiValueMap = mapOf("randao_reveal" to listOf("$randaoReveal"), "graffiti" to listOf("$graffiti"))
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -211,8 +211,8 @@ class ValidatorResource(basePath: kotlin.String = "{server_url}") : ApiClient(ba
      * @param body  (optional)
      * @return void
      */
-    fun publishAggregateAndProofs(body: kotlin.Array<Body5>? = null): Unit {
-        val localVariableBody: kotlin.Any? = body
+    fun publishAggregateAndProofs(body: Array<Body5>? = null): Unit {
+        val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.POST,

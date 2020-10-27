@@ -20,5 +20,4 @@ data class AttesterSlashing(
 
         val attestation1: Ethv1beaconpoolattesterSlashingsAttestation1? = null,
         val attestation2: Ethv1beaconpoolattesterSlashingsAttestation1? = null
-) {
-}
+) 
