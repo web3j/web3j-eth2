@@ -8,6 +8,9 @@ import org.web3j.eth2.client.resources.NodeResource
 import org.web3j.eth2.client.resources.ValidatorResource
 import javax.ws.rs.Path
 
+/**
+ * Ethereum 2.0 Beacon API client.
+ */
 @Path("/eth/v1")
 interface BeaconNodeApi {
 
@@ -48,6 +51,15 @@ interface BeaconNodeApi {
     val validator: ValidatorResource
 
     companion object {
-        fun of(service: ClientService, token: String? = null) = ClientFactory.create(service, token)
+
+        /**
+         * Beacon API factory method.
+         *
+         * @param service Beacon node service instance
+         * @param token Optional authentication token
+         */
+        @JvmStatic
+        @JvmOverloads
+        fun build(service: ClientService, token: String? = null) = ClientFactory.create(service, token)
     }
 }
