@@ -13,7 +13,6 @@
 package org.web3j.eth2.api.beacon.blocks
 
 import org.web3j.eth2.api.schema.GetBlockResponse
-import org.web3j.eth2.api.schema.GetBlockRootResponse
 import java.util.function.Supplier
 import javax.ws.rs.GET
 import javax.ws.rs.Path
@@ -32,7 +31,7 @@ interface BlockResource : Supplier<GetBlockResponse> {
 
     @get:Path("attestations")
     val attestations: AttestationsResource
-    
+
     @get:Path("root")
     val root: BlockRootResource
 }

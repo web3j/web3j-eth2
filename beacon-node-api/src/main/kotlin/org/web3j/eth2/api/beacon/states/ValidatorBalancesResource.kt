@@ -28,7 +28,6 @@ interface ValidatorBalancesResource {
     @GET
     fun findAll(): GetStateValidatorBalancesResponse = findById(emptyArray())
 
-
     /**
      * Get validator balances from state.
      *
