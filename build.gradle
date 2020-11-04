@@ -39,6 +39,7 @@ subprojects {
                 'jacoco',
                 'java',
                 'javadoc',
+                'junit',
                 'repositories',
                 'spotless'
         ].each { buildScript ->
