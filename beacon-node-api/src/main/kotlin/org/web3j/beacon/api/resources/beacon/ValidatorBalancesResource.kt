@@ -10,11 +10,19 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package org.web3j.beacon.api.response.v1.beacon
+package org.web3j.beacon.api.resources.beacon
 
-import io.swagger.v3.oas.annotations.media.Schema
+import org.web3j.beacon.api.schema.GetStateValidatorBalancesResponse
+import javax.ws.rs.GET
 
-@Schema(description = "[Validator status specification](https://hackmd.io/ofFJ5gOmQpu1jjHilHbdQQ)")
-enum class ValidatorStatus {
-    pending_initialized, pending_queued, active_ongoing, active_exiting, active_slashed, exited_unslashed, exited_slashed, withdrawal_possible, withdrawal_done
+interface ValidatorBalancesResource {
+
+    /**
+     * Get validator balances from state.
+     *
+     * @param id Either hex encoded public key (with 0x prefix) or validator index (optional).
+     * @return Returns filterable list of validator balances.
+     */
+    @GET
+    fun findBy(vararg id: String): GetStateValidatorBalancesResponse
 }

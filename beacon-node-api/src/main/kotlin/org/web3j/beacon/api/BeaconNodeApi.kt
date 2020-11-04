@@ -18,12 +18,17 @@ import org.web3j.beacon.api.resources.DebugResource
 import org.web3j.beacon.api.resources.EventsResource
 import org.web3j.beacon.api.resources.NodeResource
 import org.web3j.beacon.api.resources.ValidatorResource
+import javax.ws.rs.Consumes
 import javax.ws.rs.Path
+import javax.ws.rs.Produces
+import javax.ws.rs.core.MediaType
 
 /**
  * Ethereum 2.0 Beacon API.
  */
 @Path("/eth/v1")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 interface BeaconNodeApi {
 
     /**

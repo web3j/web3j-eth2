@@ -13,17 +13,104 @@
 package org.web3j.beacon.api.schema
 
 /**
- * Possible statuses: - **pending_initialized** - When the first deposit is processed, but not enough funds are available (or not yet the end of the first epoch) to get validator into the activation queue. - **pending_queued** - When validator is waiting to get activated, and have enough funds etc. while in the queue, validator activation epoch keeps changing until it gets to the front and make it through (finalization is a requirement here too). - **active_ongoing** - When validator must be attesting, and have not initiated any exit. - **active_exiting** - When validator is still active, but filed a voluntary request to exit. - **active_slashed** - When validator is still active, but have a slashed status and is scheduled to exit. - **exited_unslashed** - When validator has reached reguler exit epoch, not being slashed, and doesn't have to attest any more, but cannot withdraw yet. - **exited_slashed** - When validator has reached reguler exit epoch, but was slashed, have to wait for a longer withdrawal period. - **withdrawal_possible** - After validator has exited, a while later is permitted to move funds, and is truly out of the system. - **withdrawal_done** - (not possible in phase0, except slashing full balance) - actually having moved funds away  [Validator status specification](https://hackmd.io/ofFJ5gOmQpu1jjHilHbdQQ)
- * Values: pendingInitialized,pendingQueued,activeOngoing,activeExiting,activeSlashed,exitedUnslashed,exitedSlashed,withdrawalPossible,withdrawalDone
+ * Status epochs, for reference:
+ *
+ * - `activation_eligibility_epoch`: When criteria for activation were met
+ * - `activation_epoch`: When the validator is/was scheduled to activate. May change while in the activation queue.
+ * - `exit_epoch`: When the validator is/was scheduled to exit. May change while exiting.
+ * - `withdrawable_epoch`: When validator can withdraw funds
+ *
+ * From [Validator status specification](https://hackmd.io/ofFJ5gOmQpu1jjHilHbdQQ).
  */
-enum class ValidatorStatus(val value: String) {
-    pendingInitialized("pending_initialized"), // :/
-    pendingQueued("pending_queued"), // :/
-    activeOngoing("active_ongoing"), // :/
-    activeExiting("active_exiting"), // :/
-    activeSlashed("active_slashed"), // :/
-    exitedUnslashed("exited_unslashed"), // :/
-    exitedSlashed("exited_slashed"), // :/
-    withdrawalPossible("withdrawal_possible"), // :/
-    withdrawalDone("withdrawal_done"); // :/
+enum class ValidatorStatus {
+
+    /**
+     * Condition: `validator.activation_epoch <= current_epoch < validator.exit_epoch`
+     */
+    ACTIVE,
+
+    /**
+     * When you are still active, but filed a voluntary request to exit.
+     *
+     * Condition: `(validator.activation_epoch <= current_epoch) and (current_epoch < validator.exit_epoch < FAR_FUTURE_EPOCH) and (not validator.slashed)`
+     */
+    ACTIVE_EXITING,
+
+    /**
+     * When you must be attesting, and have not initiated any exit.
+     *
+     * Condition: `(validator.activation_epoch <= current_epoch) and (validator.exit_epoch == FAR_FUTURE_EPOCH)`
+     */
+    ACTIVE_ONGOING,
+
+    /**
+     * When you are still active, but have a slashed status, and are scheduled to exit.
+     *
+     * Condition: `(validator.activation_epoch <= current_epoch) and (current_epoch < validator.exit_epoch < FAR_FUTURE_EPOCH) and validator.slashed`
+     */
+    ACTIVE_SLASHED,
+
+    /**
+     * Condition: `(validator.exit_epoch <= current_epoch < validator.withdrawable_epoch)`
+     */
+    EXITED,
+
+    /**
+     * When you reach your exit epoch, but were slashed, have to wait for a longer withdrawal period,
+     * and still will lose stake based on the 50% backward and forward context rule.
+     *
+     * Condition: `(validator.exit_epoch <= current_epoch < validator.withdrawable_epoch) and validator.slashed`
+     */
+    EXITED_SLASHED,
+
+    /**
+     * When you reach your reguler exit epoch, not being slashed, and you don’t have to attest any more,
+     * but cannot withdraw yet.
+     *
+     * Condition: `(validator.exit_epoch <= current_epoch < validator.withdrawable_epoch) and (not validator.slashed)`
+     */
+    EXITED_UNSLASHED,
+
+    /**
+     * Condition: `validator.activation_epoch > current_epoch`
+     */
+    PENDING,
+
+    /**
+     * When the first deposit is processed, but not enough funds are available
+     * (or not yet the end of the first epoch) to get into the activation queue.
+     *
+     * Condition: `validator.activation_eligibility_epoch == FAR_FUTURE_EPOCH`
+     */
+    PENDING_INITIALIZED,
+
+    /**
+     * When you are waiting to get activated, and have enough funds etc. while in the queue,
+     * your activation epoch keeps changing until you get to the front and make it through
+     * (finalization is a requirement here too).
+     *
+     * Condition: `(validator.activation_eligibility_epoch < FAR_FUTURE_EPOCH) and (validator.activation_epoch > current_epoch)`
+     */
+    PENDING_QUEUED,
+
+    /**
+     * Condition: `validator.withdrawable_epoch <= current_epoch`
+     */
+    WITHDRAWAL,
+
+    /**
+     * (not possible in phase0, except slashing full balance) - actually having moved funds away.
+     *
+     * Condition: `(validator.withdrawable_epoch <= current_epoch) and (balance == 0)`
+     */
+    WITHDRAWAL_DONE,
+
+    /**
+     *  After having exited, a while later you are permitted to move funds, and are truly out of the system.
+     *
+     *  Condition: `(validator.withdrawable_epoch <= current_epoch) and (balance != 0)`
+     */
+    WITHDRAWAL_POSSIBLE;
+
+    override fun toString() = name.toLowerCase()
 }

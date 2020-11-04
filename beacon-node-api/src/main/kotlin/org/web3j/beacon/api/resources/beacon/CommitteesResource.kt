@@ -12,31 +12,28 @@
  */
 package org.web3j.beacon.api.resources.beacon
 
-import org.web3j.beacon.api.schema.GetGenesisResponse
+import org.web3j.beacon.api.schema.Epoch
+import org.web3j.beacon.api.schema.GetEpochCommitteesResponse
+import org.web3j.beacon.api.schema.Index
+import org.web3j.beacon.api.schema.Slot
 import javax.ws.rs.GET
 import javax.ws.rs.Path
+import javax.ws.rs.PathParam
 
-interface BeaconResource {
-
-    @get:Path("states")
-    val states: StatesResource
-
-    @get:Path("headers")
-    val headers: HeadersResource
-
-    @get:Path("blocks")
-    val blocks: BlocksResource
-
-    @get:Path("pool")
-    val pool: PoolResource
+interface CommitteesResource {
 
     /**
-     * Retrieve details of the chain's genesis which can be used to identify chain.
+     * Retrieves the committees for the given state at the given epoch.
      *
-     * @throws javax.ws.rs.NotFoundException Chain genesis info is not yet known.
-     * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
+     * @param epoch Epoch for which to calculate committees. Defaults to beacon state epoch.
+     * @param index Committee index (optional)
+     * @param slot (optional)
      */
-    @get:GET
-    @get:Path("genesis")
-    val genesis: GetGenesisResponse
+    @GET
+    @Path("{epoch}")
+    fun findBy(
+        @PathParam("epoch") epoch: Epoch?,
+        index: Index? = null,
+        slot: Slot? = null
+    ): GetEpochCommitteesResponse
 }
