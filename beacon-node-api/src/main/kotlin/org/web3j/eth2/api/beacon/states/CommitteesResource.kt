@@ -12,9 +12,11 @@
  */
 package org.web3j.eth2.api.beacon.states
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import org.web3j.eth2.api.schema.Epoch
-import org.web3j.eth2.api.schema.GetEpochCommitteesResponse
+import org.web3j.eth2.api.schema.EpochCommittee
 import org.web3j.eth2.api.schema.Index
+import org.web3j.eth2.api.schema.Response
 import org.web3j.eth2.api.schema.Slot
 import javax.ws.rs.GET
 import javax.ws.rs.Path
@@ -30,7 +32,7 @@ interface CommitteesResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findAll(): GetEpochCommitteesResponse
+    fun findAll(): Response<List<EpochCommittee>>
 
     /**
      * Retrieves the committees for the given state at the given epoch.
@@ -43,7 +45,8 @@ interface CommitteesResource {
      */
     @GET
     @Path("{epoch}")
-    fun findByEpoch(@PathParam("epoch") epoch: Epoch): GetEpochCommitteesResponse
+    @JsonDeserialize()
+    fun findByEpoch(@PathParam("epoch") epoch: Epoch): Response<List<EpochCommittee>>
 
     /**
      * Retrieves the committees for the given state at the given epoch.
@@ -60,7 +63,7 @@ interface CommitteesResource {
     fun findByEpochAndIndex(
         @PathParam("epoch") epoch: Epoch,
         @QueryParam("index") index: Index
-    ): GetEpochCommitteesResponse
+    ): Response<List<EpochCommittee>>
 
     /**
      * Retrieves the committees for the given state at the given epoch.
@@ -76,7 +79,7 @@ interface CommitteesResource {
     fun findByEpochAndSlot(
         @PathParam("epoch") epoch: Epoch,
         @QueryParam("slot") slot: Slot
-    ): GetEpochCommitteesResponse
+    ): Response<List<EpochCommittee>>
 
     /**
      * Retrieves the committees for the given state at the given epoch.
@@ -94,5 +97,5 @@ interface CommitteesResource {
         @PathParam("epoch") epoch: Epoch,
         @QueryParam("index") index: Index,
         @QueryParam("slot") slot: Slot
-    ): GetEpochCommitteesResponse
+    ): Response<List<EpochCommittee>>
 }

@@ -10,21 +10,17 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package org.web3j.eth2.api.beacon.states
+package org.web3j.eth2.api.schema
 
-import org.web3j.eth2.api.schema.StateFork
-import org.web3j.eth2.api.schema.Response
-import javax.ws.rs.GET
+import com.fasterxml.jackson.annotation.JsonRootName
 
-interface ForkResource {
+@JsonRootName("data")
+data class StateValidator(
 
-    /**
-     * Get [org.web3j.eth2.api.schema.Fork] object for state.
-     *
-     * @throws javax.ws.rs.BadRequestException Invalid state ID.
-     * @throws javax.ws.rs.NotFoundException State not found.
-     * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
-     */
-    @GET
-    fun get(): Response<StateFork>
-}
+    /** Index of validator in validator registry. */
+    val index: Index? = null,
+    /** Current validator balance in gwei. */
+    val balance: Balance? = null,
+    val status: ValidatorStatus? = null,
+    val validator: Validator? = null
+)

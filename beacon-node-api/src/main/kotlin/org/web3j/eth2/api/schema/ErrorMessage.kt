@@ -13,17 +13,23 @@
 package org.web3j.eth2.api.schema
 
 /**
- *
- * @param code Either specific error code in case of invalid request or http status code
- * @param message Message describing error
- * @param stacktraces Optional stacktraces, sent when node is in debug mode
+ * Error message containing meaningful data about the error.
  */
 data class ErrorMessage(
 
-        /* Either specific error code in case of invalid request or http status code */
-    val code: java.math.BigDecimal? = null,
-        /* Message describing error */
+    /**
+     * Either specific error code in case of invalid request or HTTP status code
+     *
+     */
+    val code: Int? = null,
+
+    /**
+     * Message describing error
+     */
     val message: String? = null,
-        /* Optional stacktraces, sent when node is in debug mode */
-    val stacktraces: Array<String>? = null
+
+    /**
+     * Optional stacktraces, sent when node is in debug mode
+     */
+    val stacktraces: List<String>? = null
 )

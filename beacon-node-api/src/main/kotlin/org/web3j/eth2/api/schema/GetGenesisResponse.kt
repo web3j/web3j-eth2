@@ -12,11 +12,21 @@
  */
 package org.web3j.eth2.api.schema
 
-/**
- *
- * @param &#x60;data&#x60;
- */
-data class GetGenesisResponse(
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonRootName
 
-    val `data`: GetGenesisResponseData? = null
+@JsonRootName("data")
+data class GetGenesisResponse(
+    /**
+     * The genesis time configured for the beacon node,
+     * which is the Unix time in seconds at which the Eth2.0 chain began.
+     */
+    @JsonProperty("genesis_time")
+    val genesisTime: String? = null,
+
+    @JsonProperty("genesis_validators_root")
+    val genesisValidatorsRoot: Root? = null,
+
+    @JsonProperty("genesis_fork_version")
+    val genesisForkVersion: Version? = null
 )

@@ -12,11 +12,12 @@
  */
 package org.web3j.eth2.api.schema
 
-/**
- *
- * @param &#x60;data&#x60;
- */
+import com.fasterxml.jackson.annotation.JsonRootName
+
+@JsonRootName("data")
 data class GetBlockHeadersResponse(
 
-    val `data`: Array<GetBlockHeadersResponseData>? = null
+    val root: Root? = null,
+    val canonical: Boolean? = null,
+    val header: Ethv1beaconpoolproposerSlashingsSignedHeader1? = null
 )

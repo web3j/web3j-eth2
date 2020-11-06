@@ -12,6 +12,8 @@
  */
 package org.web3j.eth2.api.beacon.states
 
+import org.web3j.eth2.api.beacon.states.validators.ValidatorBalancesResource
+import org.web3j.eth2.api.beacon.states.validators.ValidatorsResource
 import javax.ws.rs.Path
 
 interface StateResource {

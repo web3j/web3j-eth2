@@ -12,11 +12,11 @@
  */
 package org.web3j.eth2.api.beacon.states
 
-import org.web3j.eth2.api.schema.GetStateRootResponse
-import java.util.function.Supplier
+import org.web3j.eth2.api.schema.Response
+import org.web3j.eth2.api.schema.StateRoot
 import javax.ws.rs.GET
 
-interface StateRootResource : Supplier<GetStateRootResponse> {
+interface StateRootResource {
 
     /**
      * Calculates state SSZ HashTreeRoot. If stateId is root, same value will be returned.
@@ -26,5 +26,5 @@ interface StateRootResource : Supplier<GetStateRootResponse> {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    override fun get(): GetStateRootResponse
+    fun get(): Response<StateRoot>
 }

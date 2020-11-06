@@ -10,21 +10,21 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package org.web3j.eth2.api.beacon.states
+package org.web3j.eth2.api.beacon.states.validators
 
-import org.web3j.eth2.api.schema.StateFork
 import org.web3j.eth2.api.schema.Response
+import org.web3j.eth2.api.schema.StateValidator
 import javax.ws.rs.GET
 
-interface ForkResource {
+interface ValidatorResource {
 
     /**
-     * Get [org.web3j.eth2.api.schema.Fork] object for state.
+     * Returns validator specified by state and id or public key along with status and balance.
      *
-     * @throws javax.ws.rs.BadRequestException Invalid state ID.
-     * @throws javax.ws.rs.NotFoundException State not found.
+     * @throws javax.ws.rs.BadRequestException Invalid state or validator ID.
+     * @throws javax.ws.rs.NotFoundException State or validator not found.
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun get(): Response<StateFork>
+    fun get(): Response<StateValidator>
 }

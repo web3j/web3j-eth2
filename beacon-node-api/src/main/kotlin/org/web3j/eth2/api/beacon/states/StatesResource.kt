@@ -33,5 +33,5 @@ interface StatesResource {
      * @param stateId State identifier.
      */
     @Path("{state_id}")
-    fun withId(@PathParam("state_id") stateId: NamedStateId): StateResource
+    fun withId(@PathParam("state_id") stateId: NamedStateId): StateResource = withId(stateId.toString())
 }

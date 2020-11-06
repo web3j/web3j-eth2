@@ -13,6 +13,8 @@
 package org.web3j.eth2.api.schema
 
 /**
- * A fork version number.
+ * A fork version number with pattern `^0x[a-fA-F0-9]{8}$`.
+ *
+ * Example: `0x00000000`
  */
-typealias Version = String // Bytes4
+typealias Version = String

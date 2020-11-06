@@ -10,21 +10,12 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package org.web3j.eth2.api.beacon.states
+package org.web3j.eth2.api.schema
 
-import org.web3j.eth2.api.schema.StateFork
-import org.web3j.eth2.api.schema.Response
-import javax.ws.rs.GET
+import com.fasterxml.jackson.annotation.JsonRootName
 
-interface ForkResource {
+@JsonRootName("data")
+data class StateRoot(
 
-    /**
-     * Get [org.web3j.eth2.api.schema.Fork] object for state.
-     *
-     * @throws javax.ws.rs.BadRequestException Invalid state ID.
-     * @throws javax.ws.rs.NotFoundException State not found.
-     * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
-     */
-    @GET
-    fun get(): Response<StateFork>
-}
+    val root: Root? = null
+)

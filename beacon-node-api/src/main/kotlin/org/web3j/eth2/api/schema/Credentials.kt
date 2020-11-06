@@ -10,21 +10,10 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package org.web3j.eth2.api.beacon.states
+package org.web3j.eth2.api.schema
 
-import org.web3j.eth2.api.schema.StateFork
-import org.web3j.eth2.api.schema.Response
-import javax.ws.rs.GET
-
-interface ForkResource {
-
-    /**
-     * Get [org.web3j.eth2.api.schema.Fork] object for state.
-     *
-     * @throws javax.ws.rs.BadRequestException Invalid state ID.
-     * @throws javax.ws.rs.NotFoundException State not found.
-     * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
-     */
-    @GET
-    fun get(): Response<StateFork>
-}
+/**
+ * Pattern: `^0x[a-fA-F0-9]{64}$`
+ * Example: `0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2`
+ */
+typealias Credentials = String

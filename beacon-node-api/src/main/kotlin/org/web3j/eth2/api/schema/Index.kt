@@ -12,7 +12,4 @@
  */
 package org.web3j.eth2.api.schema
 
-/**
- *
- */
-data class Index
+typealias Index = String // uint64

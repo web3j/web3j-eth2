@@ -51,7 +51,7 @@ public class ValidatorWithIndex {
     this.validator = validator;
     this.validator_index = validator_index;
     this.balance = balance;
-    this.pubkey = validator.pubkey;
+    this.pubkey = validator.publicKey;
   }
 
   public ValidatorWithIndex(

@@ -113,5 +113,9 @@ enum class ValidatorStatus {
     WITHDRAWAL_POSSIBLE;
 
     override fun toString() = name.toLowerCase()
-    fun fromString(value: String) = valueOf(value.toUpperCase())
+
+    companion object {
+        @JvmStatic
+        fun fromString(value: String) = valueOf(value.toUpperCase())
+    }
 }

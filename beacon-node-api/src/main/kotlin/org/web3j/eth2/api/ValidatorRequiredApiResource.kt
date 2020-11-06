@@ -12,31 +12,20 @@
  */
 package org.web3j.eth2.api
 
-import org.web3j.eth2.client.infrastructure.ApiClient
-import org.web3j.eth2.client.infrastructure.ClientError
-import org.web3j.eth2.client.infrastructure.ClientException
-import org.web3j.eth2.client.infrastructure.MultiValueMap
-import org.web3j.eth2.client.infrastructure.RequestConfig
-import org.web3j.eth2.client.infrastructure.RequestMethod
-import org.web3j.eth2.client.infrastructure.ResponseType
-import org.web3j.eth2.client.infrastructure.ServerError
-import org.web3j.eth2.client.infrastructure.ServerException
-import org.web3j.eth2.client.infrastructure.Success
-import org.web3j.eth2.client.infrastructure.toMultiValue
-import org.web3j.eth2.client.models.Body
-import org.web3j.eth2.client.models.Body1
-import org.web3j.eth2.client.models.Body5
-import org.web3j.eth2.client.models.Body6
-import org.web3j.eth2.client.models.GetAggregatedAttestationResponse
-import org.web3j.eth2.client.models.GetAttesterDutiesResponse
-import org.web3j.eth2.client.models.GetGenesisResponse
-import org.web3j.eth2.client.models.GetProposerDutiesResponse
-import org.web3j.eth2.client.models.GetSpecResponse
-import org.web3j.eth2.client.models.GetStateForkResponse
-import org.web3j.eth2.client.models.GetStateValidatorResponse
-import org.web3j.eth2.client.models.GetSyncingStatusResponse
-import org.web3j.eth2.client.models.ProduceAttestationDataResponse
-import org.web3j.eth2.client.models.ProduceBlockResponse
+import org.web3j.eth2.api.schema.Body
+import org.web3j.eth2.api.schema.Body1
+import org.web3j.eth2.api.schema.Body5
+import org.web3j.eth2.api.schema.Body6
+import org.web3j.eth2.api.schema.GetAggregatedAttestationResponse
+import org.web3j.eth2.api.schema.GetAttesterDutiesResponse
+import org.web3j.eth2.api.schema.GetGenesisResponse
+import org.web3j.eth2.api.schema.GetProposerDutiesResponse
+import org.web3j.eth2.api.schema.GetSpecResponse
+import org.web3j.eth2.api.schema.StateFork
+import org.web3j.eth2.api.schema.StateValidator
+import org.web3j.eth2.api.schema.GetSyncingStatusResponse
+import org.web3j.eth2.api.schema.ProduceAttestationDataResponse
+import org.web3j.eth2.api.schema.ProduceBlockResponse
 
 class ValidatorRequiredApiResource(basePath: String = "{server_url}") : ApiClient(basePath) {
 
@@ -216,18 +205,18 @@ class ValidatorRequiredApiResource(basePath: String = "{server_url}") : ApiClien
      * @return GetStateForkResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getStateFork(stateId: String): GetStateForkResponse {
+    fun getStateFork(stateId: String): StateFork {
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
                 "/eth/v1/beacon/states/{state_id}/fork".replace("{" + "state_id" + "}", "$stateId")
         )
-        val response = request<GetStateForkResponse>(
+        val response = request<StateFork>(
                 localVariableConfig
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as GetStateForkResponse
+            ResponseType.Success -> (response as Success<*>).data as StateFork
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String
@@ -245,18 +234,18 @@ class ValidatorRequiredApiResource(basePath: String = "{server_url}") : ApiClien
      * @return GetStateValidatorResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getStateValidator(stateId: String, validatorId: String): GetStateValidatorResponse {
+    fun getStateValidator(stateId: String, validatorId: String): StateValidator {
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
                 "/eth/v1/beacon/states/{state_id}/validators/{validator_id}".replace("{" + "state_id" + "}", "$stateId").replace("{" + "validator_id" + "}", "$validatorId")
         )
-        val response = request<GetStateValidatorResponse>(
+        val response = request<StateValidator>(
                 localVariableConfig
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as GetStateValidatorResponse
+            ResponseType.Success -> (response as Success<*>).data as StateValidator
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String

@@ -83,7 +83,7 @@ public class Validator {
       @JsonProperty("activation_epoch") final UInt64 activation_epoch,
       @JsonProperty("exit_epoch") final UInt64 exit_epoch,
       @JsonProperty("withdrawable_epoch") final UInt64 withdrawable_epoch) {
-    this.pubkey = pubkey;
+    this.publicKey = pubkey;
     this.withdrawal_credentials = withdrawal_credentials;
     this.effective_balance = effective_balance;
     this.slashed = slashed;
@@ -94,7 +94,7 @@ public class Validator {
   }
 
   public Validator(final tech.pegasys.teku.datastructures.state.Validator validator) {
-    this.pubkey = new BLSPubKey(validator.getPubkey().toSSZBytes());
+    this.publicKey = new BLSPubKey(validator.getPubkey().toSSZBytes());
     this.withdrawal_credentials = validator.getWithdrawal_credentials();
     this.effective_balance = validator.getEffective_balance();
     this.slashed = validator.isSlashed();
@@ -106,7 +106,7 @@ public class Validator {
 
   public tech.pegasys.teku.datastructures.state.Validator asInternalValidator() {
     return tech.pegasys.teku.datastructures.state.Validator.create(
-        pubkey.asBLSPublicKey(),
+        publicKey.asBLSPublicKey(),
         withdrawal_credentials,
         effective_balance,
         slashed,
@@ -122,7 +122,7 @@ public class Validator {
     if (o == null || getClass() != o.getClass()) return false;
     final Validator validator = (Validator) o;
     return slashed == validator.slashed
-        && Objects.equals(pubkey, validator.pubkey)
+        && Objects.equals(publicKey, validator.publicKey)
         && Objects.equals(withdrawal_credentials, validator.withdrawal_credentials)
         && Objects.equals(effective_balance, validator.effective_balance)
         && Objects.equals(activation_eligibility_epoch, validator.activation_eligibility_epoch)
@@ -134,7 +134,7 @@ public class Validator {
   @Override
   public int hashCode() {
     return Objects.hash(
-        pubkey,
+            publicKey,
         withdrawal_credentials,
         effective_balance,
         slashed,
@@ -147,7 +147,7 @@ public class Validator {
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
-        .add("pubkey", pubkey)
+        .add("pubkey", publicKey)
         .add("withdrawal_credentials", withdrawal_credentials)
         .add("effective_balance", effective_balance)
         .add("slashed", slashed)

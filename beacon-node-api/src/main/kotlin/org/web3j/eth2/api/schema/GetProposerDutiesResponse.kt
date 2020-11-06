@@ -18,5 +18,5 @@ package org.web3j.eth2.api.schema
  */
 data class GetProposerDutiesResponse(
 
-    val `data`: Array<GetProposerDutiesResponseData>? = null
+    val `data`: Array<ProposerDuties>? = null
 )

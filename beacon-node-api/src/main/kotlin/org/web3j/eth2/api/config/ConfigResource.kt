@@ -12,18 +12,9 @@
  */
 package org.web3j.eth2.api.config
 
-import org.web3j.eth2.client.infrastructure.ApiClient
-import org.web3j.eth2.client.infrastructure.ClientError
-import org.web3j.eth2.client.infrastructure.ClientException
-import org.web3j.eth2.client.infrastructure.RequestConfig
-import org.web3j.eth2.client.infrastructure.RequestMethod
-import org.web3j.eth2.client.infrastructure.ResponseType
-import org.web3j.eth2.client.infrastructure.ServerError
-import org.web3j.eth2.client.infrastructure.ServerException
-import org.web3j.eth2.client.infrastructure.Success
-import org.web3j.eth2.client.models.GetDepositContractResponse
-import org.web3j.eth2.client.models.GetForkScheduleResponse
-import org.web3j.eth2.client.models.GetSpecResponse
+import org.web3j.eth2.api.schema.GetDepositContractResponse
+import org.web3j.eth2.api.schema.GetForkScheduleResponse
+import org.web3j.eth2.api.schema.GetSpecResponse
 
 class ConfigResource(basePath: String = "{server_url}") : ApiClient(basePath) {
 

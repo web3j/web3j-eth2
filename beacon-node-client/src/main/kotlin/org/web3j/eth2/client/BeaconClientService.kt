@@ -36,8 +36,7 @@ class BeaconClientService(
 
     private val mapper = jacksonObjectMapper()
         .setDefaultSetterInfo(JsonSetter.Value.forContentNulls(Nulls.AS_EMPTY))
-        .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
-        .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+//        .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
         .enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING)
         .enable(SerializationFeature.INDENT_OUTPUT)
 

@@ -12,11 +12,11 @@
  */
 package org.web3j.eth2.api.beacon.states
 
-import org.web3j.eth2.api.schema.GetStateFinalityCheckpointsResponse
-import java.util.function.Supplier
+import org.web3j.eth2.api.schema.StateFinalityCheckpoint
+import org.web3j.eth2.api.schema.Response
 import javax.ws.rs.GET
 
-interface FinalityCheckpointsResource : Supplier<GetStateFinalityCheckpointsResponse> {
+interface FinalityCheckpointsResource {
 
     /**
      * Get state finality checkpoints for state.
@@ -27,5 +27,5 @@ interface FinalityCheckpointsResource : Supplier<GetStateFinalityCheckpointsResp
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    override fun get(): GetStateFinalityCheckpointsResponse
+    fun get(): Response<StateFinalityCheckpoint>
 }
