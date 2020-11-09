@@ -13,15 +13,13 @@
 
 package org.web3j.eth2.api.schema;
 
-import static tech.pegasys.teku.api.schema.SchemaConstants.DESCRIPTION_BYTES32;
-import static tech.pegasys.teku.api.schema.SchemaConstants.DESCRIPTION_BYTES48;
-import static tech.pegasys.teku.api.schema.SchemaConstants.DESCRIPTION_BYTES96;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.apache.tuweni.bytes.Bytes32;
 import tech.pegasys.teku.bls.BLSPublicKey;
 import tech.pegasys.teku.infrastructure.unsigned.UInt64;
+
+import static tech.pegasys.teku.api.schema.SchemaConstants.*;
 
 public class DepositData {
   @Schema(type = "string", format = "byte", description = DESCRIPTION_BYTES48)

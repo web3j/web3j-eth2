@@ -12,9 +12,9 @@
  */
 package org.web3j.eth2.api.beacon.states
 
+import org.web3j.eth2.api.schema.BeaconResponse
 import org.web3j.eth2.api.schema.Epoch
 import org.web3j.eth2.api.schema.EpochCommittee
-import org.web3j.eth2.api.BeaconResponse
 import org.web3j.eth2.api.schema.Slot
 import org.web3j.eth2.api.schema.ValidatorIndex
 import javax.ws.rs.GET

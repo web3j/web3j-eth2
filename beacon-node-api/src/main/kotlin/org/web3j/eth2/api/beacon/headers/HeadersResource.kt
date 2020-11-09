@@ -12,7 +12,7 @@
  */
 package org.web3j.eth2.api.beacon.headers
 
-import org.web3j.eth2.api.BeaconResponse
+import org.web3j.eth2.api.schema.BeaconResponse
 import org.web3j.eth2.api.schema.BlockHeader
 import org.web3j.eth2.api.schema.NamedBlockId
 import org.web3j.eth2.api.schema.Root

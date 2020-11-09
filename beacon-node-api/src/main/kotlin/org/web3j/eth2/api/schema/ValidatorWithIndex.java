@@ -13,15 +13,16 @@
 
 package org.web3j.eth2.api.schema;
 
-import static tech.pegasys.teku.api.schema.SchemaConstants.DESCRIPTION_BYTES48;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.Optional;
 import tech.pegasys.teku.bls.BLSPublicKey;
 import tech.pegasys.teku.datastructures.util.ValidatorsUtil;
 import tech.pegasys.teku.infrastructure.unsigned.UInt64;
+
+import java.util.Optional;
+
+import static tech.pegasys.teku.api.schema.SchemaConstants.DESCRIPTION_BYTES48;
 
 public class ValidatorWithIndex {
   @Schema(type = "string", format = "byte", description = DESCRIPTION_BYTES48)

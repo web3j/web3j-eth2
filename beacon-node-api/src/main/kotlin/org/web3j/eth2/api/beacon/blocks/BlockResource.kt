@@ -12,7 +12,7 @@
  */
 package org.web3j.eth2.api.beacon.blocks
 
-import org.web3j.eth2.api.BeaconResponse
+import org.web3j.eth2.api.schema.BeaconResponse
 import org.web3j.eth2.api.schema.SignedBeaconBlock
 import java.util.function.Supplier
 import javax.ws.rs.GET

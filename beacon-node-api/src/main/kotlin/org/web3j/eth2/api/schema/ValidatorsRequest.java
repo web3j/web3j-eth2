@@ -13,15 +13,16 @@
 
 package org.web3j.eth2.api.schema;
 
-import static tech.pegasys.teku.api.schema.SchemaConstants.DESCRIPTION_BYTES48;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.List;
 import tech.pegasys.teku.infrastructure.unsigned.UInt64;
 import tech.pegasys.teku.util.config.Constants;
+
+import java.util.List;
+
+import static tech.pegasys.teku.api.schema.SchemaConstants.DESCRIPTION_BYTES48;
 
 public class ValidatorsRequest {
   @Schema(type = "string", format = "uint64")

@@ -13,17 +13,15 @@
 
 package org.web3j.eth2.api.schema;
 
-import static tech.pegasys.teku.api.schema.SchemaConstants.DESCRIPTION_BYTES32;
-import static tech.pegasys.teku.datastructures.util.BeaconStateUtil.compute_epoch_at_slot;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.apache.tuweni.bytes.Bytes32;
 import tech.pegasys.teku.datastructures.blocks.BeaconBlockAndState;
-import tech.pegasys.teku.datastructures.state.BeaconState;
-import tech.pegasys.teku.datastructures.state.Checkpoint;
 import tech.pegasys.teku.infrastructure.unsigned.UInt64;
+
+import static tech.pegasys.teku.api.schema.SchemaConstants.DESCRIPTION_BYTES32;
+import static tech.pegasys.teku.datastructures.util.BeaconStateUtil.compute_epoch_at_slot;
 
 public class BeaconChainHead {
   @Schema(type = "string", format = "uint64")

@@ -13,13 +13,14 @@
 
 package org.web3j.eth2.api.schema;
 
-import static tech.pegasys.teku.api.schema.SchemaConstants.PATTERN_UINT64;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.Objects;
 import tech.pegasys.teku.datastructures.networking.libp2p.rpc.MetadataMessage;
+
+import java.util.Objects;
+
+import static tech.pegasys.teku.api.schema.SchemaConstants.PATTERN_UINT64;
 
 @Schema(
     description =

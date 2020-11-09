@@ -12,7 +12,7 @@
  */
 package org.web3j.eth2.api.beacon.states.validators
 
-import org.web3j.eth2.api.BeaconResponse
+import org.web3j.eth2.api.schema.BeaconResponse
 import org.web3j.eth2.api.schema.StateValidator
 import org.web3j.eth2.api.schema.ValidatorStatus
 import java.util.EnumSet

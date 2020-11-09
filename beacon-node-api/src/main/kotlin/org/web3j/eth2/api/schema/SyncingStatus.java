@@ -13,9 +13,9 @@
 
 package org.web3j.eth2.api.schema;
 
-import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
+
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 
 @JsonInclude(NON_NULL)
 public class SyncingStatus {

@@ -13,19 +13,20 @@
 package org.web3j.eth2.api
 
 import org.web3j.eth2.api.schema.BeaconBlock
+import org.web3j.eth2.api.schema.BeaconResponse
 import org.web3j.eth2.api.schema.Body
 import org.web3j.eth2.api.schema.Body1
 import org.web3j.eth2.api.schema.Body5
 import org.web3j.eth2.api.schema.Body6
+import org.web3j.eth2.api.schema.Genesis
 import org.web3j.eth2.api.schema.GetAggregatedAttestationResponse
 import org.web3j.eth2.api.schema.GetAttesterDutiesResponse
-import org.web3j.eth2.api.schema.Genesis
 import org.web3j.eth2.api.schema.GetProposerDutiesResponse
 import org.web3j.eth2.api.schema.GetSpecResponse
-import org.web3j.eth2.api.schema.StateFork
-import org.web3j.eth2.api.schema.StateValidator
 import org.web3j.eth2.api.schema.GetSyncingStatusResponse
 import org.web3j.eth2.api.schema.ProduceAttestationDataResponse
+import org.web3j.eth2.api.schema.StateFork
+import org.web3j.eth2.api.schema.StateValidator
 
 class ValidatorRequiredApiResource(basePath: String = "{server_url}") : ApiClient(basePath) {
 

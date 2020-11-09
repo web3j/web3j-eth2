@@ -13,15 +13,16 @@
 
 package org.web3j.eth2.api.schema;
 
-import static tech.pegasys.teku.datastructures.util.BeaconStateUtil.compute_epoch_at_slot;
-import static tech.pegasys.teku.util.config.Constants.FAR_FUTURE_EPOCH;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.common.annotations.VisibleForTesting;
+import tech.pegasys.teku.infrastructure.unsigned.UInt64;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import tech.pegasys.teku.infrastructure.unsigned.UInt64;
+
+import static tech.pegasys.teku.datastructures.util.BeaconStateUtil.compute_epoch_at_slot;
+import static tech.pegasys.teku.util.config.Constants.FAR_FUTURE_EPOCH;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BeaconValidators {

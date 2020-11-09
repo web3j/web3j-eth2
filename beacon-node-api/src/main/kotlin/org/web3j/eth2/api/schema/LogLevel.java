@@ -17,8 +17,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import java.util.Optional;
 import org.apache.logging.log4j.Level;
+
+import java.util.Optional;
 
 public class LogLevel {
 

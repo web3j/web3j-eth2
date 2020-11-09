@@ -13,13 +13,13 @@
 
 package org.web3j.eth2.api.schema;
 
-import static tech.pegasys.teku.api.schema.SchemaConstants.DESCRIPTION_BYTES32;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.apache.tuweni.bytes.Bytes32;
 import tech.pegasys.teku.infrastructure.unsigned.UInt64;
+
+import static tech.pegasys.teku.api.schema.SchemaConstants.DESCRIPTION_BYTES32;
 
 public class TemporaryAttestationData {
   @Schema(type = "string", format = "uint64")

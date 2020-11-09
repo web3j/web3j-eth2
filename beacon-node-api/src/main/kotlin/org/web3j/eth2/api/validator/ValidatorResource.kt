@@ -12,8 +12,8 @@
  */
 package org.web3j.eth2.api.validator
 
-import org.web3j.eth2.api.BeaconResponse
 import org.web3j.eth2.api.schema.BeaconBlock
+import org.web3j.eth2.api.schema.BeaconResponse
 import org.web3j.eth2.api.schema.GetAggregatedAttestationResponse
 import org.web3j.eth2.api.schema.GetAttesterDutiesResponse
 import org.web3j.eth2.api.schema.GetProposerDutiesResponse

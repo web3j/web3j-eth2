@@ -13,11 +13,12 @@
 
 package org.web3j.eth2.api.schema;
 
-import static tech.pegasys.teku.api.schema.SchemaConstants.DESCRIPTION_BYTES32;
-
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.Optional;
 import org.apache.tuweni.bytes.Bytes32;
+
+import java.util.Optional;
+
+import static tech.pegasys.teku.api.schema.SchemaConstants.DESCRIPTION_BYTES32;
 
 public class ValidatorBlockResult {
   private final int responseCode;

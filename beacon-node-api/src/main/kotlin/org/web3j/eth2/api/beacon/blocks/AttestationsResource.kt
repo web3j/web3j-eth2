@@ -12,8 +12,8 @@
  */
 package org.web3j.eth2.api.beacon.blocks
 
-import org.web3j.eth2.api.BeaconResponse
 import org.web3j.eth2.api.schema.Attestation
+import org.web3j.eth2.api.schema.BeaconResponse
 import javax.ws.rs.GET
 
 interface AttestationsResource {

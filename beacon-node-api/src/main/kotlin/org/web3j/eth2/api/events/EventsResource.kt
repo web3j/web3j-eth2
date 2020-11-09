@@ -12,47 +12,25 @@
  */
 package org.web3j.eth2.api.events
 
-import org.web3j.eth2.client.infrastructure.ApiClient
-import org.web3j.eth2.client.infrastructure.ClientError
-import org.web3j.eth2.client.infrastructure.ClientException
-import org.web3j.eth2.client.infrastructure.MultiValueMap
-import org.web3j.eth2.client.infrastructure.RequestConfig
-import org.web3j.eth2.client.infrastructure.RequestMethod
-import org.web3j.eth2.client.infrastructure.ResponseType
-import org.web3j.eth2.client.infrastructure.ServerError
-import org.web3j.eth2.client.infrastructure.ServerException
-import org.web3j.eth2.client.infrastructure.Success
-import org.web3j.eth2.client.infrastructure.toMultiValue
+import org.web3j.eth2.api.schema.BeaconEvent
+import org.web3j.eth2.api.schema.BeaconEventType
+import java.util.EnumSet
+import java.util.concurrent.CompletableFuture
+import java.util.function.Consumer
 
-class EventsResource(basePath: String = "{server_url}") : ApiClient(basePath) {
+interface EventsResource {
 
     /**
-     * Subscribe to beacon node events
      * Provides endpoint to subscribe to beacon node Server-Sent-Events stream.
      * Consumers should use [eventsource](https://html.spec.whatwg.org/multipage/server-sent-events.html#the-eventsource-interface)
      * implementation to listen on those events.
-     * @param topics Event types to subscribe to
-     * @return String
+     *
+     * @param topics Event types to subscribe to.
+     * @param onEvent Event reception callback.
+     * @return A future reference to the the empty result to monitor the connection.
+     *
+     * @throws javax.ws.rs.BadRequestException The topics supplied could not be parsed
+     * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
-    @Suppress("UNCHECKED_CAST")
-    fun eventstream(topics: Array<String>): String {
-        val localVariableQuery: MultiValueMap = mapOf("topics" to toMultiValue(topics.toList(), "multi"))
-        val localVariableConfig = RequestConfig(
-                RequestMethod.GET,
-                "/eth/v1/events", query = localVariableQuery
-        )
-        val response = request<String>(
-                localVariableConfig
-        )
-
-        return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as String
-            ResponseType.Informational -> TODO()
-            ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String
-                    ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message
-                    ?: "Server error")
-        }
-    }
+    fun onEvent(topics: EnumSet<BeaconEventType>, onEvent: Consumer<BeaconEvent>): CompletableFuture<Void>
 }
