@@ -12,30 +12,30 @@
  */
 package org.web3j.eth2.api.beacon.pool
 
-import org.web3j.eth2.api.schema.Body2
-import org.web3j.eth2.api.schema.GetPoolAttesterSlashingsResponse
+import org.web3j.eth2.api.BeaconResponse
+import org.web3j.eth2.api.schema.AttesterSlashing
 import javax.ws.rs.GET
 import javax.ws.rs.POST
 
 interface AttesterSlashingsResource {
 
     /**
-     * Get [org.web3j.eth2.api.schema.AttesterSlashing]s from operations pool.
+     * Get [AttesterSlashing]s from operations pool.
      *
      * Retrieves attester slashings known by the node but not necessarily incorporated into any block.
      *
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findAll(): GetPoolAttesterSlashingsResponse
+    fun findAll(): BeaconResponse<List<AttesterSlashing>>
 
     /**
-     * Submits [org.web3j.eth2.api.schema.AttesterSlashing] object to node's pool
+     * Submits [AttesterSlashing] object to node's pool
      * and if passes validation node MUST broadcast it to network.
      *
      * @throws javax.ws.rs.BadRequestException Invalid attester slashing.
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @POST
-    fun submit(body: Body2)
+    fun submit(body: AttesterSlashing)
 }

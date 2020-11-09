@@ -12,8 +12,8 @@
  */
 package org.web3j.eth2.api.beacon.pool
 
-import org.web3j.eth2.api.schema.Body1
-import org.web3j.eth2.api.schema.GetPoolAttestationsResponse
+import org.web3j.eth2.api.BeaconResponse
+import org.web3j.eth2.api.schema.Attestation
 import javax.ws.rs.GET
 import javax.ws.rs.POST
 import javax.ws.rs.QueryParam
@@ -21,17 +21,17 @@ import javax.ws.rs.QueryParam
 interface AttestationsResource {
 
     /**
-     * Get attestations from operations pool.
+     * Get [Attestation]s from operations pool.
      *
      * Retrieves attestations known by the node but not necessarily incorporated into any block.
      *
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findAll(): GetPoolAttestationsResponse
+    fun findAll(): BeaconResponse<List<Attestation>>
 
     /**
-     * Get attestations from operations pool.
+     * Get [Attestation]s from operations pool.
      *
      * Retrieves attestations known by the node but not necessarily incorporated into any block.
      *
@@ -39,10 +39,10 @@ interface AttestationsResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findBySlot(@QueryParam("slot") slot: String): GetPoolAttestationsResponse
+    fun findBySlot(@QueryParam("slot") slot: String): BeaconResponse<List<Attestation>>
 
     /**
-     * Get attestations from operations pool.
+     * Get [Attestation]s from operations pool.
      *
      * Retrieves attestations known by the node but not necessarily incorporated into any block.
      *
@@ -50,10 +50,10 @@ interface AttestationsResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findByCommitteeIndex(@QueryParam("committee_index") committeeIndex: String): GetPoolAttestationsResponse
+    fun findByCommitteeIndex(@QueryParam("committee_index") committeeIndex: String): BeaconResponse<List<Attestation>>
 
     /**
-     * Get attestations from operations pool.
+     * Get [Attestation]s from operations pool.
      *
      * Retrieves attestations known by the node but not necessarily incorporated into any block.
      *
@@ -64,15 +64,15 @@ interface AttestationsResource {
     fun findBySlotAndCommitteeIndex(
         @QueryParam("slot") slot: String,
         @QueryParam("committee_index") committeeIndex: String
-    ): GetPoolAttestationsResponse
+    ): BeaconResponse<List<Attestation>>
 
     /**
-     * Submits Attestation object to node. If attestation passes all validation constraints,
+     * Submits [Attestation] object to node. If attestation passes all validation constraints,
      * node MUST publish attestation on appropriate subnet.
      *
      * @throws javax.ws.rs.BadRequestException Invalid attestation.
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @POST
-    fun submit(body: Body1)
+    fun submit(body: Attestation)
 }

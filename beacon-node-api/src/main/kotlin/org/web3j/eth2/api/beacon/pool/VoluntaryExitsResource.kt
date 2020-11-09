@@ -12,30 +12,30 @@
  */
 package org.web3j.eth2.api.beacon.pool
 
-import org.web3j.eth2.api.schema.Body4
-import org.web3j.eth2.api.schema.GetPoolVoluntaryExitsResponse
+import org.web3j.eth2.api.BeaconResponse
+import org.web3j.eth2.api.schema.SignedVoluntaryExit
 import javax.ws.rs.GET
 import javax.ws.rs.POST
 
 interface VoluntaryExitsResource {
 
     /**
-     * Get [org.web3j.eth2.api.schema.SignedVoluntaryExit] from operations pool.
+     * Get [SignedVoluntaryExit] from operations pool.
      *
      * Retrieves voluntary exits known by the node but not necessarily incorporated into any block.
      *
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findAll(): GetPoolVoluntaryExitsResponse
-
+    fun findAll(): BeaconResponse<List<SignedVoluntaryExit>>
+    
     /**
-     * Submits [org.web3j.eth2.api.schema.SignedVoluntaryExit] object to node's pool
+     * Submits [SignedVoluntaryExit] object to node's pool
      * and if passes validation node MUST broadcast it to network.
      *
      * @throws javax.ws.rs.BadRequestException Invalid voluntary exit.
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @POST
-    fun submit(body: Body4)
+    fun submit(body: SignedVoluntaryExit)
 }

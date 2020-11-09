@@ -12,30 +12,30 @@
  */
 package org.web3j.eth2.api.beacon.pool
 
-import org.web3j.eth2.api.schema.Body3
-import org.web3j.eth2.api.schema.GetPoolProposerSlashingsResponse
+import org.web3j.eth2.api.BeaconResponse
+import org.web3j.eth2.api.schema.ProposerSlashing
 import javax.ws.rs.GET
 import javax.ws.rs.POST
 
 interface ProposerSlashingsResource {
 
     /**
-     * Get [org.web3j.eth2.api.schema.ProposerSlashing]s from operations pool.
+     * Get [ProposerSlashing]s from operations pool.
      *
      * Retrieves proposer slashings known by the node but not necessarily incorporated into any block.
      *
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findAll(): GetPoolProposerSlashingsResponse
+    fun findAll(): BeaconResponse<List<ProposerSlashing>>
 
     /**
-     * Submits [org.web3j.eth2.api.schema.ProposerSlashing] object to node's pool.
+     * Submits [ProposerSlashing] object to node's pool.
      * and if passes validation node MUST broadcast it to network.
      *
      * @throws javax.ws.rs.BadRequestException Invalid proposer slashing.
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @POST
-    fun submit(body: Body3)
+    fun submit(body: ProposerSlashing)
 }
