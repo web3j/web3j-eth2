@@ -12,7 +12,7 @@
  */
 package org.web3j.eth2.api.beacon.states.validators
 
-import org.web3j.eth2.api.schema.Response
+import org.web3j.eth2.api.BeaconResponse
 import org.web3j.eth2.api.schema.StateValidator
 import javax.ws.rs.GET
 
@@ -26,5 +26,5 @@ interface ValidatorResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun get(): Response<StateValidator>
+    fun get(): BeaconResponse<StateValidator>
 }

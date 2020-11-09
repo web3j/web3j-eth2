@@ -12,12 +12,11 @@
  */
 package org.web3j.eth2.api.beacon.states
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import org.web3j.eth2.api.schema.Epoch
 import org.web3j.eth2.api.schema.EpochCommittee
-import org.web3j.eth2.api.schema.ValidatorIndex
-import org.web3j.eth2.api.schema.Response
+import org.web3j.eth2.api.BeaconResponse
 import org.web3j.eth2.api.schema.Slot
+import org.web3j.eth2.api.schema.ValidatorIndex
 import javax.ws.rs.GET
 import javax.ws.rs.Path
 import javax.ws.rs.PathParam
@@ -32,7 +31,7 @@ interface CommitteesResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findAll(): Response<List<EpochCommittee>>
+    fun findAll(): BeaconResponse<List<EpochCommittee>>
 
     /**
      * Retrieves the committees for the given state at the given epoch.
@@ -45,8 +44,7 @@ interface CommitteesResource {
      */
     @GET
     @Path("{epoch}")
-    @JsonDeserialize()
-    fun findByEpoch(@PathParam("epoch") epoch: Epoch): Response<List<EpochCommittee>>
+    fun findByEpoch(@PathParam("epoch") epoch: Epoch): BeaconResponse<List<EpochCommittee>>
 
     /**
      * Retrieves the committees for the given state at the given epoch.
@@ -63,7 +61,7 @@ interface CommitteesResource {
     fun findByEpochAndIndex(
         @PathParam("epoch") epoch: Epoch,
         @QueryParam("index") index: ValidatorIndex
-    ): Response<List<EpochCommittee>>
+    ): BeaconResponse<List<EpochCommittee>>
 
     /**
      * Retrieves the committees for the given state at the given epoch.
@@ -79,7 +77,7 @@ interface CommitteesResource {
     fun findByEpochAndSlot(
         @PathParam("epoch") epoch: Epoch,
         @QueryParam("slot") slot: Slot
-    ): Response<List<EpochCommittee>>
+    ): BeaconResponse<List<EpochCommittee>>
 
     /**
      * Retrieves the committees for the given state at the given epoch.
@@ -97,5 +95,5 @@ interface CommitteesResource {
         @PathParam("epoch") epoch: Epoch,
         @QueryParam("index") index: ValidatorIndex,
         @QueryParam("slot") slot: Slot
-    ): Response<List<EpochCommittee>>
+    ): BeaconResponse<List<EpochCommittee>>
 }

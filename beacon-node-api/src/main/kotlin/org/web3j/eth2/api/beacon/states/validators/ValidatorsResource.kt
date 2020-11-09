@@ -12,7 +12,7 @@
  */
 package org.web3j.eth2.api.beacon.states.validators
 
-import org.web3j.eth2.api.schema.Response
+import org.web3j.eth2.api.BeaconResponse
 import org.web3j.eth2.api.schema.StateValidator
 import org.web3j.eth2.api.schema.ValidatorStatus
 import java.util.EnumSet
@@ -41,7 +41,7 @@ interface ValidatorsResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findAll(): Response<List<StateValidator>> = findById(emptyArray())
+    fun findAll(): BeaconResponse<List<StateValidator>> = findById(emptyArray())
 
     /**
      * Returns filterable list of validators with their balance, status and index.
@@ -52,7 +52,7 @@ interface ValidatorsResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findById(@QueryParam("id") id: Array<String>): Response<List<StateValidator>> =
+    fun findById(@QueryParam("id") id: Array<String>): BeaconResponse<List<StateValidator>> =
         findByIdAndStatus(id, EnumSet.noneOf(ValidatorStatus::class.java))
 
     /**
@@ -65,7 +65,7 @@ interface ValidatorsResource {
      */
     @GET
     fun findByStatus(@QueryParam("status") status: EnumSet<ValidatorStatus>):
-            Response<List<StateValidator>> = findByIdAndStatus(emptyArray(), status)
+            BeaconResponse<List<StateValidator>> = findByIdAndStatus(emptyArray(), status)
 
     /**
      * Returns filterable list of validators with their balance, status and index.
@@ -80,5 +80,5 @@ interface ValidatorsResource {
     fun findByIdAndStatus(
         @QueryParam("id") id: Array<String>,
         @QueryParam("status") status: EnumSet<ValidatorStatus>
-    ): Response<List<StateValidator>>
+    ): BeaconResponse<List<StateValidator>>
 }

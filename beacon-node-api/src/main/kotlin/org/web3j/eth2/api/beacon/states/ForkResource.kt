@@ -13,7 +13,7 @@
 package org.web3j.eth2.api.beacon.states
 
 import org.web3j.eth2.api.schema.StateFork
-import org.web3j.eth2.api.schema.Response
+import org.web3j.eth2.api.BeaconResponse
 import javax.ws.rs.GET
 
 interface ForkResource {
@@ -26,5 +26,5 @@ interface ForkResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun get(): Response<StateFork>
+    fun get(): BeaconResponse<StateFork>
 }

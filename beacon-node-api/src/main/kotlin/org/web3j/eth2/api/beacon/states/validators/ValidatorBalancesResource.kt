@@ -12,7 +12,7 @@
  */
 package org.web3j.eth2.api.beacon.states.validators
 
-import org.web3j.eth2.api.schema.Response
+import org.web3j.eth2.api.BeaconResponse
 import org.web3j.eth2.api.schema.StateValidatorBalance
 import javax.ws.rs.GET
 import javax.ws.rs.QueryParam
@@ -27,7 +27,7 @@ interface ValidatorBalancesResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findAll(): Response<List<StateValidatorBalance>> = findById(emptyArray())
+    fun findAll(): BeaconResponse<List<StateValidatorBalance>> = findById(emptyArray())
 
     /**
      * Get validator balances from state.
@@ -39,5 +39,5 @@ interface ValidatorBalancesResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findById(@QueryParam("id") id: Array<String>): Response<List<StateValidatorBalance>>
+    fun findById(@QueryParam("id") id: Array<String>): BeaconResponse<List<StateValidatorBalance>>
 }

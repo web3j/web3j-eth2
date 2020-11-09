@@ -12,7 +12,7 @@
  */
 package org.web3j.eth2.api.beacon.states
 
-import org.web3j.eth2.api.schema.Response
+import org.web3j.eth2.api.BeaconResponse
 import org.web3j.eth2.api.schema.Root
 import javax.ws.rs.GET
 
@@ -26,5 +26,5 @@ interface StateRootResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun get(): Response<Root>
+    fun get(): BeaconResponse<Root>
 }
