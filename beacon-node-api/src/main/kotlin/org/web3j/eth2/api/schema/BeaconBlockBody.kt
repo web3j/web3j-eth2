@@ -12,25 +12,25 @@
  */
 package org.web3j.eth2.api.schema
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 /**
- * The [`BeaconBlockBody`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblockbody) object from the Eth2.0 spec.
- * @param randaoReveal
- * @param eth1Data
- * @param graffiti
- * @param proposerSlashings
- * @param attesterSlashings
- * @param attestations
- * @param deposits
- * @param voluntaryExits
+ * The [`BeaconBlockBody`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblockbody) 
+ * object from the Eth2.0 spec.
  */
 data class BeaconBlockBody(
 
-    val randaoReveal: AllOfBeaconBlockBodyRandaoReveal? = null,
+    @JsonProperty("randao_reveal")
+    val randaoReveal: BLSSignature? = null,
+    @JsonProperty("eth1_data")
     val eth1Data: Eth1Data? = null,
     val graffiti: String? = null,
-    val proposerSlashings: Array<Body3>? = null,
-    val attesterSlashings: Array<Body2>? = null,
-    val attestations: Array<Body1>? = null,
-    val deposits: Array<BeaconBlockBodyDeposits>? = null,
-    val voluntaryExits: Array<Body4>? = null
+    @JsonProperty("proposer_slashings")
+    val proposerSlashings: List<ProposerSlashing>? = null,
+    @JsonProperty("attester_slashings")
+    val attesterSlashings: List<AttesterSlashing>? = null,
+    val attestations: List<Attestation>? = null,
+    val deposits: List<Deposit>? = null,
+    @JsonProperty("voluntary_exits")
+    val voluntaryExits: List<SignedVoluntaryExit>? = null
 )

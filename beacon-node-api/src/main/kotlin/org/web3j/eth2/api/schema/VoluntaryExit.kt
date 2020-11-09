@@ -10,35 +10,13 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
+package org.web3j.eth2.api.schema
 
-package org.web3j.eth2.api.schema;
+import com.fasterxml.jackson.annotation.JsonProperty
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
-import tech.pegasys.teku.infrastructure.unsigned.UInt64;
-
-public class VoluntaryExit {
-  @Schema(type = "string", format = "uint64")
-  public final UInt64 epoch;
-
-  @Schema(type = "string", format = "uint64")
-  public final UInt64 validator_index;
-
-  public VoluntaryExit(tech.pegasys.teku.datastructures.operations.VoluntaryExit voluntaryExit) {
-    this.epoch = voluntaryExit.getEpoch();
-    this.validator_index = voluntaryExit.getValidator_index();
-  }
-
-  @JsonCreator
-  public VoluntaryExit(
-      @JsonProperty("epoch") final UInt64 epoch,
-      @JsonProperty("validator_index") final UInt64 validator_index) {
-    this.epoch = epoch;
-    this.validator_index = validator_index;
-  }
-
-  public tech.pegasys.teku.datastructures.operations.VoluntaryExit asInternalVoluntaryExit() {
-    return new tech.pegasys.teku.datastructures.operations.VoluntaryExit(epoch, validator_index);
-  }
-}
+data class VoluntaryExit (
+    /** Earliest epoch when voluntary exit can be processed. */
+    val epoch: Epoch,
+    @JsonProperty("validator_index")
+    val validatorIndex: ValidatorIndex
+)

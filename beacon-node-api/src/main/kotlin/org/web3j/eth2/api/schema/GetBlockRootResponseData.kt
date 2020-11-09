@@ -12,11 +12,6 @@
  */
 package org.web3j.eth2.api.schema
 
-/**
- *
- * @param &#x60;data&#x60;
- */
-data class GetBlockRootResponse(
-
-    val `data`: GetBlockRootResponseData? = null
+data class GetBlockRootResponseData(
+    val root: Root? = null
 )

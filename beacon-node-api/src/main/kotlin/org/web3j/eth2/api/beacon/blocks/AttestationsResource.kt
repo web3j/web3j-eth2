@@ -12,11 +12,11 @@
  */
 package org.web3j.eth2.api.beacon.blocks
 
-import org.web3j.eth2.api.schema.GetBlockAttestationsResponse
-import java.util.function.Supplier
+import org.web3j.eth2.api.BeaconResponse
+import org.web3j.eth2.api.schema.Attestation
 import javax.ws.rs.GET
 
-interface AttestationsResource : Supplier<GetBlockAttestationsResponse> {
+interface AttestationsResource {
 
     /**
      * Retrieves attestation included in requested block.
@@ -26,5 +26,5 @@ interface AttestationsResource : Supplier<GetBlockAttestationsResponse> {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    override fun get(): GetBlockAttestationsResponse
+    fun findAll(): BeaconResponse<List<Attestation>>
 }

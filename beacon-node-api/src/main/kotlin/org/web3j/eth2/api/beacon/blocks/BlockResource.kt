@@ -12,12 +12,13 @@
  */
 package org.web3j.eth2.api.beacon.blocks
 
-import org.web3j.eth2.api.schema.GetBlockResponse
+import org.web3j.eth2.api.BeaconResponse
+import org.web3j.eth2.api.schema.SignedBeaconBlock
 import java.util.function.Supplier
 import javax.ws.rs.GET
 import javax.ws.rs.Path
 
-interface BlockResource : Supplier<GetBlockResponse> {
+interface BlockResource : Supplier<BeaconResponse<SignedBeaconBlock>> {
 
     /**
      * Retrieves block details for given block ID.
@@ -27,7 +28,7 @@ interface BlockResource : Supplier<GetBlockResponse> {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    override fun get(): GetBlockResponse
+    override fun get(): BeaconResponse<SignedBeaconBlock>
 
     @get:Path("attestations")
     val attestations: AttestationsResource

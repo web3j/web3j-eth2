@@ -12,11 +12,12 @@
  */
 package org.web3j.eth2.api.beacon.blocks
 
-import org.web3j.eth2.api.schema.GetBlockRootResponse
+import org.web3j.eth2.api.BeaconResponse
+import org.web3j.eth2.api.schema.GetBlockRootResponseData
 import java.util.function.Supplier
 import javax.ws.rs.GET
 
-interface BlockRootResource : Supplier<GetBlockRootResponse> {
+interface BlockRootResource : Supplier<BeaconResponse<GetBlockRootResponseData>> {
 
     /**
      * Retrieves hashTreeRoot of [org.web3j.eth2.api.schema.BeaconBlock]/
@@ -27,5 +28,5 @@ interface BlockRootResource : Supplier<GetBlockRootResponse> {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    override fun get(): GetBlockRootResponse
+    override fun get(): BeaconResponse<GetBlockRootResponseData>
 }

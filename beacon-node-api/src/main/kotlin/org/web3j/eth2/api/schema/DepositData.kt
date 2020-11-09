@@ -12,16 +12,19 @@
  */
 package org.web3j.eth2.api.schema
 
-/**
- * The [`Attestation`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#attestation) object from the Eth2.0 spec.
- * @param aggregationBits Attester aggregation bits.
- * @param signature
- * @param &#x60;data&#x60;
- */
-data class Body1(
+import com.fasterxml.jackson.annotation.JsonProperty
 
-        /* Attester aggregation bits. */
-    val aggregationBits: String? = null,
-    val signature: AllOfbody1Signature? = null,
-    val `data`: Ethv1beaconpoolattestationsData? = null
+/**
+ * The [`DepositData`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#depositdata)
+ * object from the Eth2.0 spec.
+ */
+data class DepositData(
+    /** The validator's BLS public key, uniquely identifying them. */
+    @JsonProperty("pubkey")
+    val publicKey: BLSPubkey? = null,
+    @JsonProperty("withdrawal_credentials")
+    val withdrawalCredentials: String? = null,
+    val amount: Gwei? = null,
+    /** Signing over DepositMessage. */
+    val signature: BLSSignature? = null
 )
