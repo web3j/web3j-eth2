@@ -190,7 +190,7 @@ class ValidatorResource(basePath: String = "{server_url}") : ApiClient(basePath)
     /**
      * Produce a new block, without signature.
      * Requests a beacon node to produce a valid block, which can then be signed by a validator.
-     * 
+     *
      * @param slot The slot for which the block should be proposed.
      * @param randaoReveal The validator&#x27;s randao reveal value.
      * @param graffiti Arbitrary data validator wants to include in block. (optional)

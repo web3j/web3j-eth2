@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 ConsenSys AG.
+ * Copyright 2020 Web3 Labs Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class PendingAttestation(
     @JsonProperty("aggregation_bits")
     val aggregationBits: String, // Bitlist
-    
+
     val data: AttestationData,
 
     @JsonProperty("inclusion_delay")

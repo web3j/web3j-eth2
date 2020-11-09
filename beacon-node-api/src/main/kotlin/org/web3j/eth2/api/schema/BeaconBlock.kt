@@ -13,7 +13,7 @@
 package org.web3j.eth2.api.schema
 
 /**
- * The [`BeaconBlock`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblock) 
+ * The [`BeaconBlock`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblock)
  * object from the Eth2.0 spec.
  */
 data class BeaconBlock(

@@ -15,7 +15,7 @@ package org.web3j.eth2.api.schema
 import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
- * The [`Eth1Data`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#eth1data) 
+ * The [`Eth1Data`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#eth1data)
  * object from the Eth2.0 spec.
  */
 data class Eth1Data(

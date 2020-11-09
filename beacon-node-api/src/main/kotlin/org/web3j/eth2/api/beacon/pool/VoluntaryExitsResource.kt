@@ -28,7 +28,7 @@ interface VoluntaryExitsResource {
      */
     @GET
     fun findAll(): BeaconResponse<List<SignedVoluntaryExit>>
-    
+
     /**
      * Submits [SignedVoluntaryExit] object to node's pool
      * and if passes validation node MUST broadcast it to network.
