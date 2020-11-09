@@ -12,7 +12,9 @@
  */
 package org.web3j.eth2.api.schema
 
-/**
- *
- */
-data class GenesisTime
+data class BlockHeader(
+
+    val root: Root? = null,
+    val canonical: Boolean? = null,
+    val header: Ethv1beaconpoolproposerSlashingsSignedHeader1? = null
+)

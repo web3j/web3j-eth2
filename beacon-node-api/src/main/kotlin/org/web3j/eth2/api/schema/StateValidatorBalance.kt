@@ -14,6 +14,6 @@ package org.web3j.eth2.api.schema
 
 data class StateValidatorBalance(
 
-    val index: Index? = null,
+    val index: ValidatorIndex? = null,
     val balance: Balance? = null
 )

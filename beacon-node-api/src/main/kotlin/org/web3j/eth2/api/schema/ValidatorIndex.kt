@@ -12,15 +12,4 @@
  */
 package org.web3j.eth2.api.schema
 
-/**
- *
- * @param root
- * @param canonical
- * @param header
- */
-data class GetBlockHeadersResponseData(
-
-    val root: String? = null,
-    val canonical: Boolean? = null,
-    val header: Ethv1beaconpoolproposerSlashingsSignedHeader1? = null
-)
+typealias ValidatorIndex = String // uint64

@@ -12,13 +12,10 @@
  */
 package org.web3j.eth2.api.schema
 
-import com.fasterxml.jackson.annotation.JsonRootName
-
-@JsonRootName("data")
 data class StateValidator(
 
     /** Index of validator in validator registry. */
-    val index: Index? = null,
+    val index: ValidatorIndex? = null,
     /** Current validator balance in gwei. */
     val balance: Balance? = null,
     val status: ValidatorStatus? = null,

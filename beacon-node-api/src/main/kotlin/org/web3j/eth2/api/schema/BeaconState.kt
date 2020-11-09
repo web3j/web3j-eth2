@@ -12,55 +12,53 @@
  */
 package org.web3j.eth2.api.schema
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 /**
- * The [`BeaconState`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblock) object from the Eth2.0 spec.
- * @param genesisTime
- * @param genesisValidatorsRoot
- * @param slot
- * @param fork
- * @param latestBlockHeader The [`BeaconBlockHeader`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblockheader) object from the Eth2.0 spec.
- * @param blockRoots
- * @param stateRoots
- * @param historicalRoots
- * @param eth1Data
- * @param eth1DataVotes
- * @param eth1DepositIndex
- * @param validators
- * @param balances Validator balances in gwei
- * @param randaoMixes
- * @param slashings Per-epoch sums of slashed effective balances
- * @param previousEpochAttestations
- * @param currentEpochAttestations
- * @param justificationBits Bit set for every recent justified epoch
- * @param previousJustifiedCheckpoint
- * @param currentJustifiedCheckpoint
- * @param finalizedCheckpoint
+ * The [`BeaconState`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblock) 
+ * object from the Eth2.0 spec.
  */
 data class BeaconState(
-
+    @JsonProperty("genesis_time")
     val genesisTime: String? = null,
-    val genesisValidatorsRoot: String? = null,
-    val slot: String? = null,
-    val fork: BeaconStateFork? = null,
-        /* The [`BeaconBlockHeader`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblockheader) object from the Eth2.0 spec. */
-    val latestBlockHeader: AllOfBeaconStateLatestBlockHeader? = null,
-    val blockRoots: Array<AllOfBeaconStateBlockRootsItems>? = null,
-    val stateRoots: Array<AllOfBeaconStateStateRootsItems>? = null,
-    val historicalRoots: Array<AllOfBeaconStateHistoricalRootsItems>? = null,
-    val eth1Data: BeaconStateEth1Data? = null,
-    val eth1DataVotes: Array<AllOfBeaconStateEth1DataVotesItems>? = null,
+    @JsonProperty("genesis_validators_root")
+    val genesisValidatorsRoot: Root? = null,
+    val slot: Slot? = null,
+    val fork: Fork? = null,
+    /** The [`BeaconBlockHeader`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblockheader)
+     * object from the Eth2.0 spec. */
+    @JsonProperty("latest_block_header")
+    val latestBlockHeader: BeaconBlockHeader? = null,
+    @JsonProperty("block_roots")
+    val blockRoots: List<Root>? = null,
+    @JsonProperty("state_roots")
+    val stateRoots: List<Root>? = null,
+    @JsonProperty("historical_roots")
+    val historicalRoots: List<Root>? = null,
+    @JsonProperty("eth1_data")
+    val eth1Data: Eth1Data? = null,
+    @JsonProperty("eth1_data_votes")
+    val eth1DataVotes: List<Eth1Data>? = null,
+    @JsonProperty("eth1_deposit_index")
     val eth1DepositIndex: String? = null,
-    val validators: Array<AllOfBeaconStateValidatorsItems>? = null,
-        /* Validator balances in gwei */
-    val balances: Array<AllOfBeaconStateBalancesItems>? = null,
-    val randaoMixes: Array<AllOfBeaconStateRandaoMixesItems>? = null,
-        /* Per-epoch sums of slashed effective balances */
-    val slashings: Array<AllOfBeaconStateSlashingsItems>? = null,
-    val previousEpochAttestations: Array<AllOfBeaconStatePreviousEpochAttestationsItems>? = null,
-    val currentEpochAttestations: Array<AllOfBeaconStateCurrentEpochAttestationsItems>? = null,
-        /* Bit set for every recent justified epoch */
+    val validators: List<Validator>? = null,
+    /** Validator balances in gwei */
+    val balances: List<Gwei>? = null,
+    @JsonProperty("randao_mixes")
+    val randaoMixes: List<String>? = null,
+    /** Per-epoch sums of slashed effective balances */
+    val slashings: List<Gwei>? = null,
+    @JsonProperty("previous_epoch_attestations")
+    val previousEpochAttestations: List<PendingAttestation>? = null,
+    @JsonProperty("current_epoch_attestations")
+    val currentEpochAttestations: List<PendingAttestation>? = null,
+    /** Bit set for every recent justified epoch */
+    @JsonProperty("justification_bits")
     val justificationBits: String? = null,
-    val previousJustifiedCheckpoint: Ethv1beaconpoolattestationsDataSource? = null,
-    val currentJustifiedCheckpoint: Ethv1beaconpoolattestationsDataSource? = null,
-    val finalizedCheckpoint: Ethv1beaconpoolattestationsDataSource? = null
+    @JsonProperty("previous_justified_checkpoint")
+    val previousJustifiedCheckpoint: Checkpoint? = null,
+    @JsonProperty("current_justified_checkpoint")
+    val currentJustifiedCheckpoint: Checkpoint? = null,
+    @JsonProperty("finalized_checkpoint")
+    val finalizedCheckpoint: Checkpoint? = null
 )

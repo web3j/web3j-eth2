@@ -15,7 +15,7 @@ package org.web3j.eth2.api.beacon.states
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import org.web3j.eth2.api.schema.Epoch
 import org.web3j.eth2.api.schema.EpochCommittee
-import org.web3j.eth2.api.schema.Index
+import org.web3j.eth2.api.schema.ValidatorIndex
 import org.web3j.eth2.api.schema.Response
 import org.web3j.eth2.api.schema.Slot
 import javax.ws.rs.GET
@@ -62,7 +62,7 @@ interface CommitteesResource {
     @Path("{epoch}")
     fun findByEpochAndIndex(
         @PathParam("epoch") epoch: Epoch,
-        @QueryParam("index") index: Index
+        @QueryParam("index") index: ValidatorIndex
     ): Response<List<EpochCommittee>>
 
     /**
@@ -95,7 +95,7 @@ interface CommitteesResource {
     @Path("{epoch}")
     fun findByEpochAndIndexAndSlot(
         @PathParam("epoch") epoch: Epoch,
-        @QueryParam("index") index: Index,
+        @QueryParam("index") index: ValidatorIndex,
         @QueryParam("slot") slot: Slot
     ): Response<List<EpochCommittee>>
 }

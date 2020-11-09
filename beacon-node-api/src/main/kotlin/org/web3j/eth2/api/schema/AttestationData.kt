@@ -12,6 +12,8 @@
  */
 package org.web3j.eth2.api.schema
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 /**
  * The [`AttestationData`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#attestationdata) object from the Eth2.0 spec.
  * @param slot
@@ -24,7 +26,10 @@ data class AttestationData(
 
     val slot: String? = null,
     val index: String? = null,
-    val beaconBlockRoot: _root_ide_package_.org.web3j.eth2.api.schema.AllOfAttestationDataBeaconBlockRoot? = null,
-    val source: Ethv1beaconpoolattestationsDataSource? = null,
-    val target: Ethv1beaconpoolattestationsDataSource? = null
+    /** LMD GHOST vote */
+    @JsonProperty("beacon_block_root")
+    val beaconBlockRoot: Root? = null,
+    /** FFG vote */
+    val source: Checkpoint? = null,
+    val target: Checkpoint? = null
 )

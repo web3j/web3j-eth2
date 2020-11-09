@@ -24,7 +24,7 @@ data class Ethv1beaconpoolattestationsData(
 
     val slot: String? = null,
     val index: String? = null,
-    val beaconBlockRoot: AllOfethv1beaconpoolattestationsDataBeaconBlockRoot? = null,
+    val beaconBlockRoot: Root? = null,
     val source: Ethv1beaconpoolattestationsDataSource? = null,
     val target: Ethv1beaconpoolattestationsDataSource? = null
 )

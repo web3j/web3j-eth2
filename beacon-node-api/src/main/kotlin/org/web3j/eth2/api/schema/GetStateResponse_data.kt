@@ -47,7 +47,7 @@ data class GetStateResponseData(
     val blockRoots: Array<AllOfGetStateResponseDataBlockRootsItems>? = null,
     val stateRoots: Array<AllOfGetStateResponseDataStateRootsItems>? = null,
     val historicalRoots: Array<AllOfGetStateResponseDataHistoricalRootsItems>? = null,
-    val eth1Data: BeaconStateEth1Data? = null,
+    val eth1Data: Eth1Data? = null,
     val eth1DataVotes: Array<AllOfGetStateResponseDataEth1DataVotesItems>? = null,
     val eth1DepositIndex: String? = null,
     val validators: Array<AllOfGetStateResponseDataValidatorsItems>? = null,

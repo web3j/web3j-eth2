@@ -12,17 +12,19 @@
  */
 package org.web3j.eth2.api.schema
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 /**
- * The [`Fork`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#fork) object from the Eth2.0 spec.
- * @param previousVersion a fork version number
- * @param currentVersion a fork version number
- * @param epoch
+ * The [`Fork`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#fork) 
+ * object from the Eth2.0 spec.
  */
 data class Fork(
 
-        /* a fork version number */
-    val previousVersion: String? = null,
-        /* a fork version number */
-    val currentVersion: String? = null,
-    val epoch: String? = null
+        /** A fork version number. */
+    @JsonProperty("previous_version")
+    val previousVersion: Version? = null,
+        /** A fork version number. */
+    @JsonProperty("current_version")
+    val currentVersion: Version? = null,
+    val epoch: Epoch? = null
 )

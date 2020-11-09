@@ -26,7 +26,7 @@ package org.web3j.eth2.api.schema
 data class BeaconBlockBody(
 
     val randaoReveal: AllOfBeaconBlockBodyRandaoReveal? = null,
-    val eth1Data: BeaconStateEth1Data? = null,
+    val eth1Data: Eth1Data? = null,
     val graffiti: String? = null,
     val proposerSlashings: Array<Body3>? = null,
     val attesterSlashings: Array<Body2>? = null,

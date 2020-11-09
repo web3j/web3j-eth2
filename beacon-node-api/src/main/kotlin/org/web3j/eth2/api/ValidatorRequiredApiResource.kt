@@ -18,7 +18,7 @@ import org.web3j.eth2.api.schema.Body5
 import org.web3j.eth2.api.schema.Body6
 import org.web3j.eth2.api.schema.GetAggregatedAttestationResponse
 import org.web3j.eth2.api.schema.GetAttesterDutiesResponse
-import org.web3j.eth2.api.schema.GetGenesisResponse
+import org.web3j.eth2.api.schema.Genesis
 import org.web3j.eth2.api.schema.GetProposerDutiesResponse
 import org.web3j.eth2.api.schema.GetSpecResponse
 import org.web3j.eth2.api.schema.StateFork
@@ -122,18 +122,18 @@ class ValidatorRequiredApiResource(basePath: String = "{server_url}") : ApiClien
      * @return GetGenesisResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun getGenesis(): GetGenesisResponse {
+    fun getGenesis(): Genesis {
 
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
                 "/eth/v1/beacon/genesis"
         )
-        val response = request<GetGenesisResponse>(
+        val response = request<Genesis>(
                 localVariableConfig
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as GetGenesisResponse
+            ResponseType.Success -> (response as Success<*>).data as Genesis
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String

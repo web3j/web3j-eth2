@@ -18,8 +18,8 @@ package org.web3j.eth2.api.schema
  */
 data class EpochCommittee(
 
-    val index: Index? = null,
+    val index: ValidatorIndex? = null,
     val slot: String? = null,
     /** List of validator indices assigned to this committee */
-    val validators: List<Index>? = null
+    val validators: List<ValidatorIndex>? = null
 )

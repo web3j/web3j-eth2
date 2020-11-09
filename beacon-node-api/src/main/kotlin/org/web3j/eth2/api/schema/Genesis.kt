@@ -12,4 +12,19 @@
  */
 package org.web3j.eth2.api.schema
 
-typealias Index = String // uint64
+import com.fasterxml.jackson.annotation.JsonProperty
+
+data class Genesis(
+    /**
+     * The genesis time configured for the beacon node,
+     * which is the Unix time in seconds at which the Eth2.0 chain began.
+     */
+    @JsonProperty("genesis_time")
+    val time: String? = null,
+
+    @JsonProperty("genesis_validators_root")
+    val validatorsRoot: Root? = null,
+
+    @JsonProperty("genesis_fork_version")
+    val forkVersion: Version? = null
+)

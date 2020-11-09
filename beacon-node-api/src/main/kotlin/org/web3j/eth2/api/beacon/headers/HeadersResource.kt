@@ -12,9 +12,9 @@
  */
 package org.web3j.eth2.api.beacon.headers
 
-import org.web3j.eth2.api.schema.GetBlockHeaderResponse
-import org.web3j.eth2.api.schema.GetBlockHeadersResponse
+import org.web3j.eth2.api.schema.BlockHeader
 import org.web3j.eth2.api.schema.NamedBlockId
+import org.web3j.eth2.api.schema.Response
 import org.web3j.eth2.api.schema.Root
 import org.web3j.eth2.api.schema.Slot
 import javax.ws.rs.GET
@@ -32,7 +32,7 @@ interface HeadersResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findAll(): GetBlockHeadersResponse
+    fun findAll(): Response<BlockHeader>
 
     /**
      * Retrieves block headers matching given query. By default it will fetch current head slot blocks.
@@ -42,7 +42,7 @@ interface HeadersResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findBySlot(@QueryParam("slot") slot: Slot): GetBlockHeadersResponse
+    fun findBySlot(@QueryParam("slot") slot: Slot): Response<BlockHeader>
 
     /**
      * Retrieves block headers matching given query. By default it will fetch current head slot blocks.
@@ -52,7 +52,7 @@ interface HeadersResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findByParentRoot(@QueryParam("parent_root") parentRoot: Root): GetBlockHeadersResponse
+    fun findByParentRoot(@QueryParam("parent_root") parentRoot: Root): Response<BlockHeader>
 
     /**
      * Retrieves block headers matching given query. By default it will fetch current head slot blocks.
@@ -65,7 +65,7 @@ interface HeadersResource {
     fun findBySlotAndParentRoot(
         @QueryParam("slot") slot: Slot,
         @QueryParam("parent_root") parentRoot: Root
-    ): GetBlockHeadersResponse
+    ): Response<BlockHeader>
 
     /**
      * Retrieves block header for given block ID.
@@ -79,7 +79,7 @@ interface HeadersResource {
      */
     @GET
     @Path("{block_id}")
-    fun findByBlockId(@PathParam("block_id") blockId: String): GetBlockHeaderResponse
+    fun findByBlockId(@PathParam("block_id") blockId: String): Response<BlockHeader>
 
     /**
      * Retrieves block header for given block ID.
@@ -92,5 +92,5 @@ interface HeadersResource {
      */
     @GET
     @Path("{block_id}")
-    fun findByBlockId(@PathParam("block_id") blockId: NamedBlockId): GetBlockHeaderResponse
+    fun findByBlockId(@PathParam("block_id") blockId: NamedBlockId): Response<BlockHeader>
 }

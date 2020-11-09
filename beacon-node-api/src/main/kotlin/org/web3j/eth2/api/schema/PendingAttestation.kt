@@ -10,51 +10,19 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
+package org.web3j.eth2.api.schema
 
-package org.web3j.eth2.api.schema;
+import com.fasterxml.jackson.annotation.JsonProperty
 
-import static tech.pegasys.teku.api.schema.SchemaConstants.DESCRIPTION_BYTES_SSZ;
+data class PendingAttestation(
+    @JsonProperty("aggregation_bits")
+    val aggregationBits: String, // Bitlist
+    
+    val data: AttestationData,
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
-import tech.pegasys.teku.infrastructure.unsigned.UInt64;
-import tech.pegasys.teku.ssz.SSZTypes.Bitlist;
+    @JsonProperty("inclusion_delay")
+    val inclusionDelay: String, // UInt64
 
-public class PendingAttestation {
-  @Schema(type = "string", format = "byte", description = DESCRIPTION_BYTES_SSZ)
-  public final Bitlist aggregation_bits;
-
-  public final AttestationData data;
-
-  @Schema(type = "string", format = "uint64")
-  public final UInt64 inclusion_delay;
-
-  @Schema(type = "string", format = "uint64")
-  public final UInt64 proposer_index;
-
-  @JsonCreator
-  public PendingAttestation(
-      @JsonProperty("aggregation_bits") final Bitlist aggregation_bits,
-      @JsonProperty("data") final AttestationData data,
-      @JsonProperty("inclusion_delay") final UInt64 inclusion_delay,
-      @JsonProperty("proposer_index") final UInt64 proposer_index) {
-    this.aggregation_bits = aggregation_bits;
-    this.data = data;
-    this.inclusion_delay = inclusion_delay;
-    this.proposer_index = proposer_index;
-  }
-
-  public PendingAttestation(
-      final tech.pegasys.teku.datastructures.state.PendingAttestation pendingAttestation) {
-    this.aggregation_bits = pendingAttestation.getAggregation_bits();
-    this.data = new AttestationData(pendingAttestation.getData());
-    this.inclusion_delay = pendingAttestation.getInclusion_delay();
-    this.proposer_index = pendingAttestation.getProposer_index();
-  }
-
-  public tech.pegasys.teku.datastructures.state.PendingAttestation asInternalPendingAttestation() {
-    return new tech.pegasys.teku.datastructures.state.PendingAttestation(
-        aggregation_bits, data.asInternalAttestationData(), inclusion_delay, proposer_index);
-  }
-}
+    @JsonProperty("proposer_index")
+    val proposerIndex: String // UInt64
+)
