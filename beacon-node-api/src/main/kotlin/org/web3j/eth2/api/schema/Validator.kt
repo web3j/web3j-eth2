@@ -16,8 +16,11 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 data class Validator(
 
-    /** The validator's BLS public key, uniquely identifying them. _48-bytes, hex encoded with 0x prefix, case insensitive._ */
-    @JsonProperty("public_key")
+    /**
+     * The validator's BLS public key, uniquely identifying them. 
+     * _48-bytes, hex encoded with 0x prefix, case insensitive._ 
+     */
+    @JsonProperty("pubkey")
     val publicKey: PublicKey? = null,
 
     @JsonProperty("withdrawal_credentials")
