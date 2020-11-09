@@ -13,12 +13,10 @@
 package org.web3j.eth2.api.schema
 
 /**
- * The [`AttesterSlashing`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/core/0_beacon-chain.md#attesterslashing) object from the Eth2.0 spec.
- * @param attestation1
- * @param attestation2
+ * The [`AttesterSlashing`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/core/0_beacon-chain.md#attesterslashing)
+ * object from the Eth2.0 spec.
  */
 data class AttesterSlashing(
-
-    val attestation1: Ethv1beaconpoolattesterSlashingsAttestation1? = null,
-    val attestation2: Ethv1beaconpoolattesterSlashingsAttestation1? = null
+    val attestation1: IndexedAttestation? = null,
+    val attestation2: IndexedAttestation? = null
 )

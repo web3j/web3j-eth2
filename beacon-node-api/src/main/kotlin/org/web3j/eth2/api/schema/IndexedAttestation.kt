@@ -13,18 +13,12 @@
 package org.web3j.eth2.api.schema
 
 /**
- * The [`AttestationData`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#attestationdata) object from the Eth2.0 spec.
- * @param slot
- * @param index
- * @param beaconBlockRoot
- * @param source
- * @param target
+ * The [`IndexedAttestation`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#indexedattestation)
+ * object from the Eth2.0 spec.
  */
-data class Ethv1beaconpoolattestationsData(
-
-    val slot: String? = null,
-    val index: String? = null,
-    val beaconBlockRoot: Root? = null,
-    val source: Ethv1beaconpoolattestationsDataSource? = null,
-    val target: Ethv1beaconpoolattestationsDataSource? = null
+data class IndexedAttestation(
+    /** Attesting validator indices */
+    val attestingIndices: List<ValidatorIndex>? = null,
+    val signature: BLSSignature? = null,
+    val `data`: AttestationData? = null
 )

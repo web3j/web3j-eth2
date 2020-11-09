@@ -14,19 +14,23 @@ package org.web3j.eth2.api.schema
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-class BeaconBlockHeader {
+/**
+ * The [`BeaconBlockHeader`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblockheader)
+ * object from the Eth2.0 spec.
+ */
+data class BeaconBlockHeader (
 
-    val slot: Slot? = null
+    val slot: Slot? = null,
 
     @JsonProperty("proposer_index")
-    val proposerIndex: ValidatorIndex? = null
+    val proposerIndex: ValidatorIndex? = null,
 
     @JsonProperty("parent_root")
-    val parentRoot: Root? = null
+    val parentRoot: Root? = null,
 
     @JsonProperty("state_root")
-    val stateRoot: Root? = null
+    val stateRoot: Root? = null,
 
     @JsonProperty("body_root")
     val bodyRoot: Root? = null
-}
+)

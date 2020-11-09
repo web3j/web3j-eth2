@@ -12,9 +12,9 @@
  */
 package org.web3j.eth2.api.beacon.headers
 
+import org.web3j.eth2.api.BeaconResponse
 import org.web3j.eth2.api.schema.BlockHeader
 import org.web3j.eth2.api.schema.NamedBlockId
-import org.web3j.eth2.api.BeaconResponse
 import org.web3j.eth2.api.schema.Root
 import org.web3j.eth2.api.schema.Slot
 import javax.ws.rs.GET
@@ -25,7 +25,7 @@ import javax.ws.rs.QueryParam
 interface HeadersResource {
 
     /**
-     * Retrieves block headers matching given query. By default it will fetch current head slot blocks.
+     * Retrieves all block headers. By default it will fetch current head slot blocks.
      *
      * @throws javax.ws.rs.NotFoundException Block not found.
      * @throws javax.ws.rs.BadRequestException The block ID supplied could not be parsed.

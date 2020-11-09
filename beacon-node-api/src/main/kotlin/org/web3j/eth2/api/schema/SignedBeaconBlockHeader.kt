@@ -13,13 +13,10 @@
 package org.web3j.eth2.api.schema
 
 /**
- * The [`SignedBeaconBlockHeader`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#signedbeaconblockheader) object envelope from the Eth2.0 spec.
- * @param message The [`BeaconBlockHeader`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblockheader) object from the Eth2.0 spec.
- * @param signature
+ * The [`SignedBeaconBlockHeader`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#signedbeaconblockheader)
+ * object envelope from the Eth2.0 spec.
  */
 data class SignedBeaconBlockHeader(
-
-        /* The [`BeaconBlockHeader`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblockheader) object from the Eth2.0 spec. */
-    val message: AllOfSignedBeaconBlockHeaderMessage? = null,
-    val signature: String? = null
+    val message: BeaconBlockHeader? = null,
+    val signature: BLSSignature? = null
 )
