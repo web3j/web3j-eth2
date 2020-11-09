@@ -13,12 +13,10 @@
 package org.web3j.eth2.api.schema
 
 /**
- * The [`Checkpoint`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#checkpoint
- * @param epoch
- * @param root
+ * The [`Checkpoint`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#checkpoint)
+ * object from the Eth2.0 spec.
  */
 data class Checkpoint(
-
     val epoch: Epoch? = null,
     val root: Root? = null
 )

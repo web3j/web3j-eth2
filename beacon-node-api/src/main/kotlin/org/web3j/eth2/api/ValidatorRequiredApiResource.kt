@@ -12,6 +12,7 @@
  */
 package org.web3j.eth2.api
 
+import org.web3j.eth2.api.schema.BeaconBlock
 import org.web3j.eth2.api.schema.Body
 import org.web3j.eth2.api.schema.Body1
 import org.web3j.eth2.api.schema.Body5
@@ -25,7 +26,6 @@ import org.web3j.eth2.api.schema.StateFork
 import org.web3j.eth2.api.schema.StateValidator
 import org.web3j.eth2.api.schema.GetSyncingStatusResponse
 import org.web3j.eth2.api.schema.ProduceAttestationDataResponse
-import org.web3j.eth2.api.schema.ProduceBlockResponse
 
 class ValidatorRequiredApiResource(basePath: String = "{server_url}") : ApiClient(basePath) {
 
@@ -342,24 +342,20 @@ class ValidatorRequiredApiResource(basePath: String = "{server_url}") : ApiClien
     /**
      * Produce a new block, without signature.
      * Requests a beacon node to produce a valid block, which can then be signed by a validator.
-     * @param slot The slot for which the block should be proposed.
-     * @param randaoReveal The validator&#x27;s randao reveal value.
-     * @param graffiti Arbitrary data validator wants to include in block. (optional)
-     * @return ProduceBlockResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun produceBlock(slot: String, randaoReveal: String, graffiti: String? = null): ProduceBlockResponse {
+    fun produceBlock(slot: String, randaoReveal: String, graffiti: String? = null): BeaconResponse<BeaconBlock> {
         val localVariableQuery: MultiValueMap = mapOf("randao_reveal" to listOf("$randaoReveal"), "graffiti" to listOf("$graffiti"))
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
                 "/eth/v1/validator/blocks/{slot}".replace("{" + "slot" + "}", "$slot"), query = localVariableQuery
         )
-        val response = request<ProduceBlockResponse>(
+        val response = request<BeaconResponse<BeaconBlock>>(
                 localVariableConfig
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as ProduceBlockResponse
+            ResponseType.Success -> (response as Success<*>).data as BeaconResponse<BeaconBlock>
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String

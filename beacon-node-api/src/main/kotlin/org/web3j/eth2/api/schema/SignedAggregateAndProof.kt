@@ -13,12 +13,10 @@
 package org.web3j.eth2.api.schema
 
 /**
- * The [`SignedAggregateAndProof`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/validator.md#signedaggregateandproof) object
- * @param message
- * @param signature
+ * The [`SignedAggregateAndProof`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/validator.md#signedaggregateandproof) 
+ * object from the Eth2.0 spec.
  */
 data class SignedAggregateAndProof(
-
-    val message: AllOfSignedAggregateAndProofMessage? = null,
-    val signature: String? = null
+    val message: AggregateAndProof? = null,
+    val signature: BLSSignature? = null
 )

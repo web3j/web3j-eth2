@@ -12,23 +12,12 @@
  */
 package org.web3j.eth2.api.validator
 
-import org.web3j.eth2.client.infrastructure.ApiClient
-import org.web3j.eth2.client.infrastructure.ClientError
-import org.web3j.eth2.client.infrastructure.ClientException
-import org.web3j.eth2.client.infrastructure.MultiValueMap
-import org.web3j.eth2.client.infrastructure.RequestConfig
-import org.web3j.eth2.client.infrastructure.RequestMethod
-import org.web3j.eth2.client.infrastructure.ResponseType
-import org.web3j.eth2.client.infrastructure.ServerError
-import org.web3j.eth2.client.infrastructure.ServerException
-import org.web3j.eth2.client.infrastructure.Success
-import org.web3j.eth2.client.models.Body5
-import org.web3j.eth2.client.models.Body6
-import org.web3j.eth2.client.models.GetAggregatedAttestationResponse
-import org.web3j.eth2.client.models.GetAttesterDutiesResponse
-import org.web3j.eth2.client.models.GetProposerDutiesResponse
-import org.web3j.eth2.client.models.ProduceAttestationDataResponse
-import org.web3j.eth2.client.models.ProduceBlockResponse
+import org.web3j.eth2.api.BeaconResponse
+import org.web3j.eth2.api.schema.BeaconBlock
+import org.web3j.eth2.api.schema.GetAggregatedAttestationResponse
+import org.web3j.eth2.api.schema.GetAttesterDutiesResponse
+import org.web3j.eth2.api.schema.GetProposerDutiesResponse
+import org.web3j.eth2.api.schema.ProduceAttestationDataResponse
 
 class ValidatorResource(basePath: String = "{server_url}") : ApiClient(basePath) {
 
@@ -41,23 +30,28 @@ class ValidatorResource(basePath: String = "{server_url}") : ApiClient(basePath)
      */
     @Suppress("UNCHECKED_CAST")
     fun getAggregatedAttestation(attestationDataRoot: String, slot: String): GetAggregatedAttestationResponse {
-        val localVariableQuery: MultiValueMap = mapOf("attestation_data_root" to listOf("$attestationDataRoot"), "slot" to listOf("$slot"))
+        val localVariableQuery: MultiValueMap =
+            mapOf("attestation_data_root" to listOf("$attestationDataRoot"), "slot" to listOf("$slot"))
         val localVariableConfig = RequestConfig(
-                RequestMethod.GET,
-                "/eth/v1/validator/aggregate_attestation", query = localVariableQuery
+            RequestMethod.GET,
+            "/eth/v1/validator/aggregate_attestation", query = localVariableQuery
         )
         val response = request<GetAggregatedAttestationResponse>(
-                localVariableConfig
+            localVariableConfig
         )
 
         return when (response.responseType) {
             ResponseType.Success -> (response as Success<*>).data as GetAggregatedAttestationResponse
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String
-                    ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message
-                    ?: "Server error")
+            ResponseType.ClientError -> throw ClientException(
+                (response as ClientError<*>).body as? String
+                    ?: "Client error"
+            )
+            ResponseType.ServerError -> throw ServerException(
+                (response as ServerError<*>).message
+                    ?: "Server error"
+            )
         }
     }
 
@@ -73,21 +67,25 @@ class ValidatorResource(basePath: String = "{server_url}") : ApiClient(basePath)
         val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
-                RequestMethod.POST,
-                "/eth/v1/validator/duties/attester/{epoch}".replace("{" + "epoch" + "}", "$epoch")
+            RequestMethod.POST,
+            "/eth/v1/validator/duties/attester/{epoch}".replace("{" + "epoch" + "}", "$epoch")
         )
         val response = request<GetAttesterDutiesResponse>(
-                localVariableConfig
+            localVariableConfig
         )
 
         return when (response.responseType) {
             ResponseType.Success -> (response as Success<*>).data as GetAttesterDutiesResponse
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String
-                    ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message
-                    ?: "Server error")
+            ResponseType.ClientError -> throw ClientException(
+                (response as ClientError<*>).body as? String
+                    ?: "Client error"
+            )
+            ResponseType.ServerError -> throw ServerException(
+                (response as ServerError<*>).message
+                    ?: "Server error"
+            )
         }
     }
 
@@ -101,21 +99,25 @@ class ValidatorResource(basePath: String = "{server_url}") : ApiClient(basePath)
     fun getProposerDuties(epoch: String): GetProposerDutiesResponse {
 
         val localVariableConfig = RequestConfig(
-                RequestMethod.GET,
-                "/eth/v1/validator/duties/proposer/{epoch}".replace("{" + "epoch" + "}", "$epoch")
+            RequestMethod.GET,
+            "/eth/v1/validator/duties/proposer/{epoch}".replace("{" + "epoch" + "}", "$epoch")
         )
         val response = request<GetProposerDutiesResponse>(
-                localVariableConfig
+            localVariableConfig
         )
 
         return when (response.responseType) {
             ResponseType.Success -> (response as Success<*>).data as GetProposerDutiesResponse
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String
-                    ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message
-                    ?: "Server error")
+            ResponseType.ClientError -> throw ClientException(
+                (response as ClientError<*>).body as? String
+                    ?: "Client error"
+            )
+            ResponseType.ServerError -> throw ServerException(
+                (response as ServerError<*>).message
+                    ?: "Server error"
+            )
         }
     }
 
@@ -129,21 +131,25 @@ class ValidatorResource(basePath: String = "{server_url}") : ApiClient(basePath)
         val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
-                RequestMethod.POST,
-                "/eth/v1/validator/beacon_committee_subscriptions"
+            RequestMethod.POST,
+            "/eth/v1/validator/beacon_committee_subscriptions"
         )
         val response = request<Any?>(
-                localVariableConfig
+            localVariableConfig
         )
 
         return when (response.responseType) {
             ResponseType.Success -> Unit
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String
-                    ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message
-                    ?: "Server error")
+            ResponseType.ClientError -> throw ClientException(
+                (response as ClientError<*>).body as? String
+                    ?: "Client error"
+            )
+            ResponseType.ServerError -> throw ServerException(
+                (response as ServerError<*>).message
+                    ?: "Server error"
+            )
         }
     }
 
@@ -156,53 +162,63 @@ class ValidatorResource(basePath: String = "{server_url}") : ApiClient(basePath)
      */
     @Suppress("UNCHECKED_CAST")
     fun produceAttestationData(slot: String, committeeIndex: String): ProduceAttestationDataResponse {
-        val localVariableQuery: MultiValueMap = mapOf("slot" to listOf("$slot"), "committee_index" to listOf("$committeeIndex"))
+        val localVariableQuery: MultiValueMap =
+            mapOf("slot" to listOf("$slot"), "committee_index" to listOf("$committeeIndex"))
         val localVariableConfig = RequestConfig(
-                RequestMethod.GET,
-                "/eth/v1/validator/attestation_data", query = localVariableQuery
+            RequestMethod.GET,
+            "/eth/v1/validator/attestation_data", query = localVariableQuery
         )
         val response = request<ProduceAttestationDataResponse>(
-                localVariableConfig
+            localVariableConfig
         )
 
         return when (response.responseType) {
             ResponseType.Success -> (response as Success<*>).data as ProduceAttestationDataResponse
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String
-                    ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message
-                    ?: "Server error")
+            ResponseType.ClientError -> throw ClientException(
+                (response as ClientError<*>).body as? String
+                    ?: "Client error"
+            )
+            ResponseType.ServerError -> throw ServerException(
+                (response as ServerError<*>).message
+                    ?: "Server error"
+            )
         }
     }
 
     /**
      * Produce a new block, without signature.
      * Requests a beacon node to produce a valid block, which can then be signed by a validator.
+     * 
      * @param slot The slot for which the block should be proposed.
      * @param randaoReveal The validator&#x27;s randao reveal value.
      * @param graffiti Arbitrary data validator wants to include in block. (optional)
-     * @return ProduceBlockResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun produceBlock(slot: String, randaoReveal: String, graffiti: String? = null): ProduceBlockResponse {
-        val localVariableQuery: MultiValueMap = mapOf("randao_reveal" to listOf("$randaoReveal"), "graffiti" to listOf("$graffiti"))
+    fun produceBlock(slot: String, randaoReveal: String, graffiti: String? = null): BeaconResponse<BeaconBlock> {
+        val localVariableQuery: MultiValueMap =
+            mapOf("randao_reveal" to listOf("$randaoReveal"), "graffiti" to listOf("$graffiti"))
         val localVariableConfig = RequestConfig(
-                RequestMethod.GET,
-                "/eth/v1/validator/blocks/{slot}".replace("{" + "slot" + "}", "$slot"), query = localVariableQuery
+            RequestMethod.GET,
+            "/eth/v1/validator/blocks/{slot}".replace("{" + "slot" + "}", "$slot"), query = localVariableQuery
         )
-        val response = request<ProduceBlockResponse>(
-                localVariableConfig
+        val response = request<BeaconResponse<BeaconBlock>>(
+            localVariableConfig
         )
 
         return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as ProduceBlockResponse
+            ResponseType.Success -> (response as Success<*>).data as BeaconResponse<BeaconBlock>
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String
-                    ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message
-                    ?: "Server error")
+            ResponseType.ClientError -> throw ClientException(
+                (response as ClientError<*>).body as? String
+                    ?: "Client error"
+            )
+            ResponseType.ServerError -> throw ServerException(
+                (response as ServerError<*>).message
+                    ?: "Server error"
+            )
         }
     }
 
@@ -216,21 +232,25 @@ class ValidatorResource(basePath: String = "{server_url}") : ApiClient(basePath)
         val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
-                RequestMethod.POST,
-                "/eth/v1/validator/aggregate_and_proofs"
+            RequestMethod.POST,
+            "/eth/v1/validator/aggregate_and_proofs"
         )
         val response = request<Any?>(
-                localVariableConfig
+            localVariableConfig
         )
 
         return when (response.responseType) {
             ResponseType.Success -> Unit
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String
-                    ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message
-                    ?: "Server error")
+            ResponseType.ClientError -> throw ClientException(
+                (response as ClientError<*>).body as? String
+                    ?: "Client error"
+            )
+            ResponseType.ServerError -> throw ServerException(
+                (response as ServerError<*>).message
+                    ?: "Server error"
+            )
         }
     }
 }

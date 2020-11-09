@@ -25,8 +25,6 @@ data class BeaconState(
     val genesisValidatorsRoot: Root? = null,
     val slot: Slot? = null,
     val fork: Fork? = null,
-    /** The [`BeaconBlockHeader`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblockheader)
-     * object from the Eth2.0 spec. */
     @JsonProperty("latest_block_header")
     val latestBlockHeader: BeaconBlockHeader? = null,
     @JsonProperty("block_roots")

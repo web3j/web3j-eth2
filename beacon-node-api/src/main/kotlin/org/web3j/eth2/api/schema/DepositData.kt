@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class DepositData(
     /** The validator's BLS public key, uniquely identifying them. */
     @JsonProperty("pubkey")
-    val publicKey: BLSPubkey? = null,
+    val publicKey: BLSPublicKey? = null,
     @JsonProperty("withdrawal_credentials")
     val withdrawalCredentials: String? = null,
     val amount: Gwei? = null,

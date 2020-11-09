@@ -21,7 +21,7 @@ data class Validator(
      * _48-bytes, hex encoded with 0x prefix, case insensitive._ 
      */
     @JsonProperty("pubkey")
-    val publicKey: PublicKey? = null,
+    val publicKey: BLSPublicKey? = null,
 
     @JsonProperty("withdrawal_credentials")
     val withdrawalCredentials: Credentials? = null,
