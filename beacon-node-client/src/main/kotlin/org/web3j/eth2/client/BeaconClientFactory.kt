@@ -21,6 +21,7 @@ import java.lang.reflect.Method
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Proxy
 import java.net.URL
+import java.util.EnumSet
 import java.util.concurrent.CompletableFuture
 import javax.ws.rs.ClientErrorException
 import javax.ws.rs.client.ClientRequestContext
@@ -138,8 +139,9 @@ object BeaconClientFactory {
             return target.path(resourcePath)
         }
 
-        private fun Method.isEvent() = parameterTypes.size == 1 &&
-                parameterTypes[0] == Function1::class.java &&
+        private fun Method.isEvent() = parameterTypes.size == 2 &&
+                parameterTypes[0] == EnumSet::class.java &&
+                parameterTypes[1] == Function1::class.java &&
                 returnType == CompletableFuture::class.java
 
         private val Any.typeArguments: List<Class<*>>
