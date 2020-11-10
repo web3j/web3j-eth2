@@ -12,16 +12,17 @@
  */
 package org.web3j.eth2.api.config
 
-import javax.ws.rs.Path
+import org.web3j.eth2.api.schema.BeaconResponse
+import org.web3j.eth2.api.schema.Fork
+import javax.ws.rs.GET
 
-interface ConfigResource {
+interface ForkScheduleResource {
 
-    @get:Path("deposit_contract")
-    val depositContract: DepositContractResource
-
-    @get:Path("fork_schedule")
-    val forkSchedule: ForkScheduleResource
-
-    @get:Path("spec")
-    val specification: SpecificationResource
+    /**
+     * Retrieve all scheduled upcoming forks this node is aware of.
+     *
+     * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
+     */
+    @GET
+    fun findAll(): BeaconResponse<List<Fork>>
 }

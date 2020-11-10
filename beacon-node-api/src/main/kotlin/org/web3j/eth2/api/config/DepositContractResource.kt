@@ -10,13 +10,19 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package org.web3j.eth2.api.schema
+package org.web3j.eth2.api.config
 
-/**
- *
- * @param &#x60;data&#x60;
- */
-data class GetForkScheduleResponse(
+import org.web3j.eth2.api.schema.BeaconResponse
+import org.web3j.eth2.api.schema.DepositContract
+import javax.ws.rs.GET
 
-    val `data`: Array<BeaconStateFork>? = null
-)
+interface DepositContractResource {
+
+    /**
+     * Retrieve deposit contract address and genesis fork version.
+     *
+     * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
+     */
+    @GET
+    fun get(): BeaconResponse<DepositContract>
+}

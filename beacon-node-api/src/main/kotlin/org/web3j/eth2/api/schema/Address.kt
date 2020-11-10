@@ -13,13 +13,8 @@
 package org.web3j.eth2.api.schema
 
 /**
+ * Pattern: `^0x[a-fA-F0-9]{2,}$`
  *
- * @param chainId Id of Eth1 chain on which contract is deployed.
- * @param address
+ * Example: `0x1Db3439a222C519ab44bb1144fC28167b4Fa6EE6`
  */
-data class GetDepositContractResponseData(
-
-        /* Id of Eth1 chain on which contract is deployed. */
-    val chainId: Int? = null,
-    val address: AllOfGetDepositContractResponseDataAddress? = null
-)
+typealias Address = String

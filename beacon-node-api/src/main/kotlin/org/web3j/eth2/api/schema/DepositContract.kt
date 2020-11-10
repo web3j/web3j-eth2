@@ -12,11 +12,9 @@
  */
 package org.web3j.eth2.api.schema
 
-/**
- *
- * @param &#x60;data&#x60;
- */
-data class GetDepositContractResponse(
-
-    val `data`: GetDepositContractResponseData? = null
+data class DepositContract(
+    /** Id of Eth1 chain on which contract is deployed. */
+    val chainId: Int? = null,
+    /** Hex encoded deposit contract address with 0x prefix. */
+    val address: Address? = null
 )
