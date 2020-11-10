@@ -12,11 +12,8 @@
  */
 package org.web3j.eth2.api.schema
 
-/**
- *
- * @param &#x60;data&#x60;
- */
 data class GetDebugChainHeadsResponse(
 
-    val `data`: Array<GetDebugChainHeadsResponseData>? = null
+    val root: Root? = null,
+    val slot: Slot? = null
 )

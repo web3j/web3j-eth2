@@ -13,26 +13,24 @@
 package org.web3j.eth2.api.beacon.blocks
 
 import org.web3j.eth2.api.schema.BeaconResponse
-import org.web3j.eth2.api.schema.SignedBeaconBlock
-import java.util.function.Supplier
+import org.web3j.eth2.api.schema.GetBlockRootResponseData
 import javax.ws.rs.GET
 import javax.ws.rs.Path
 
-interface BlockResource : Supplier<BeaconResponse<SignedBeaconBlock>> {
+interface BlockResource {
+
+    @get:Path("attestations")
+    val attestations: AttestationsResource
 
     /**
-     * Retrieves block details for given block ID.
+     * Retrieves hashTreeRoot of [org.web3j.eth2.api.schema.BeaconBlock]/
+     * [org.web3j.eth2.api.schema.BeaconBlockHeader].
      *
      * @throws javax.ws.rs.NotFoundException Block not found.
      * @throws javax.ws.rs.BadRequestException The block ID supplied could not be parsed.
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
-    @GET
-    override fun get(): BeaconResponse<SignedBeaconBlock>
-
-    @get:Path("attestations")
-    val attestations: AttestationsResource
-
+    @get:GET
     @get:Path("root")
-    val root: BlockRootResource
+    val root: BeaconResponse<GetBlockRootResponseData>
 }

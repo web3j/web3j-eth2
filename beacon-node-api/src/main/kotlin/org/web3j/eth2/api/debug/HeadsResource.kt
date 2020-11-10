@@ -10,21 +10,17 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package org.web3j.eth2.api.beacon.states.validators
+package org.web3j.eth2.api.debug
 
 import org.web3j.eth2.api.schema.BeaconResponse
-import org.web3j.eth2.api.schema.StateValidator
-import javax.ws.rs.GET
+import org.web3j.eth2.api.schema.GetDebugChainHeadsResponse
 
-interface ValidatorResource {
+interface HeadsResource {
 
     /**
-     * Returns validator specified by state and id or public key along with status and balance.
-     *
-     * @throws javax.ws.rs.BadRequestException Invalid state or validator ID.
-     * @throws javax.ws.rs.NotFoundException State or validator not found.
-     * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
+     * Get fork choice leaves.
+     * Retrieves all possible chain heads (leaves of fork choice tree).
      */
-    @GET
-    fun get(): BeaconResponse<StateValidator>
+
+    fun getDebugChainHeads(): BeaconResponse<List<GetDebugChainHeadsResponse>>
 }

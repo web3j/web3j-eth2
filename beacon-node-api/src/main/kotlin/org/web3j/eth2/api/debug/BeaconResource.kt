@@ -10,19 +10,23 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package org.web3j.eth2.api.config
+package org.web3j.eth2.api.debug
 
 import org.web3j.eth2.api.schema.BeaconResponse
-import org.web3j.eth2.api.schema.DepositContract
+import org.web3j.eth2.api.schema.GetDebugChainHeadsResponse
 import javax.ws.rs.GET
+import javax.ws.rs.Path
 
-interface DepositContractResource {
+interface BeaconResource {
+
+    @get:Path("states")
+    val states: StatesResource
 
     /**
-     * Retrieve deposit contract address and genesis fork version.
-     *
-     * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
+     * Get fork choice leaves.
+     * Retrieves all possible chain heads (leaves of fork choice tree).
      */
-    @GET
-    fun get(): BeaconResponse<DepositContract>
+    @get:GET
+    @get:Path("heads")
+    val heads: BeaconResponse<List<GetDebugChainHeadsResponse>>
 }

@@ -32,8 +32,9 @@ interface ValidatorsResource {
      * @throws javax.ws.rs.NotFoundException State or validator not found.
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
+    @GET
     @Path("{validator_id}")
-    fun withId(@PathParam("validator_id") validatorId: String): ValidatorResource
+    fun findById(@PathParam("validator_id") validatorId: String): BeaconResponse<StateValidator>
 
     /**
      * Returns list of all validators with their balance, status and index.
@@ -41,44 +42,44 @@ interface ValidatorsResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findAll(): BeaconResponse<List<StateValidator>> = findById(emptyArray())
+    fun findAll(): BeaconResponse<List<StateValidator>> = findByIds(emptyArray())
 
     /**
      * Returns filterable list of validators with their balance, status and index.
      *
-     * @param id Either hex encoded public key (with 0x prefix) or validator index (optional).
+     * @param ids Either hex encoded public key (with 0x prefix) or validator index (optional).
      *
      * @throws javax.ws.rs.BadRequestException Invalid state or validator ID.
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findById(@QueryParam("id") id: Array<String>): BeaconResponse<List<StateValidator>> =
-        findByIdAndStatus(id, EnumSet.noneOf(ValidatorStatus::class.java))
+    fun findByIds(@QueryParam("id") ids: Array<String>): BeaconResponse<List<StateValidator>> =
+        findByIdsAndStatus(ids, EnumSet.noneOf(ValidatorStatus::class.java))
 
     /**
      * Returns filterable list of validators with their balance, status and index.
      *
-     * @param status [Validator status specification](https://hackmd.io/ofFJ5gOmQpu1jjHilHbdQQ) (optional).
+     * @param statuses [Validator status specification](https://hackmd.io/ofFJ5gOmQpu1jjHilHbdQQ) (optional).
      *
      * @throws javax.ws.rs.BadRequestException Invalid state ID or status.
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findByStatus(@QueryParam("status") status: EnumSet<ValidatorStatus>):
-            BeaconResponse<List<StateValidator>> = findByIdAndStatus(emptyArray(), status)
+    fun findByStatus(@QueryParam("status") statuses: EnumSet<ValidatorStatus>):
+            BeaconResponse<List<StateValidator>> = findByIdsAndStatus(emptyArray(), statuses)
 
     /**
      * Returns filterable list of validators with their balance, status and index.
      *
-     * @param id Either hex encoded public key (with 0x prefix) or validator index (optional).
-     * @param status [Validator status specification](https://hackmd.io/ofFJ5gOmQpu1jjHilHbdQQ) (optional).
+     * @param ids Either hex encoded public key (with 0x prefix) or validator index (optional).
+     * @param statuses [Validator status specification](https://hackmd.io/ofFJ5gOmQpu1jjHilHbdQQ) (optional).
      *
      * @throws javax.ws.rs.BadRequestException Invalid state or validator ID, or status.
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findByIdAndStatus(
-        @QueryParam("id") id: Array<String>,
-        @QueryParam("status") status: EnumSet<ValidatorStatus>
+    fun findByIdsAndStatus(
+        @QueryParam("id") ids: Array<String>,
+        @QueryParam("status") statuses: EnumSet<ValidatorStatus>
     ): BeaconResponse<List<StateValidator>>
 }

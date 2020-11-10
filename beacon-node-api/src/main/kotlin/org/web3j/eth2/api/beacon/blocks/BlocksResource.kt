@@ -12,13 +12,43 @@
  */
 package org.web3j.eth2.api.beacon.blocks
 
-import org.web3j.eth2.api.schema.Body
+import org.web3j.eth2.api.schema.BeaconResponse
 import org.web3j.eth2.api.schema.NamedBlockId
+import org.web3j.eth2.api.schema.SignedBeaconBlock
+import javax.ws.rs.GET
 import javax.ws.rs.POST
 import javax.ws.rs.Path
 import javax.ws.rs.PathParam
 
 interface BlocksResource {
+
+    /**
+     * Retrieves block details for given block ID.
+     *
+     * @param blockId Block identifier. Can be one of: `head` (canonical head in node's view),
+     * `genesis`, `finalized`, `<slot>`, `<hex encoded blockRoot with 0x prefix>`.
+     *
+     * @throws javax.ws.rs.NotFoundException Block not found.
+     * @throws javax.ws.rs.BadRequestException The block ID supplied could not be parsed.
+     * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
+     */
+    @GET
+    @Path("{block_id}")
+    fun findById(@PathParam("block_id") blockId: String): BeaconResponse<SignedBeaconBlock>
+
+    /**
+     * Retrieves block details for given block ID.
+     *
+     * @param blockId Block identifier. Can be one of: `head` (canonical head in node's view),
+     * `genesis`, `finalized`, `<slot>`, `<hex encoded blockRoot with 0x prefix>`.
+     *
+     * @throws javax.ws.rs.NotFoundException Block not found.
+     * @throws javax.ws.rs.BadRequestException The block ID supplied could not be parsed.
+     * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
+     */
+    @GET
+    @Path("{block_id}")
+    fun findById(@PathParam("block_id") blockId: NamedBlockId): BeaconResponse<SignedBeaconBlock>
 
     /**
      * Block resource locator for a given identifier.
@@ -66,5 +96,5 @@ interface BlocksResource {
      * @throws javax.ws.rs.ServiceUnavailableException Beacon node is currently syncing, try again later.
      */
     @POST
-    fun publish(body: Body)
+    fun publish(body: SignedBeaconBlock)
 }
