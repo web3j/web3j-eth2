@@ -49,7 +49,7 @@ interface NodeResource {
      */
     @get:GET
     @get:Path("identity")
-    val identity: NetworkIdentity
+    val identity: BeaconResponse<NetworkIdentity>
 
     /**
      * Get version string of the running beacon node.
