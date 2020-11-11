@@ -15,4 +15,4 @@ package org.web3j.eth2.api.schema
 /**
  * A committee index at a slot.
  */
-typealias CommitteeIndex = Int // uint64
+typealias CommitteeIndex = Uint64

@@ -16,6 +16,4 @@ enum class NamedBlockId {
     HEAD,
     GENESIS,
     FINALIZED;
-
-
 }

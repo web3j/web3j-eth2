@@ -12,12 +12,6 @@
  */
 package org.web3j.eth2.api.schema
 
-/**
- *
- * @param version A string which uniquely identifies the client implementation and its version; similar to [HTTP User-Agent](https://tools.ietf.org/html/rfc7231#section-5.5.3).
- */
-data class GetVersionResponseData(
-
-        /* A string which uniquely identifies the client implementation and its version; similar to [HTTP User-Agent](https://tools.ietf.org/html/rfc7231#section-5.5.3). */
-    val version: String
+data class BlockRoot(
+    val root: Root
 )

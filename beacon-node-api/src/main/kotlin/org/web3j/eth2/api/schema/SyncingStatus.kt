@@ -12,13 +12,13 @@
  */
 package org.web3j.eth2.api.schema
 
-/**
- *
- * @param headSlot
- * @param syncDistance
- */
-data class GetSyncingStatusResponseData(
+import com.fasterxml.jackson.annotation.JsonProperty
 
-    val headSlot: AllOfGetSyncingStatusResponseDataHeadSlot,
-    val syncDistance: AllOfGetSyncingStatusResponseDataSyncDistance
+data class SyncingStatus(
+    /** Head slot node is trying to reach. */
+    @JsonProperty("head_slot")
+    val headSlot: String,
+    /** How many slots node needs to process to reach head. 0 if synced. */
+    @JsonProperty("sync_distance")
+    val syncDistance: String
 )

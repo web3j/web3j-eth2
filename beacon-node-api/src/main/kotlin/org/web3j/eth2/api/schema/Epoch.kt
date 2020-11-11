@@ -13,7 +13,6 @@
 package org.web3j.eth2.api.schema
 
 /**
- *
  * An epoch number.
  */
-typealias Epoch = String // uint64
+typealias Epoch = Uint64

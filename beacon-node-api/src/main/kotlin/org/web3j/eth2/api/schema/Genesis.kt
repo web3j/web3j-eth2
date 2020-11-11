@@ -26,5 +26,5 @@ data class Genesis(
     val validatorsRoot: Root,
 
     @JsonProperty("genesis_fork_version")
-    val forkVersion: Version
+    val forkVersion: ForkVersion
 )

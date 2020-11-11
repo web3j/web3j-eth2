@@ -14,6 +14,9 @@ package org.web3j.eth2.api.schema
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
+/**
+ * Eth2.0 node network identity.
+ */
 data class NetworkIdentity(
     @JsonProperty("peer_id")
     val peerId: PeerId,

@@ -12,9 +12,10 @@
  */
 package org.web3j.eth2.api.schema
 
-/**
- * A fork version number with pattern `^0x[a-fA-F0-9]{8}$`.
- *
- * Example: `0x00000000`
- */
-typealias Version = String
+data class Version(
+    /**
+     * A string which uniquely identifies the client implementation and its version;
+     * similar to [HTTP User-Agent](https://tools.ietf.org/html/rfc7231#section-5.5.3).
+     */
+    val version: String
+)

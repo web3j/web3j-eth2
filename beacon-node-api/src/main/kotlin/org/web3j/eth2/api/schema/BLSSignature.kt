@@ -15,4 +15,4 @@ package org.web3j.eth2.api.schema
 /**
  * A BLS12-381 signature.
  */
-typealias BLSSignature = String // Bytes96
+typealias BLSSignature = Bytes96

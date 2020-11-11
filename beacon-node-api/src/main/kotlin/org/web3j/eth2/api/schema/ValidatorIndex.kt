@@ -12,4 +12,7 @@
  */
 package org.web3j.eth2.api.schema
 
-typealias ValidatorIndex = String // uint64
+/**
+ * 	A validator registry index.
+ */
+typealias ValidatorIndex = Uint64
