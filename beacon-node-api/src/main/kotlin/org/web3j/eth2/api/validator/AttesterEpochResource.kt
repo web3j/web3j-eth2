@@ -31,5 +31,5 @@ interface AttesterEpochResource {
      * @throws javax.ws.rs.ServiceUnavailableException Beacon node is currently syncing, try again later.
      */
     @POST
-    fun getDuties(vararg validatorIndices: ValidatorIndex): BeaconResponse<List<AttesterDuty>>
+    fun findByValidatorIndices(vararg validatorIndices: ValidatorIndex): BeaconResponse<List<AttesterDuty>>
 }

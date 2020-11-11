@@ -26,5 +26,5 @@ interface ProposerEpochResource {
      * @throws javax.ws.rs.ServiceUnavailableException Beacon node is currently syncing, try again later.
      */
     @GET
-    fun getDuties(): BeaconResponse<List<ProposerDuty>>
+    fun findAll(): BeaconResponse<List<ProposerDuty>>
 }
