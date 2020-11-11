@@ -13,7 +13,7 @@
 package org.web3j.eth2.api.debug
 
 import org.web3j.eth2.api.schema.BeaconResponse
-import org.web3j.eth2.api.schema.GetDebugChainHeadsResponse
+import org.web3j.eth2.api.schema.DebugChainHead
 import javax.ws.rs.GET
 import javax.ws.rs.Path
 
@@ -25,8 +25,10 @@ interface BeaconResource {
     /**
      * Get fork choice leaves.
      * Retrieves all possible chain heads (leaves of fork choice tree).
+     *
+     * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @get:GET
     @get:Path("heads")
-    val heads: BeaconResponse<List<GetDebugChainHeadsResponse>>
+    val heads: BeaconResponse<List<DebugChainHead>>
 }

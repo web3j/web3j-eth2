@@ -15,6 +15,7 @@ package org.web3j.eth2.api.debug
 import org.web3j.eth2.api.schema.BeaconResponse
 import org.web3j.eth2.api.schema.BeaconState
 import org.web3j.eth2.api.schema.NamedStateId
+import javax.ws.rs.GET
 import javax.ws.rs.Path
 import javax.ws.rs.PathParam
 
@@ -24,7 +25,11 @@ interface StatesResource {
      *
      * @param stateId State identifier. Can be one of: `head` (canonical head in node's view),
      * `genesis`, `finalized`, `justified`, `<slot>`, `<hex encoded stateRoot with 0x prefix>`.
+     *
+     * @throws javax.ws.rs.BadRequestException Invalid state ID.
+     * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
+    @GET
     @Path("{state_id}")
     fun findById(@PathParam("state_id") stateId: String): BeaconResponse<BeaconState>
 
@@ -33,7 +38,11 @@ interface StatesResource {
      *
      * @param stateId State identifier. Can be one of: `head` (canonical head in node's view),
      * `genesis`, `finalized`, `justified`, `<slot>`, `<hex encoded stateRoot with 0x prefix>`.
+     *
+     * @throws javax.ws.rs.BadRequestException Invalid state ID.
+     * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
+    @GET
     @Path("{state_id}")
     fun findById(@PathParam("state_id") stateId: NamedStateId): BeaconResponse<BeaconState>
 }
