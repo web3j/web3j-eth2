@@ -12,8 +12,7 @@
  */
 package org.web3j.eth2.api.schema
 
-data class GetDebugChainHeadsResponse(
-
+data class DebugChainHead(
     val root: Root,
     val slot: Slot
 )
