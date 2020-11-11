@@ -12,117 +12,41 @@
  */
 package org.web3j.eth2.api.validator
 
+import org.web3j.eth2.api.schema.Attestation
 import org.web3j.eth2.api.schema.BeaconBlock
 import org.web3j.eth2.api.schema.BeaconResponse
-import org.web3j.eth2.api.schema.GetAggregatedAttestationResponse
-import org.web3j.eth2.api.schema.GetAttesterDutiesResponse
-import org.web3j.eth2.api.schema.GetProposerDutiesResponse
 import org.web3j.eth2.api.schema.ProduceAttestationDataResponse
+import org.web3j.eth2.api.schema.Slot
+import javax.ws.rs.GET
+import javax.ws.rs.Path
+import javax.ws.rs.QueryParam
 
 /**
  * Endpoints intended for validator clients.
  */
-class ValidatorResource(basePath: String = "{server_url}") : ApiClient(basePath) {
+interface ValidatorResource {
 
     /**
-     * Get aggregated attestation
-     * Aggregates all attestations matching given attestation data root and slot
-     * @param attestationDataRoot HashTreeRoot of AttestationData that validator want&#x27;s aggregated
-     * @param slot
-     * @return GetAggregatedAttestationResponse
+     * Access the `duties` subresource.
      */
-    @Suppress("UNCHECKED_CAST")
-    fun getAggregatedAttestation(attestationDataRoot: String, slot: String): GetAggregatedAttestationResponse {
-        val localVariableQuery: MultiValueMap =
-            mapOf("attestation_data_root" to listOf("$attestationDataRoot"), "slot" to listOf("$slot"))
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/eth/v1/validator/aggregate_attestation", query = localVariableQuery
-        )
-        val response = request<GetAggregatedAttestationResponse>(
-            localVariableConfig
-        )
-
-        return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as GetAggregatedAttestationResponse
-            ResponseType.Informational -> TODO()
-            ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException(
-                (response as ClientError<*>).body as? String
-                    ?: "Client error"
-            )
-            ResponseType.ServerError -> throw ServerException(
-                (response as ServerError<*>).message
-                    ?: "Server error"
-            )
-        }
-    }
+    @get:Path("duties")
+    val duties: DutiesResource
 
     /**
-     * Get attester duties
-     * Requests the beacon node to provide a set of attestation duties, which should be performed by validators, for a particular epoch. Duties should only need to be checked once per epoch, however a chain reorganization (of &gt; MIN_SEED_LOOKAHEAD epochs) could occur, resulting in a change of duties. For full safety, you should monitor chain reorganizations events.
-     * @param body An array of the validator indices for which to obtain the duties.
-     * @param epoch Should only be allowed 1 epoch ahead
-     * @return GetAttesterDutiesResponse
+     * Aggregates all attestations matching given attestation data root and slot.
+     *
+     * @param attestationDataRoot HashTreeRoot of AttestationData that validator want's aggregated.
+     * @return Returns aggregated [Attestation] object with same [org.web3j.eth2.api.schema.AttestationData] root.
+     *
+     * @throws javax.ws.rs.BadRequestException Invalid request.
+     * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
-    @Suppress("UNCHECKED_CAST")
-    fun getAttesterDuties(body: Array<String>, epoch: String): GetAttesterDutiesResponse {
-        val localVariableBody: Any? = body
-
-        val localVariableConfig = RequestConfig(
-            RequestMethod.POST,
-            "/eth/v1/validator/duties/attester/{epoch}".replace("{" + "epoch" + "}", "$epoch")
-        )
-        val response = request<GetAttesterDutiesResponse>(
-            localVariableConfig
-        )
-
-        return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as GetAttesterDutiesResponse
-            ResponseType.Informational -> TODO()
-            ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException(
-                (response as ClientError<*>).body as? String
-                    ?: "Client error"
-            )
-            ResponseType.ServerError -> throw ServerException(
-                (response as ServerError<*>).message
-                    ?: "Server error"
-            )
-        }
-    }
-
-    /**
-     * Get block proposers duties
-     * Request beacon node to provide all validators that are scheduled to propose a block in the given epoch
-     * @param epoch
-     * @return GetProposerDutiesResponse
-     */
-    @Suppress("UNCHECKED_CAST")
-    fun getProposerDuties(epoch: String): GetProposerDutiesResponse {
-
-        val localVariableConfig = RequestConfig(
-            RequestMethod.GET,
-            "/eth/v1/validator/duties/proposer/{epoch}".replace("{" + "epoch" + "}", "$epoch")
-        )
-        val response = request<GetProposerDutiesResponse>(
-            localVariableConfig
-        )
-
-        return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as GetProposerDutiesResponse
-            ResponseType.Informational -> TODO()
-            ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException(
-                (response as ClientError<*>).body as? String
-                    ?: "Client error"
-            )
-            ResponseType.ServerError -> throw ServerException(
-                (response as ServerError<*>).message
-                    ?: "Server error"
-            )
-        }
-    }
+    @GET
+    @Path("aggregate_attestation")
+    fun aggregateAttestation(
+        @QueryParam("attestation_data_root") attestationDataRoot: String,
+        @QueryParam("slot") slot: Slot
+    ): BeaconResponse<Attestation>
 
     /**
      * Signal beacon node to prepare for a committee subnet

@@ -12,16 +12,13 @@
  */
 package org.web3j.eth2.api.schema
 
-/**
- *
- * @param pubkey The validator's BLS public key, uniquely identifying them. _48-bytes, hex encoded with 0x prefix, case insensitive._
- * @param validatorIndex
- * @param slot
- */
-data class ProposerDuty(
+import com.fasterxml.jackson.annotation.JsonProperty
 
-        /* The validator's BLS public key, uniquely identifying them. _48-bytes, hex encoded with 0x prefix, case insensitive._ */
-    val pubkey: String,
-    val validatorIndex: AllOfProposerDutyValidatorIndex,
-    val slot: AllOfProposerDutySlot
+data class ProposerDuty(
+    /** The validator's BLS public key, uniquely identifying them. */
+    @JsonProperty("pubkey")
+    val publicKey: String,
+    @JsonProperty("validator_index")
+    val validatorIndex: ValidatorIndex,
+    val slot: Slot
 )

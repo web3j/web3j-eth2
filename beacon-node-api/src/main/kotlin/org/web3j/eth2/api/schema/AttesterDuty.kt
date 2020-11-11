@@ -12,24 +12,47 @@
  */
 package org.web3j.eth2.api.schema
 
-/**
- *
- * @param pubkey The validator's BLS public key, uniquely identifying them. _48-bytes, hex encoded with 0x prefix, case insensitive._
- * @param validatorIndex
- * @param committeeIndex
- * @param committeeLength
- * @param committeesAtSlot
- * @param validatorCommitteeIndex
- * @param slot
- */
-data class AttesterDuty(
+import com.fasterxml.jackson.annotation.JsonProperty
 
-        /* The validator's BLS public key, uniquely identifying them. _48-bytes, hex encoded with 0x prefix, case insensitive._ */
-    val pubkey: String,
-    val validatorIndex: AllOfAttesterDutyValidatorIndex,
-    val committeeIndex: AllOfAttesterDutyCommitteeIndex,
-    val committeeLength: AllOfAttesterDutyCommitteeLength,
-    val committeesAtSlot: AllOfAttesterDutyCommitteesAtSlot,
-    val validatorCommitteeIndex: AllOfAttesterDutyValidatorCommitteeIndex,
-    val slot: AllOfAttesterDutySlot
+data class AttesterDuty(
+    /**
+     * The validator's BLS public key, uniquely identifying them.
+     */
+    @JsonProperty("pubkey")
+    val publicKey: BLSPublicKey,
+
+    /**
+     * Index of validator in validator registry.
+     */
+    @JsonProperty("validator_index")
+    val validatorIndex: ValidatorIndex,
+
+    /**
+     * The committee index.
+     */
+    @JsonProperty("committee_index")
+    val committeeIndex: CommitteeIndex,
+
+    /**
+     * Number of validators in committee.
+     */
+    @JsonProperty("committee_length")
+    val committeeLength: String,
+
+    /**
+     * Number of committees at the provided slot.
+     */
+    @JsonProperty("committees_at_slot")
+    val committeesAtSlot: String,
+
+    /**
+     * Index of validator in committee.
+     */
+    @JsonProperty("validator_committee_index")
+    val validatorCommitteeIndex: String,
+
+    /**
+     * The slot at which the validator must attest.
+     */
+    val slot: Slot
 )

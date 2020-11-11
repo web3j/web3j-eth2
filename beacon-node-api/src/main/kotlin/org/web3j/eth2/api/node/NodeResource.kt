@@ -14,7 +14,6 @@ package org.web3j.eth2.api.node
 
 import org.web3j.eth2.api.schema.BeaconResponse
 import org.web3j.eth2.api.schema.NetworkIdentity
-import org.web3j.eth2.api.schema.SyncStatus
 import org.web3j.eth2.api.schema.SyncingStatus
 import org.web3j.eth2.api.schema.Version
 import javax.ws.rs.GET

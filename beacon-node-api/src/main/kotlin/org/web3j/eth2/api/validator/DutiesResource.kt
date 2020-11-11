@@ -10,13 +10,15 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package org.web3j.eth2.api.schema
+package org.web3j.eth2.api.validator
 
-/**
- *
- * @param &#x60;data&#x60;
- */
-data class GetAttesterDutiesResponse(
+import javax.ws.rs.Path
 
-    val `data`: Array<GetAttesterDutiesResponseData>
-)
+interface DutiesResource {
+
+    @get:Path("attester")
+    val attester: AttesterResource
+
+    @get:Path("proposer")
+    val proposer: ProposerResource
+}
