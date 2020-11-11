@@ -17,6 +17,6 @@ package org.web3j.eth2.api.schema
  * object from the Eth2.0 spec.
  */
 data class Checkpoint(
-    val epoch: Epoch? = null,
-    val root: Root? = null
+    val epoch: Epoch,
+    val root: Root
 )

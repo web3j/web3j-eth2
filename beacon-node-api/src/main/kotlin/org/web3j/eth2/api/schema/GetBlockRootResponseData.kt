@@ -13,5 +13,5 @@
 package org.web3j.eth2.api.schema
 
 data class GetBlockRootResponseData(
-    val root: Root? = null
+    val root: Root
 )

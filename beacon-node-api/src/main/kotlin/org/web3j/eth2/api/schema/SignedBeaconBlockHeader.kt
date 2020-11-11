@@ -17,6 +17,6 @@ package org.web3j.eth2.api.schema
  * object envelope from the Eth2.0 spec.
  */
 data class SignedBeaconBlockHeader(
-    val message: BeaconBlockHeader? = null,
-    val signature: BLSSignature? = null
+    val message: BeaconBlockHeader,
+    val signature: BLSSignature
 )

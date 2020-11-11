@@ -18,6 +18,9 @@ import org.web3j.eth2.api.schema.Fork
 import javax.ws.rs.GET
 import javax.ws.rs.Path
 
+/**
+ * Endpoints to query chain configuration, specification, and fork schedules.
+ */
 interface ConfigResource {
 
     /**

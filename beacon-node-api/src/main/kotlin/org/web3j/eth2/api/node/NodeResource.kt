@@ -12,75 +12,35 @@
  */
 package org.web3j.eth2.api.node
 
-import org.web3j.eth2.client.infrastructure.ApiClient
-import org.web3j.eth2.client.infrastructure.ClientError
-import org.web3j.eth2.client.infrastructure.ClientException
-import org.web3j.eth2.client.infrastructure.RequestConfig
-import org.web3j.eth2.client.infrastructure.RequestMethod
-import org.web3j.eth2.client.infrastructure.ResponseType
-import org.web3j.eth2.client.infrastructure.ServerError
-import org.web3j.eth2.client.infrastructure.ServerException
-import org.web3j.eth2.client.infrastructure.Success
-import org.web3j.eth2.client.models.GetNetworkIdentityResponse
-import org.web3j.eth2.client.models.GetPeerResponse
-import org.web3j.eth2.client.models.GetPeersResponse
-import org.web3j.eth2.client.models.GetSyncingStatusResponse
-import org.web3j.eth2.client.models.GetVersionResponse
+import org.web3j.eth2.api.schema.NetworkIdentity
+import javax.ws.rs.GET
+import javax.ws.rs.Path
+import javax.ws.rs.core.Response
 
-class NodeResource(basePath: String = "{server_url}") : ApiClient(basePath) {
-
+/**
+ * Endpoints to query node related information.
+ */
+interface NodeResource {
     /**
-     * Get health check
      * Returns node health status in http status codes. Useful for load balancers.
-     * @return void
+     *  - `200`: Node is ready.
+     *  - `206`: Node is syncing but can serve incomplete data.
+     * 
+     * @throws javax.ws.rs.ServiceUnavailableException Node not initialized or having issues.
      */
-    fun getHealth() {
+    @get:GET
+    @get:Path("health")
+    val health: Response
 
-        val localVariableConfig = RequestConfig(
-                RequestMethod.GET,
-                "/eth/v1/node/health"
-        )
-        val response = request<Any?>(
-                localVariableConfig
-        )
-
-        return when (response.responseType) {
-            ResponseType.Success -> Unit
-            ResponseType.Informational -> TODO()
-            ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String
-                    ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message
-                    ?: "Server error")
-        }
-    }
-
+    @get:Path("peers")
+    val peers: PeersResource
+    
     /**
-     * Get node network identity
-     * Retrieves data about the node&#x27;s network presence
-     * @return GetNetworkIdentityResponse
+     * Retrieves data about the node's network presence.
      */
-    @Suppress("UNCHECKED_CAST")
-    fun getNetworkIdentity(): GetNetworkIdentityResponse {
-
-        val localVariableConfig = RequestConfig(
-                RequestMethod.GET,
-                "/eth/v1/node/identity"
-        )
-        val response = request<GetNetworkIdentityResponse>(
-                localVariableConfig
-        )
-
-        return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as GetNetworkIdentityResponse
-            ResponseType.Informational -> TODO()
-            ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String
-                    ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message
-                    ?: "Server error")
-        }
-    }
+    @get:GET
+    @get:Path("identity")
+    val networkIdentity: NetworkIdentity
 
     /**
      * Get version string of the running beacon node.
@@ -100,61 +60,6 @@ class NodeResource(basePath: String = "{server_url}") : ApiClient(basePath) {
 
         return when (response.responseType) {
             ResponseType.Success -> (response as Success<*>).data as GetVersionResponse
-            ResponseType.Informational -> TODO()
-            ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String
-                    ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message
-                    ?: "Server error")
-        }
-    }
-
-    /**
-     * Get peer
-     * Retrieves data about the given peer
-     * @param peerId
-     * @return GetPeerResponse
-     */
-    @Suppress("UNCHECKED_CAST")
-    fun getPeer(peerId: String): GetPeerResponse {
-
-        val localVariableConfig = RequestConfig(
-                RequestMethod.GET,
-                "/eth/v1/node/peers/{peer_id}".replace("{" + "peer_id" + "}", "$peerId")
-        )
-        val response = request<GetPeerResponse>(
-                localVariableConfig
-        )
-
-        return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as GetPeerResponse
-            ResponseType.Informational -> TODO()
-            ResponseType.Redirection -> TODO()
-            ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String
-                    ?: "Client error")
-            ResponseType.ServerError -> throw ServerException((response as ServerError<*>).message
-                    ?: "Server error")
-        }
-    }
-
-    /**
-     * Get node network peers
-     * Retrieves data about the node&#x27;s network peers
-     * @return GetPeersResponse
-     */
-    @Suppress("UNCHECKED_CAST")
-    fun getPeers(): GetPeersResponse {
-
-        val localVariableConfig = RequestConfig(
-                RequestMethod.GET,
-                "/eth/v1/node/peers"
-        )
-        val response = request<GetPeersResponse>(
-                localVariableConfig
-        )
-
-        return when (response.responseType) {
-            ResponseType.Success -> (response as Success<*>).data as GetPeersResponse
             ResponseType.Informational -> TODO()
             ResponseType.Redirection -> TODO()
             ResponseType.ClientError -> throw ClientException((response as ClientError<*>).body as? String

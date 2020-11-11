@@ -20,6 +20,9 @@ import org.web3j.eth2.api.schema.Genesis
 import javax.ws.rs.GET
 import javax.ws.rs.Path
 
+/**
+ * Set of endpoints to query beacon chain.
+ */
 interface BeaconResource {
 
     @get:Path("states")

@@ -14,7 +14,7 @@ package org.web3j.eth2.api.schema
 
 data class DepositContract(
     /** Id of Eth1 chain on which contract is deployed. */
-    val chainId: Int? = null,
+    val chainId: Int,
     /** Hex encoded deposit contract address with 0x prefix. */
-    val address: Address? = null
+    val address: Address
 )

@@ -17,6 +17,6 @@ package org.web3j.eth2.api.schema
  * object from the Eth2.0 spec.
  */
 data class AttesterSlashing(
-    val attestation1: IndexedAttestation? = null,
-    val attestation2: IndexedAttestation? = null
+    val attestation1: IndexedAttestation,
+    val attestation2: IndexedAttestation
 )

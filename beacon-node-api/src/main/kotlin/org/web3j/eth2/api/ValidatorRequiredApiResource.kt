@@ -289,7 +289,7 @@ class ValidatorRequiredApiResource(basePath: String = "{server_url}") : ApiClien
      * @param body (optional)
      * @return void
      */
-    fun prepareBeaconCommitteeSubnet(body: Array<Body6>? = null) {
+    fun prepareBeaconCommitteeSubnet(body: Array<Body6>) {
         val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
@@ -345,7 +345,7 @@ class ValidatorRequiredApiResource(basePath: String = "{server_url}") : ApiClien
      * Requests a beacon node to produce a valid block, which can then be signed by a validator.
      */
     @Suppress("UNCHECKED_CAST")
-    fun produceBlock(slot: String, randaoReveal: String, graffiti: String? = null): BeaconResponse<BeaconBlock> {
+    fun produceBlock(slot: String, randaoReveal: String, graffiti: String): BeaconResponse<BeaconBlock> {
         val localVariableQuery: MultiValueMap = mapOf("randao_reveal" to listOf("$randaoReveal"), "graffiti" to listOf("$graffiti"))
         val localVariableConfig = RequestConfig(
                 RequestMethod.GET,
@@ -372,7 +372,7 @@ class ValidatorRequiredApiResource(basePath: String = "{server_url}") : ApiClien
      * @param body (optional)
      * @return void
      */
-    fun publishAggregateAndProofs(body: Array<Body5>? = null) {
+    fun publishAggregateAndProofs(body: Array<Body5>) {
         val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(

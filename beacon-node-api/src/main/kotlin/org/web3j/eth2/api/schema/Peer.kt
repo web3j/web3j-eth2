@@ -12,41 +12,39 @@
  */
 package org.web3j.eth2.api.schema
 
-/**
- *
- * @param peerId Cryptographic hash of a peer’s public key. [Read more](https://docs.libp2p.io/concepts/peer-id/)
- * @param enr
- * @param address [Read more](https://docs.libp2p.io/reference/glossary/#multiaddr)
- * @param state
- * @param direction
- */
-data class Peer(
+import com.fasterxml.jackson.annotation.JsonProperty
 
-        /* Cryptographic hash of a peer’s public key. [Read more](https://docs.libp2p.io/concepts/peer-id/) */
-    val peerId: String? = null,
-    val enr: AllOfPeerEnr? = null,
-        /* [Read more](https://docs.libp2p.io/reference/glossary/#multiaddr) */
-    val address: String? = null,
-    val state: Peer.State? = null,
-    val direction: Peer.Direction? = null
+data class Peer(
+    @JsonProperty("peer_id")
+    val peerId: PeerId,
+    val enr: ENR? = null,
+    val address: Multiaddr,
+    val state: State,
+    val direction: Direction
 ) {
-    /**
-     *
-     * Values: disconnected,connecting,connected,disconnecting
-     */
-    enum class State(val value: String) {
-        disconnected("disconnected"),
-        connecting("connecting"),
-        connected("connected"),
-        disconnecting("disconnecting");
+    enum class State {
+        DISCONNECTED,
+        CONNECTING,
+        CONNECTED,
+        DISCONNECTING;
+
+        override fun toString() = name.toLowerCase()
+
+        companion object {
+            @JvmStatic
+            fun fromString(value: String) = valueOf(value.toUpperCase())
+        }
     }
 
-    /**
-     *
-     * Values: inbound,outbound
-     */
-    enum class Direction(val value: String) {
-        inbound("inbound"),
-        outbound("outbound");
+    enum class Direction {
+        INBOUND,
+        OUTBOUND;
+
+        override fun toString() = name.toLowerCase()
+
+        companion object {
+            @JvmStatic
+            fun fromString(value: String) = valueOf(value.toUpperCase())
+        }
     }
 }

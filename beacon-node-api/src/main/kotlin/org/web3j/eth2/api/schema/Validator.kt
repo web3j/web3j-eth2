@@ -21,29 +21,29 @@ data class Validator(
      * _48-bytes, hex encoded with 0x prefix, case insensitive._
      */
     @JsonProperty("pubkey")
-    val publicKey: BLSPublicKey? = null,
+    val publicKey: BLSPublicKey,
 
     @JsonProperty("withdrawal_credentials")
-    val withdrawalCredentials: Credentials? = null,
+    val withdrawalCredentials: Credentials,
 
     @JsonProperty("effective_balance")
-    val effectiveBalance: Balance? = null,
+    val effectiveBalance: Balance,
 
     /** Was validator slashed (not longer active). */
-    val slashed: Boolean? = null,
+    val slashed: Boolean,
     /** When criteria for activation were met. */
     @JsonProperty("activation_eligibility_epoch")
-    val activationEligibilityEpoch: Epoch? = null,
+    val activationEligibilityEpoch: Epoch,
 
     /** Epoch when validator activated. 'FAR_FUTURE_EPOCH' if not activated. */
     @JsonProperty("activation_epoch")
-    val activationEpoch: Epoch? = null,
+    val activationEpoch: Epoch,
 
     /** Epoch when validator exited. 'FAR_FUTURE_EPOCH' if not exited. */
     @JsonProperty("exit_epoch")
-    val exitEpoch: Epoch? = null,
+    val exitEpoch: Epoch,
 
     /** When validator can withdraw or transfer funds. 'FAR_FUTURE_EPOCH' if not defined. */
     @JsonProperty("withdrawable_epoch")
-    val withdrawableEpoch: Epoch? = null
+    val withdrawableEpoch: Epoch
 )

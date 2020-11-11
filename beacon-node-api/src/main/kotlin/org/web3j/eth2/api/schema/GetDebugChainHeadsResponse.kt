@@ -14,6 +14,6 @@ package org.web3j.eth2.api.schema
 
 data class GetDebugChainHeadsResponse(
 
-    val root: Root? = null,
-    val slot: Slot? = null
+    val root: Root,
+    val slot: Slot
 )

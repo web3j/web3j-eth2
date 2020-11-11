@@ -21,9 +21,9 @@ package org.web3j.eth2.api.schema
 data class InlineResponse40011(
 
         /* Either specific error code in case of invalid request or http status code */
-    val code: java.math.BigDecimal? = null,
+    val code: java.math.BigDecimal,
         /* Message describing error */
-    val message: String? = null,
+    val message: String,
         /* Optional stacktraces, sent when node is in debug mode */
-    val stacktraces: Array<String>? = null
+    val stacktraces: Array<String>
 )

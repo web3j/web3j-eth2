@@ -20,8 +20,8 @@ package org.web3j.eth2.api.schema
  */
 data class Committee(
 
-    val index: AllOfCommitteeIndex? = null,
-    val slot: String? = null,
+    val index: AllOfCommitteeIndex,
+    val slot: String,
         /* List of validator indices assigned to this committee */
-    val validators: Array<String>? = null
+    val validators: Array<String>
 )

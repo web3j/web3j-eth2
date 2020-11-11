@@ -20,11 +20,11 @@ data class Genesis(
      * which is the Unix time in seconds at which the Eth2.0 chain began.
      */
     @JsonProperty("genesis_time")
-    val time: String? = null,
+    val time: String,
 
     @JsonProperty("genesis_validators_root")
-    val validatorsRoot: Root? = null,
+    val validatorsRoot: Root,
 
     @JsonProperty("genesis_fork_version")
-    val forkVersion: Version? = null
+    val forkVersion: Version
 )

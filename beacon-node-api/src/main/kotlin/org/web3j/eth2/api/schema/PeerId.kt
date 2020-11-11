@@ -12,4 +12,8 @@
  */
 package org.web3j.eth2.api.schema
 
+/**
+ * Cryptographic hash of a peer’s public key.
+ * [Read more](https://docs.libp2p.io/concepts/peer-id/).
+ */
 typealias PeerId = String

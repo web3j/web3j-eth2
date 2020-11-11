@@ -21,15 +21,15 @@ data class ErrorMessage(
      * Either specific error code in case of invalid request or HTTP status code
      *
      */
-    val code: Int? = null,
+    val code: Int,
 
     /**
      * Message describing error
      */
-    val message: String? = null,
+    val message: String,
 
     /**
      * Optional stacktraces, sent when node is in debug mode
      */
-    val stacktraces: List<String>? = null
+    val stacktraces: List<String>
 )

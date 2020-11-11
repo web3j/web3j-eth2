@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class IndexedAttestation(
     /** Attesting validator indices */
     @JsonProperty("attesting_indices")
-    val attestingIndices: List<ValidatorIndex>? = null,
-    val `data`: AttestationData? = null,
-    val signature: BLSSignature? = null
+    val attestingIndices: List<ValidatorIndex>,
+    val `data`: AttestationData,
+    val signature: BLSSignature
 )

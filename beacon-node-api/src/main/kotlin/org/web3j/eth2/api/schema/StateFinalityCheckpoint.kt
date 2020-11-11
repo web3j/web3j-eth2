@@ -17,11 +17,11 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class StateFinalityCheckpoint(
 
     @JsonProperty("previous_justified")
-    val previousJustified: Checkpoint? = null,
+    val previousJustified: Checkpoint,
 
     @JsonProperty("current_justified")
-    val currentJustified: Checkpoint? = null,
+    val currentJustified: Checkpoint,
 
     @JsonProperty("finalized")
-    val finalized: Checkpoint? = null
+    val finalized: Checkpoint
 )

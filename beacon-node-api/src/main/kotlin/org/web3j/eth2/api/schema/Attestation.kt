@@ -22,7 +22,7 @@ data class Attestation(
 
     /** Attester aggregation bits. */
     @JsonProperty("aggregation_bits")
-    val aggregationBits: String? = null,
-    val signature: String? = null,
-    val `data`: AttestationData? = null
+    val aggregationBits: String,
+    val signature: String,
+    val `data`: AttestationData
 )

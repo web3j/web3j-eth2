@@ -21,16 +21,16 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class BeaconBlockBody(
 
     @JsonProperty("randao_reveal")
-    val randaoReveal: BLSSignature? = null,
+    val randaoReveal: BLSSignature,
     @JsonProperty("eth1_data")
-    val eth1Data: Eth1Data? = null,
-    val graffiti: String? = null,
+    val eth1Data: Eth1Data,
+    val graffiti: String,
     @JsonProperty("proposer_slashings")
-    val proposerSlashings: List<ProposerSlashing>? = null,
+    val proposerSlashings: List<ProposerSlashing>,
     @JsonProperty("attester_slashings")
-    val attesterSlashings: List<AttesterSlashing>? = null,
-    val attestations: List<Attestation>? = null,
-    val deposits: List<Deposit>? = null,
+    val attesterSlashings: List<AttesterSlashing>,
+    val attestations: List<Attestation>,
+    val deposits: List<Deposit>,
     @JsonProperty("voluntary_exits")
-    val voluntaryExits: List<SignedVoluntaryExit>? = null
+    val voluntaryExits: List<SignedVoluntaryExit>
 )

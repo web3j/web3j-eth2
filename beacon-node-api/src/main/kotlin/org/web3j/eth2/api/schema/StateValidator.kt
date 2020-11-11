@@ -15,9 +15,9 @@ package org.web3j.eth2.api.schema
 data class StateValidator(
 
     /** Index of validator in validator registry. */
-    val index: ValidatorIndex? = null,
+    val index: ValidatorIndex,
     /** Current validator balance in gwei. */
-    val balance: Balance? = null,
-    val status: ValidatorStatus? = null,
-    val validator: Validator? = null
+    val balance: Balance,
+    val status: ValidatorStatus,
+    val validator: Validator
 )

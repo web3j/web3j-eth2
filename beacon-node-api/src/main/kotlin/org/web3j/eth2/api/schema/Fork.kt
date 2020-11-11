@@ -21,9 +21,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class Fork(
     /** A fork version number. */
     @JsonProperty("previous_version")
-    val previousVersion: Version? = null,
+    val previousVersion: Version,
     /** A fork version number. */
     @JsonProperty("current_version")
-    val currentVersion: Version? = null,
-    val epoch: Epoch? = null
+    val currentVersion: Version,
+    val epoch: Epoch
 )

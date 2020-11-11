@@ -17,6 +17,6 @@ package org.web3j.eth2.api.schema
  * object from the Eth2.0 spec.
  */
 data class SignedAggregateAndProof(
-    val message: AggregateAndProof? = null,
-    val signature: BLSSignature? = null
+    val message: AggregateAndProof,
+    val signature: BLSSignature
 )

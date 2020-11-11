@@ -18,5 +18,5 @@ package org.web3j.eth2.api.schema
  */
 data class GetAggregatedAttestationResponse(
 
-    val `data`: Body1? = null
+    val `data`: Body1
 )

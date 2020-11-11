@@ -13,7 +13,7 @@
 package org.web3j.eth2.api.schema
 
 data class BlockHeader(
-    val root: Root? = null,
-    val canonical: Boolean? = null,
-    val header: SignedBeaconBlockHeader? = null
+    val root: Root,
+    val canonical: Boolean,
+    val header: SignedBeaconBlockHeader
 )

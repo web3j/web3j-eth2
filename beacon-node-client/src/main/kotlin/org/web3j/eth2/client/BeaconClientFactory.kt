@@ -37,7 +37,7 @@ object BeaconClientFactory {
      */
     @JvmStatic
     @JvmOverloads
-    fun create(service: BeaconClientService, token: String? = null): BeaconNodeApi {
+    fun create(service: BeaconClientService, token: String): BeaconNodeApi {
         val target = service.client.target(service.uri)
         token?.run { target.register(AuthenticationFilter(token)) }
 

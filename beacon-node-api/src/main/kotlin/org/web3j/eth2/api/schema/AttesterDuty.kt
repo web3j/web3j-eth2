@@ -25,11 +25,11 @@ package org.web3j.eth2.api.schema
 data class AttesterDuty(
 
         /* The validator's BLS public key, uniquely identifying them. _48-bytes, hex encoded with 0x prefix, case insensitive._ */
-    val pubkey: String? = null,
-    val validatorIndex: AllOfAttesterDutyValidatorIndex? = null,
-    val committeeIndex: AllOfAttesterDutyCommitteeIndex? = null,
-    val committeeLength: AllOfAttesterDutyCommitteeLength? = null,
-    val committeesAtSlot: AllOfAttesterDutyCommitteesAtSlot? = null,
-    val validatorCommitteeIndex: AllOfAttesterDutyValidatorCommitteeIndex? = null,
-    val slot: AllOfAttesterDutySlot? = null
+    val pubkey: String,
+    val validatorIndex: AllOfAttesterDutyValidatorIndex,
+    val committeeIndex: AllOfAttesterDutyCommitteeIndex,
+    val committeeLength: AllOfAttesterDutyCommitteeLength,
+    val committeesAtSlot: AllOfAttesterDutyCommitteesAtSlot,
+    val validatorCommitteeIndex: AllOfAttesterDutyValidatorCommitteeIndex,
+    val slot: AllOfAttesterDutySlot
 )

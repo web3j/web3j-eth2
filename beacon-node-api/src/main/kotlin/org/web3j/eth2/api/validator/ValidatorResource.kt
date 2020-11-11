@@ -19,6 +19,9 @@ import org.web3j.eth2.api.schema.GetAttesterDutiesResponse
 import org.web3j.eth2.api.schema.GetProposerDutiesResponse
 import org.web3j.eth2.api.schema.ProduceAttestationDataResponse
 
+/**
+ * Endpoints intended for validator clients.
+ */
 class ValidatorResource(basePath: String = "{server_url}") : ApiClient(basePath) {
 
     /**
@@ -127,7 +130,7 @@ class ValidatorResource(basePath: String = "{server_url}") : ApiClient(basePath)
      * @param body (optional)
      * @return void
      */
-    fun prepareBeaconCommitteeSubnet(body: Array<Body6>? = null) {
+    fun prepareBeaconCommitteeSubnet(body: Array<Body6>) {
         val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(
@@ -196,7 +199,7 @@ class ValidatorResource(basePath: String = "{server_url}") : ApiClient(basePath)
      * @param graffiti Arbitrary data validator wants to include in block. (optional)
      */
     @Suppress("UNCHECKED_CAST")
-    fun produceBlock(slot: String, randaoReveal: String, graffiti: String? = null): BeaconResponse<BeaconBlock> {
+    fun produceBlock(slot: String, randaoReveal: String, graffiti: String): BeaconResponse<BeaconBlock> {
         val localVariableQuery: MultiValueMap =
             mapOf("randao_reveal" to listOf("$randaoReveal"), "graffiti" to listOf("$graffiti"))
         val localVariableConfig = RequestConfig(
@@ -228,7 +231,7 @@ class ValidatorResource(basePath: String = "{server_url}") : ApiClient(basePath)
      * @param body (optional)
      * @return void
      */
-    fun publishAggregateAndProofs(body: Array<Body5>? = null) {
+    fun publishAggregateAndProofs(body: Array<Body5>) {
         val localVariableBody: Any? = body
 
         val localVariableConfig = RequestConfig(

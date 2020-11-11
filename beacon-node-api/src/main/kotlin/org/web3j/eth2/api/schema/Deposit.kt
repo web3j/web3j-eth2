@@ -19,6 +19,6 @@ package org.web3j.eth2.api.schema
 data class Deposit(
 
     /** Branch in the deposit tree. */
-    val proof: List<String>? = null,
-    val `data`: DepositData? = null
+    val proof: List<String>,
+    val `data`: DepositData
 )

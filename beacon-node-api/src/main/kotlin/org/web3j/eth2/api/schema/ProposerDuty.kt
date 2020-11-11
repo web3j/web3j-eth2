@@ -21,7 +21,7 @@ package org.web3j.eth2.api.schema
 data class ProposerDuty(
 
         /* The validator's BLS public key, uniquely identifying them. _48-bytes, hex encoded with 0x prefix, case insensitive._ */
-    val pubkey: String? = null,
-    val validatorIndex: AllOfProposerDutyValidatorIndex? = null,
-    val slot: AllOfProposerDutySlot? = null
+    val pubkey: String,
+    val validatorIndex: AllOfProposerDutyValidatorIndex,
+    val slot: AllOfProposerDutySlot
 )

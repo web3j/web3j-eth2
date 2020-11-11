@@ -19,6 +19,6 @@ package org.web3j.eth2.api.schema
  */
 data class ValidatorBalanceResponse(
 
-    val index: AllOfValidatorBalanceResponseIndex? = null,
-    val balance: AllOfValidatorBalanceResponseBalance? = null
+    val index: AllOfValidatorBalanceResponseIndex,
+    val balance: AllOfValidatorBalanceResponseBalance
 )

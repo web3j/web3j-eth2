@@ -18,5 +18,5 @@ package org.web3j.eth2.api.schema
  */
 data class GetVersionResponse(
 
-    val `data`: GetVersionResponseData? = null
+    val `data`: GetVersionResponseData
 )

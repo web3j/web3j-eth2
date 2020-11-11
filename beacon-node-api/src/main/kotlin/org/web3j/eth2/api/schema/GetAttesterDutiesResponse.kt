@@ -18,5 +18,5 @@ package org.web3j.eth2.api.schema
  */
 data class GetAttesterDutiesResponse(
 
-    val `data`: Array<GetAttesterDutiesResponseData>? = null
+    val `data`: Array<GetAttesterDutiesResponseData>
 )

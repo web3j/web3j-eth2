@@ -20,43 +20,43 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class BeaconState(
     @JsonProperty("genesis_time")
-    val genesisTime: String? = null,
+    val genesisTime: String,
     @JsonProperty("genesis_validators_root")
-    val genesisValidatorsRoot: Root? = null,
-    val slot: Slot? = null,
-    val fork: Fork? = null,
+    val genesisValidatorsRoot: Root,
+    val slot: Slot,
+    val fork: Fork,
     @JsonProperty("latest_block_header")
-    val latestBlockHeader: BeaconBlockHeader? = null,
+    val latestBlockHeader: BeaconBlockHeader,
     @JsonProperty("block_roots")
-    val blockRoots: List<Root>? = null,
+    val blockRoots: List<Root>,
     @JsonProperty("state_roots")
-    val stateRoots: List<Root>? = null,
+    val stateRoots: List<Root>,
     @JsonProperty("historical_roots")
-    val historicalRoots: List<Root>? = null,
+    val historicalRoots: List<Root>,
     @JsonProperty("eth1_data")
-    val eth1Data: Eth1Data? = null,
+    val eth1Data: Eth1Data,
     @JsonProperty("eth1_data_votes")
-    val eth1DataVotes: List<Eth1Data>? = null,
+    val eth1DataVotes: List<Eth1Data>,
     @JsonProperty("eth1_deposit_index")
-    val eth1DepositIndex: String? = null,
-    val validators: List<Validator>? = null,
+    val eth1DepositIndex: String,
+    val validators: List<Validator>,
     /** Validator balances in gwei */
-    val balances: List<Gwei>? = null,
+    val balances: List<Gwei>,
     @JsonProperty("randao_mixes")
-    val randaoMixes: List<String>? = null,
+    val randaoMixes: List<String>,
     /** Per-epoch sums of slashed effective balances */
-    val slashings: List<Gwei>? = null,
+    val slashings: List<Gwei>,
     @JsonProperty("previous_epoch_attestations")
-    val previousEpochAttestations: List<PendingAttestation>? = null,
+    val previousEpochAttestations: List<PendingAttestation>,
     @JsonProperty("current_epoch_attestations")
-    val currentEpochAttestations: List<PendingAttestation>? = null,
+    val currentEpochAttestations: List<PendingAttestation>,
     /** Bit set for every recent justified epoch */
     @JsonProperty("justification_bits")
-    val justificationBits: String? = null,
+    val justificationBits: String,
     @JsonProperty("previous_justified_checkpoint")
-    val previousJustifiedCheckpoint: Checkpoint? = null,
+    val previousJustifiedCheckpoint: Checkpoint,
     @JsonProperty("current_justified_checkpoint")
-    val currentJustifiedCheckpoint: Checkpoint? = null,
+    val currentJustifiedCheckpoint: Checkpoint,
     @JsonProperty("finalized_checkpoint")
-    val finalizedCheckpoint: Checkpoint? = null
+    val finalizedCheckpoint: Checkpoint
 )

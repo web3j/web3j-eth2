@@ -18,6 +18,9 @@ import java.util.EnumSet
 import java.util.concurrent.CompletableFuture
 import java.util.function.Consumer
 
+/**
+ * Set of endpoints to for event subscription.
+ */
 interface EventsResource {
 
     /**
@@ -29,7 +32,7 @@ interface EventsResource {
      * @param onEvent Event reception callback.
      * @return A future reference to the the empty result to monitor the connection.
      *
-     * @throws javax.ws.rs.BadRequestException The topics supplied could not be parsed
+     * @throws javax.ws.rs.BadRequestException The topics supplied could not be parsed.
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     fun onEvent(topics: EnumSet<BeaconEventType>, onEvent: Consumer<BeaconEvent>): CompletableFuture<Void>

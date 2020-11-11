@@ -18,6 +18,6 @@ package org.web3j.eth2.api.schema
  */
 data class SignedVoluntaryExit(
 
-    val message: VoluntaryExit? = null,
-    val signature: BLSSignature? = null
+    val message: VoluntaryExit,
+    val signature: BLSSignature
 )

@@ -21,9 +21,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class Eth1Data(
 
     @JsonProperty("deposit_root")
-    val depositRoot: Root? = null,
+    val depositRoot: Root,
     @JsonProperty("deposit_count")
-    val depositCount: String? = null,
+    val depositCount: String,
     @JsonProperty("block_hash")
-    val blockHash: String? = null
+    val blockHash: String
 )

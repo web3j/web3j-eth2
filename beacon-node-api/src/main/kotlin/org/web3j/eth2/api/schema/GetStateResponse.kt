@@ -18,5 +18,5 @@ package org.web3j.eth2.api.schema
  */
 data class GetStateResponse(
 
-    val `data`: GetStateResponseData? = null
+    val `data`: GetStateResponseData
 )

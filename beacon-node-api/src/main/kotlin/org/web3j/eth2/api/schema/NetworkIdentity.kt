@@ -12,21 +12,21 @@
  */
 package org.web3j.eth2.api.schema
 
-/**
- *
- * @param peerId Cryptographic hash of a peer’s public key. [Read more](https://docs.libp2p.io/concepts/peer-id/)
- * @param enr Ethereum node record. [Read more](https://eips.ethereum.org/EIPS/eip-778)
- * @param p2pAddresses
- * @param discoveryAddresses
- * @param metadata
- */
-data class NetworkIdentity(
+import com.fasterxml.jackson.annotation.JsonProperty
 
-        /* Cryptographic hash of a peer’s public key. [Read more](https://docs.libp2p.io/concepts/peer-id/) */
-    val peerId: String? = null,
-        /* Ethereum node record. [Read more](https://eips.ethereum.org/EIPS/eip-778) */
-    val enr: String? = null,
-    val p2pAddresses: Array<AllOfNetworkIdentityP2pAddressesItems>? = null,
-    val discoveryAddresses: Array<AllOfNetworkIdentityDiscoveryAddressesItems>? = null,
-    val metadata: NetworkIdentityMetadata? = null
+data class NetworkIdentity(
+    @JsonProperty("peer_id")
+    val peerId: PeerId,
+    val enr: ENR,
+    /**
+     * Node's addresses on which eth2 rpc requests are served.
+     */
+    @JsonProperty("p2p_addresses")
+    val p2pAddresses: List<Multiaddr>,
+    /**
+     * Node's addresses on which is listening for discv5 requests.
+     */
+    @JsonProperty("discovery_addresses")
+    val discoveryAddresses: List<Multiaddr>,
+    val metadata: MetaData
 )

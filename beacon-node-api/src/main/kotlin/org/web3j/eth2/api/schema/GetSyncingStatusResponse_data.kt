@@ -19,6 +19,6 @@ package org.web3j.eth2.api.schema
  */
 data class GetSyncingStatusResponseData(
 
-    val headSlot: AllOfGetSyncingStatusResponseDataHeadSlot? = null,
-    val syncDistance: AllOfGetSyncingStatusResponseDataSyncDistance? = null
+    val headSlot: AllOfGetSyncingStatusResponseDataHeadSlot,
+    val syncDistance: AllOfGetSyncingStatusResponseDataSyncDistance
 )

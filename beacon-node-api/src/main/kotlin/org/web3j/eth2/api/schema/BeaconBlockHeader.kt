@@ -20,17 +20,17 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class BeaconBlockHeader(
 
-    val slot: Slot? = null,
+    val slot: Slot,
 
     @JsonProperty("proposer_index")
-    val proposerIndex: ValidatorIndex? = null,
+    val proposerIndex: ValidatorIndex,
 
     @JsonProperty("parent_root")
-    val parentRoot: Root? = null,
+    val parentRoot: Root,
 
     @JsonProperty("state_root")
-    val stateRoot: Root? = null,
+    val stateRoot: Root,
 
     @JsonProperty("body_root")
-    val bodyRoot: Root? = null
+    val bodyRoot: Root
 )

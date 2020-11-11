@@ -23,12 +23,12 @@ package org.web3j.eth2.api.schema
 data class GetPeersResponseData(
 
         /* Cryptographic hash of a peer’s public key. [Read more](https://docs.libp2p.io/concepts/peer-id/) */
-    val peerId: String? = null,
-    val enr: AllOfGetPeersResponseDataEnr? = null,
+    val peerId: String,
+    val enr: AllOfGetPeersResponseDataEnr,
         /* [Read more](https://docs.libp2p.io/reference/glossary/#multiaddr) */
-    val address: String? = null,
-    val state: GetPeersResponseData.State? = null,
-    val direction: GetPeersResponseData.Direction? = null
+    val address: String,
+    val state: GetPeersResponseData.State,
+    val direction: GetPeersResponseData.Direction
 ) {
     /**
      *

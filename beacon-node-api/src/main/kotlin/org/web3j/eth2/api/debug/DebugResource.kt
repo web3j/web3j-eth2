@@ -14,6 +14,9 @@ package org.web3j.eth2.api.debug
 
 import javax.ws.rs.Path
 
+/**
+ * Set of endpoints to debug chain and shouldn't be exposed publicly.
+ */
 interface DebugResource {
 
     @get:Path("beacon")

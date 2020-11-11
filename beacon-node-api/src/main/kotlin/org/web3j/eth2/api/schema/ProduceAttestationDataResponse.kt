@@ -18,5 +18,5 @@ package org.web3j.eth2.api.schema
  */
 data class ProduceAttestationDataResponse(
 
-    val `data`: Ethv1beaconpoolattestationsData? = null
+    val `data`: Ethv1beaconpoolattestationsData
 )

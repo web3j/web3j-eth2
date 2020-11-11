@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class ProposerSlashing(
 
     @JsonProperty("signed_header_1")
-    val signedHeader1: SignedBeaconBlockHeader? = null,
+    val signedHeader1: SignedBeaconBlockHeader,
     @JsonProperty("signed_header_2")
-    val signedHeader2: SignedBeaconBlockHeader? = null
+    val signedHeader2: SignedBeaconBlockHeader
 )

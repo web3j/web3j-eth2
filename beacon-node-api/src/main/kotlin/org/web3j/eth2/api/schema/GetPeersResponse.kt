@@ -18,5 +18,5 @@ package org.web3j.eth2.api.schema
  */
 data class GetPeersResponse(
 
-    val `data`: Array<GetPeersResponseData>? = null
+    val `data`: Array<GetPeersResponseData>
 )

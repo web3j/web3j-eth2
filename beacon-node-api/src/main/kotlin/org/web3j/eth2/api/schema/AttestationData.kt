@@ -24,12 +24,12 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class AttestationData(
 
-    val slot: String? = null,
-    val index: String? = null,
+    val slot: String,
+    val index: String,
     /** LMD GHOST vote */
     @JsonProperty("beacon_block_root")
-    val beaconBlockRoot: Root? = null,
+    val beaconBlockRoot: Root,
     /** FFG vote */
-    val source: Checkpoint? = null,
-    val target: Checkpoint? = null
+    val source: Checkpoint,
+    val target: Checkpoint
 )

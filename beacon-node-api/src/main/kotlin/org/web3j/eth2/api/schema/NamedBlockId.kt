@@ -17,10 +17,5 @@ enum class NamedBlockId {
     GENESIS,
     FINALIZED;
 
-    override fun toString() = name.toLowerCase()
 
-    companion object {
-        @JvmStatic
-        fun fromString(value: String) = ValidatorStatus.valueOf(value.toUpperCase())
-    }
 }

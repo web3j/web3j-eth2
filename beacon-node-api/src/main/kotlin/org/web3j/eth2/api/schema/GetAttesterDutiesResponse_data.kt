@@ -25,11 +25,11 @@ package org.web3j.eth2.api.schema
 data class GetAttesterDutiesResponseData(
 
         /* The validator's BLS public key, uniquely identifying them. _48-bytes, hex encoded with 0x prefix, case insensitive._ */
-    val pubkey: String? = null,
-    val validatorIndex: AllOfGetAttesterDutiesResponseDataValidatorIndex? = null,
-    val committeeIndex: AllOfGetAttesterDutiesResponseDataCommitteeIndex? = null,
-    val committeeLength: AllOfGetAttesterDutiesResponseDataCommitteeLength? = null,
-    val committeesAtSlot: AllOfGetAttesterDutiesResponseDataCommitteesAtSlot? = null,
-    val validatorCommitteeIndex: AllOfGetAttesterDutiesResponseDataValidatorCommitteeIndex? = null,
-    val slot: AllOfGetAttesterDutiesResponseDataSlot? = null
+    val pubkey: String,
+    val validatorIndex: AllOfGetAttesterDutiesResponseDataValidatorIndex,
+    val committeeIndex: AllOfGetAttesterDutiesResponseDataCommitteeIndex,
+    val committeeLength: AllOfGetAttesterDutiesResponseDataCommitteeLength,
+    val committeesAtSlot: AllOfGetAttesterDutiesResponseDataCommitteesAtSlot,
+    val validatorCommitteeIndex: AllOfGetAttesterDutiesResponseDataValidatorCommitteeIndex,
+    val slot: AllOfGetAttesterDutiesResponseDataSlot
 )
