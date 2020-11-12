@@ -25,5 +25,5 @@ data class Eth1Data(
     @JsonProperty("deposit_count")
     val depositCount: String,
     @JsonProperty("block_hash")
-    val blockHash: String
+    val blockHash: Eth1Hash
 )

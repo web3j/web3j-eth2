@@ -27,7 +27,7 @@ data class Validator(
     val withdrawalCredentials: Credentials,
 
     @JsonProperty("effective_balance")
-    val effectiveBalance: Balance,
+    val effectiveBalance: Gwei,
 
     /** Was validator slashed (not longer active). */
     val slashed: Boolean,

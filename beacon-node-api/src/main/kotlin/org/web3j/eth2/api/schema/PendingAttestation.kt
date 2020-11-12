@@ -16,13 +16,10 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 data class PendingAttestation(
     @JsonProperty("aggregation_bits")
-    val aggregationBits: String, // Bitlist
-
+    val aggregationBits: Hex,
     val data: AttestationData,
-
     @JsonProperty("inclusion_delay")
-    val inclusionDelay: String, // UInt64
-
+    val inclusionDelay: Uint64,
     @JsonProperty("proposer_index")
-    val proposerIndex: String // UInt64
+    val proposerIndex: Uint64
 )

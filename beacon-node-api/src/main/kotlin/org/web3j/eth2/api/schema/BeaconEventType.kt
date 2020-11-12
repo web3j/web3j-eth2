@@ -24,6 +24,6 @@ enum class BeaconEventType {
 
     companion object {
         @JvmStatic
-        fun fromString(value: String) = ValidatorStatus.valueOf(value.toUpperCase())
+        fun fromString(value: String) = valueOf(value.toUpperCase())
     }
 }

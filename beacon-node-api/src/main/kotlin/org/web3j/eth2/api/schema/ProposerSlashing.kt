@@ -19,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * object from the Eth2.0 spec.
  */
 data class ProposerSlashing(
-
     @JsonProperty("signed_header_1")
     val signedHeader1: SignedBeaconBlockHeader,
     @JsonProperty("signed_header_2")

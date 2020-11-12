@@ -14,7 +14,7 @@ package org.web3j.eth2.api.beacon.states
 
 import org.web3j.eth2.api.schema.BeaconResponse
 import org.web3j.eth2.api.schema.Epoch
-import org.web3j.eth2.api.schema.EpochCommittee
+import org.web3j.eth2.api.schema.Committee
 import org.web3j.eth2.api.schema.Slot
 import org.web3j.eth2.api.schema.ValidatorIndex
 import javax.ws.rs.GET
@@ -29,7 +29,7 @@ interface CommitteesResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findAll(): BeaconResponse<List<EpochCommittee>>
+    fun findAll(): BeaconResponse<List<Committee>>
 
     /**
      * Retrieves the committees for the given state at the given epoch.
@@ -42,7 +42,7 @@ interface CommitteesResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findByEpoch(@QueryParam("epoch") epoch: Epoch): BeaconResponse<List<EpochCommittee>>
+    fun findByEpoch(@QueryParam("epoch") epoch: Epoch): BeaconResponse<List<Committee>>
 
     /**
      * Retrieves the committees for the given state at the given epoch.
@@ -59,7 +59,7 @@ interface CommitteesResource {
     fun findByEpochAndIndex(
         @QueryParam("epoch") epoch: Epoch,
         @QueryParam("index") index: ValidatorIndex
-    ): BeaconResponse<List<EpochCommittee>>
+    ): BeaconResponse<List<Committee>>
 
     /**
      * Retrieves the committees for the given state at the given epoch.
@@ -76,7 +76,7 @@ interface CommitteesResource {
     fun findByEpochAndSlot(
         @QueryParam("epoch") epoch: Epoch,
         @QueryParam("slot") slot: Slot
-    ): BeaconResponse<List<EpochCommittee>>
+    ): BeaconResponse<List<Committee>>
 
     /**
      * Retrieves the committees for the given state at the given epoch.
@@ -95,5 +95,5 @@ interface CommitteesResource {
         @QueryParam("epoch") epoch: Epoch,
         @QueryParam("index") index: ValidatorIndex,
         @QueryParam("slot") slot: Slot
-    ): BeaconResponse<List<EpochCommittee>>
+    ): BeaconResponse<List<Committee>>
 }

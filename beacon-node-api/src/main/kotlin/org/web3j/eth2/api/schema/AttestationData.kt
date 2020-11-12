@@ -19,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * object from the Eth2.0 spec.
  */
 data class AttestationData(
-
     val slot: String,
     val index: String,
     /** LMD GHOST vote */

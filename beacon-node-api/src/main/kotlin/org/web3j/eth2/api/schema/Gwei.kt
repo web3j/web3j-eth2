@@ -15,4 +15,4 @@ package org.web3j.eth2.api.schema
 /**
  * An amount in Gwei.
  */
-typealias Gwei = Int // uint64
+typealias Gwei = Uint64

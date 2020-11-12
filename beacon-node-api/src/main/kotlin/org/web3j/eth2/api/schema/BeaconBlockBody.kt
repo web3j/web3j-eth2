@@ -19,18 +19,27 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * object from the Eth2.0 spec.
  */
 data class BeaconBlockBody(
-
+    /**
+     * The RanDAO reveal value provided by the validator.
+     */
     @JsonProperty("randao_reveal")
     val randaoReveal: BLSSignature,
+
     @JsonProperty("eth1_data")
     val eth1Data: Eth1Data,
+
     val graffiti: String,
+
     @JsonProperty("proposer_slashings")
     val proposerSlashings: List<ProposerSlashing>,
+
     @JsonProperty("attester_slashings")
     val attesterSlashings: List<AttesterSlashing>,
+
     val attestations: List<Attestation>,
+
     val deposits: List<Deposit>,
+
     @JsonProperty("voluntary_exits")
     val voluntaryExits: List<SignedVoluntaryExit>
 )

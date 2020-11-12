@@ -16,4 +16,4 @@ package org.web3j.eth2.api.schema
  * Pattern: `^0x[a-fA-F0-9]{64}$`
  * Example: `0xcf8e0d4e9587369b2301d0790347320302cc0943d5a1884560367e8208d920f2`
  */
-typealias Credentials = String
+typealias Credentials = Hex

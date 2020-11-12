@@ -13,7 +13,6 @@
 package org.web3j.eth2.api.schema
 
 data class StateValidatorBalance(
-
     val index: ValidatorIndex,
-    val balance: Balance
+    val balance: Gwei
 )

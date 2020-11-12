@@ -12,10 +12,35 @@
  */
 package org.web3j.eth2.api.schema
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 /**
  * The [`BeaconBlock`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/phase0/beacon-chain.md#beaconblock)
  * object from the Eth2.0 spec.
  */
 data class BeaconBlock(
+    /**
+     * The slot to which this block corresponds.
+     */
+    val slot: Slot,
+
+    /**
+     * Index of validator in validator registry.
+     */
+    @JsonProperty("proposer_index")
+    val proposerIndex: ValidatorIndex,
+
+    /**
+     * The signing merkle root of the parent [BeaconBlock].
+     */
+    @JsonProperty("parent_root")
+    val parentRoot: Root,
+
+    /**
+     * The tree hash merkle root of the [BeaconState] for the [BeaconBlock].
+     */
+    @JsonProperty("state_root")
+    val stateRoot: Root,
+
     val body: BeaconBlockBody
 )

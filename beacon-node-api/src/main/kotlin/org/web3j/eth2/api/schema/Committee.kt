@@ -13,15 +13,13 @@
 package org.web3j.eth2.api.schema
 
 /**
- * Group of validators assigned to attest at specific slot and that have the same committee index (shard in phase 1)
- * @param index
- * @param slot
- * @param validators List of validator indices assigned to this committee
+ * Group of validators assigned to attest at specific slot and
+ * that have the same committee index (shard in phase 1).
  */
 data class Committee(
 
-    val index: AllOfCommitteeIndex,
+    val index: ValidatorIndex,
     val slot: String,
-        /* List of validator indices assigned to this committee */
-    val validators: Array<String>
+    /** List of validator indices assigned to this committee */
+    val validators: List<ValidatorIndex>
 )
