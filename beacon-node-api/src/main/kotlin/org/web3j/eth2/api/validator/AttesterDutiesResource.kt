@@ -12,19 +12,24 @@
  */
 package org.web3j.eth2.api.validator
 
+import org.web3j.eth2.api.schema.AttesterDuty
 import org.web3j.eth2.api.schema.BeaconResponse
-import org.web3j.eth2.api.schema.ProposerDuty
-import javax.ws.rs.GET
-import javax.ws.rs.Path
+import org.web3j.eth2.api.schema.ValidatorIndex
+import javax.ws.rs.POST
 
-interface ProposerEpochResource {
+interface AttesterDutiesResource {
     /**
-     * Request beacon node to provide all validators that are scheduled to propose a block in the given epoch.
+     * Requests the beacon node to provide a set of attestation duties, which should be performed by validators,
+     * for a particular epoch. Duties should only need to be checked once per epoch, however a chain reorganization
+     * (of > `MIN_SEED_LOOKAHEAD` epochs) could occur, resulting in a change of duties. For full safety,
+     * you should monitor chain reorganizations events.
      *
-     * @throws javax.ws.rs.BadRequestException Invalid epoch.
+     * @param validatorIndices An array of the validator indices for which to obtain the duties.
+     *
+     * @throws javax.ws.rs.BadRequestException Invalid epoch or index.
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      * @throws javax.ws.rs.ServiceUnavailableException Beacon node is currently syncing, try again later.
      */
-    @GET
-    fun findAll(): BeaconResponse<List<ProposerDuty>>
+    @POST
+    fun findByValidatorIndices(vararg validatorIndices: ValidatorIndex): BeaconResponse<List<AttesterDuty>>
 }

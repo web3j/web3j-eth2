@@ -14,13 +14,25 @@ package org.web3j.eth2.api.schema
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-/**
- * The [`AttesterSlashing`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/core/0_beacon-chain.md#attesterslashing)
- * object from the Eth2.0 spec.
- */
-data class AttesterSlashing(
-    @JsonProperty("attestation_1")
-    val attestation1: IndexedAttestation,
-    @JsonProperty("attestation_2")
-    val attestation2: IndexedAttestation
+data class CommitteeSubnetSubscription(
+
+    @JsonProperty("committee_index")
+    val committeeIndex: CommitteeIndex,
+
+    /**
+     * Number of committees at the returned slot.
+     */
+    @JsonProperty("committees_at_slot")
+    val committeesAtSlot: String,
+
+    /**
+     * Should be slot at which validator is assigned to attest.
+     */
+    val slot: Slot,
+
+    /**
+     * Signals to BN that a validator on the VC has been chosen for aggregator role.
+     */
+    @JsonProperty("is_aggregator")
+    val isAggregator: Boolean
 )

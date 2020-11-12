@@ -19,5 +19,5 @@ import javax.ws.rs.PathParam
 interface AttesterResource {
 
     @Path("{epoch}")
-    fun withEpoch(@PathParam("epoch") epoch: Epoch): AttesterEpochResource
+    fun withEpoch(@PathParam("epoch") epoch: Epoch): AttesterDutiesResource
 }

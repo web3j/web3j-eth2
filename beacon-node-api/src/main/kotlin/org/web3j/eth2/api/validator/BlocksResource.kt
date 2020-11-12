@@ -10,17 +10,19 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package org.web3j.eth2.api.schema
+package org.web3j.eth2.api.validator
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import org.web3j.eth2.api.schema.Slot
+import javax.ws.rs.Path
+import javax.ws.rs.PathParam
 
-/**
- * The [`AttesterSlashing`](https://github.com/ethereum/eth2.0-specs/blob/v0.12.2/specs/core/0_beacon-chain.md#attesterslashing)
- * object from the Eth2.0 spec.
- */
-data class AttesterSlashing(
-    @JsonProperty("attestation_1")
-    val attestation1: IndexedAttestation,
-    @JsonProperty("attestation_2")
-    val attestation2: IndexedAttestation
-)
+interface BlocksResource {
+
+    /**
+     * Access the validator's block subresource with given slot.
+     *
+     * @param slot The slot for which the block should be proposed.
+     */
+    @Path("{slot}")
+    fun withSlot(@PathParam("slot") slot: Slot): BlockResource
+}
