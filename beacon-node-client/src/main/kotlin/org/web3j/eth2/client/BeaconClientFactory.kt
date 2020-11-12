@@ -15,6 +15,7 @@ package org.web3j.eth2.client
 import mu.KLogging
 import org.glassfish.jersey.client.proxy.WebResourceFactory
 import org.web3j.eth2.api.BeaconNodeApi
+import org.web3j.eth2.api.schema.ErrorMessage
 import java.lang.reflect.InvocationHandler
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
@@ -37,7 +38,7 @@ object BeaconClientFactory {
      */
     @JvmStatic
     @JvmOverloads
-    fun create(service: BeaconClientService, token: String): BeaconNodeApi {
+    fun create(service: BeaconClientService, token: String? = null): BeaconNodeApi {
         val target = service.client.target(service.uri)
         token?.run { target.register(AuthenticationFilter(token)) }
 
@@ -53,14 +54,25 @@ object BeaconClientFactory {
     }
 
     /**
+     * Extension value to deserialize error message from a response.
+     */
+    val ClientErrorException.errorMessage: ErrorMessage
+        get() = response.readEntity(ErrorMessage::class.java)
+
+    /**
+     * Unmarshall error message from a response.
+     */
+    @JvmStatic
+    fun unmarshall(exception: ClientErrorException): ErrorMessage =
+        exception.response.readEntity(ErrorMessage::class.java)
+
+    /**
      * Invocation handler for proxied resources.
      *
      * Handles contract events using a Server-Sent Event (SSE) request.
      *
      * Also implements an exception mapping mechanism to avoid reporting
      * [ClientErrorException]s to the client.
-     *
-     * @see [BeaconClientException]
      */
     private class ClientInvocationHandler(
         private val target: WebTarget,

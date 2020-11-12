@@ -12,7 +12,7 @@
  */
 package org.web3j.eth2.client
 
-import org.web3j.eth2.api.schema.ErrorResponse
+import org.web3j.eth2.api.schema.ErrorMessage
 import javax.ws.rs.ClientErrorException
 import javax.ws.rs.core.MediaType
 
@@ -20,21 +20,21 @@ import javax.ws.rs.core.MediaType
  * Client API exception containing error data.
  */
 class BeaconClientException internal constructor(
-    val error: ErrorResponse?
-) : RuntimeException(error?.title) {
+    val errorMessage: ErrorMessage?
+) : RuntimeException(errorMessage?.message) {
     companion object {
 
         @JvmStatic
         fun of(exception: ClientErrorException): BeaconClientException {
             return with(exception.response) {
                 if (hasEntity() && mediaType == MediaType.APPLICATION_JSON_TYPE) {
-                    BeaconClientException(readEntity(ErrorResponse::class.java))
+                    BeaconClientException(readEntity(ErrorMessage::class.java))
                 } else {
                     BeaconClientException(
-                        ErrorResponse(
-                            title = exception.response.statusInfo.reasonPhrase,
-                            requestUrl = exception.response.location?.toString(),
-                            responseStatus = exception.response.status
+                        ErrorMessage(
+                            code = exception.response.status,
+                            message = exception.response.statusInfo.reasonPhrase,
+                            stacktraces = emptyList()
                         )
                     )
                 }
