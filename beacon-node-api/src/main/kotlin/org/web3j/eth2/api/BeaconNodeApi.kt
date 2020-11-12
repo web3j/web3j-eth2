@@ -17,9 +17,7 @@ import org.web3j.eth2.api.config.ConfigResource
 import org.web3j.eth2.api.debug.DebugResource
 import org.web3j.eth2.api.events.EventsResource
 import org.web3j.eth2.api.node.NodeResource
-import org.web3j.eth2.api.schema.ErrorMessage
 import org.web3j.eth2.api.validator.ValidatorResource
-import javax.ws.rs.ClientErrorException
 import javax.ws.rs.Consumes
 import javax.ws.rs.Path
 import javax.ws.rs.Produces

@@ -19,13 +19,13 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * object from the Eth2.0 spec.
  */
 data class Attestation(
-    
+
     /** Attester aggregation bits. */
     @JsonProperty("aggregation_bits")
     val aggregationBits: String,
-    
+
     /** BLS aggregate signature. */
     val signature: BLSSignature,
-    
+
     val `data`: AttestationData
 )

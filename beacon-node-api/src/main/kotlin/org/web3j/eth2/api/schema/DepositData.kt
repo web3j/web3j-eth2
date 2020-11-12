@@ -19,16 +19,16 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * object from the Eth2.0 spec.
  */
 data class DepositData(
-    
+
     /** The validator's BLS public key, uniquely identifying them. */
     @JsonProperty("pubkey")
     val publicKey: BLSPublicKey,
-    
+
     @JsonProperty("withdrawal_credentials")
     val withdrawalCredentials: String,
-    
+
     val amount: Gwei,
-    
+
     /** Signing over DepositMessage. */
     val signature: BLSSignature
 )

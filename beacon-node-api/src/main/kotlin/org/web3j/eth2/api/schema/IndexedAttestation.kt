@@ -19,13 +19,13 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * object from the Eth2.0 spec.
  */
 data class IndexedAttestation(
-    
+
     /** Attesting validator indices */
     @JsonProperty("attesting_indices")
     val attestingIndices: List<ValidatorIndex>,
-    
+
     val `data`: AttestationData,
-    
+
     /** The BLS signature of the [IndexedAttestation], created by the validator of the attestation. */
     val signature: BLSSignature
 )

@@ -15,13 +15,13 @@ package org.web3j.eth2.api.schema
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class ProposerDuty(
-    
+
     /** The validator's BLS public key, uniquely identifying them. */
     @JsonProperty("pubkey")
     val publicKey: String,
-    
+
     @JsonProperty("validator_index")
     val validatorIndex: ValidatorIndex,
-    
+
     val slot: Slot
 )
