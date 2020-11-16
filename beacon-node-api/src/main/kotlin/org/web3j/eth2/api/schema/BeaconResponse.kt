@@ -16,5 +16,5 @@ package org.web3j.eth2.api.schema
  * Generic Beacon API response containing requested node data.
  */
 data class BeaconResponse<T>(
-    val data: T?
+    val data: T
 )
