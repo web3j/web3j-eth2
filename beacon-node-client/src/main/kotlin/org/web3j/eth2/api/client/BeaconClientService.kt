@@ -14,6 +14,7 @@ package org.web3j.eth2.api.client
 
 import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.Nulls
+import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.glassfish.jersey.client.ClientConfig
@@ -37,7 +38,7 @@ class BeaconClientService(
         .setDefaultSetterInfo(JsonSetter.Value.forContentNulls(Nulls.AS_EMPTY))
 //        .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
         .enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING)
-        .enable(SerializationFeature.INDENT_OUTPUT)
+        .enable(DeserializationFeature.READ_ENUMS_USING_TO_STRING)
 
     internal val client: Client by lazy {
         val config = ClientConfig().apply {
