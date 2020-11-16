@@ -26,10 +26,8 @@ subprojects {
 
     dependencies {
         implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-        
-        testImplementation "io.kotest:kotest-runner-junit5:$kotestVersion",
-             "io.kotest:kotest-assertions-core:$kotestVersion",
-             "io.kotest:kotest-property:$kotestVersion"
+        implementation "ch.qos.logback:logback-classic:$logbackVersion"
+        testImplementation "com.willowtreeapps.assertk:assertk:$assertkVersion"
     }
     
     apply {
