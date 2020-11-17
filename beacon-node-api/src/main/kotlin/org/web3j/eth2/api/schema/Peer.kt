@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 data class Peer(
     @JsonProperty("peer_id")
-    val peerId: PeerId,
+    val id: PeerId,
     val enr: ENR? = null,
     val address: Multiaddr,
     val state: State,

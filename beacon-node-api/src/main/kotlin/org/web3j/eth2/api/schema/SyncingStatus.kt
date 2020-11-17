@@ -17,8 +17,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class SyncingStatus(
     /** Head slot node is trying to reach. */
     @JsonProperty("head_slot")
-    val headSlot: String,
+    val headSlot: Uint64,
     /** How many slots node needs to process to reach head. 0 if synced. */
     @JsonProperty("sync_distance")
-    val syncDistance: String
+    val syncDistance: Uint64
 )
