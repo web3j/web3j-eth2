@@ -42,7 +42,7 @@ interface ValidatorsResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findAll(): BeaconResponse<List<StateValidator>> = findByIds(emptyArray())
+    fun findAll(): BeaconResponse<List<StateValidator>>
 
     /**
      * Returns filterable list of validators with their balance, status and index.
@@ -53,8 +53,7 @@ interface ValidatorsResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findByIds(@QueryParam("id") ids: Array<String>): BeaconResponse<List<StateValidator>> =
-        findByIdsAndStatus(ids, EnumSet.noneOf(ValidatorStatus::class.java))
+    fun findByIds(@QueryParam("id") ids: List<String>): BeaconResponse<List<StateValidator>>
 
     /**
      * Returns filterable list of validators with their balance, status and index.
@@ -65,8 +64,8 @@ interface ValidatorsResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findByStatus(@QueryParam("status") statuses: EnumSet<ValidatorStatus>):
-            BeaconResponse<List<StateValidator>> = findByIdsAndStatus(emptyArray(), statuses)
+    fun findByStatus(@QueryParam("status") statuses: EnumSet<ValidatorStatus>)
+            : BeaconResponse<List<StateValidator>>
 
     /**
      * Returns filterable list of validators with their balance, status and index.
@@ -79,7 +78,7 @@ interface ValidatorsResource {
      */
     @GET
     fun findByIdsAndStatus(
-        @QueryParam("id") ids: Array<String>,
+        @QueryParam("id") ids: List<String>,
         @QueryParam("status") statuses: EnumSet<ValidatorStatus>
     ): BeaconResponse<List<StateValidator>>
 }
