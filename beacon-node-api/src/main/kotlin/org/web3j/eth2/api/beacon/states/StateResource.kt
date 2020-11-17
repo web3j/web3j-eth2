@@ -15,8 +15,8 @@ package org.web3j.eth2.api.beacon.states
 import org.web3j.eth2.api.beacon.states.validators.ValidatorBalancesResource
 import org.web3j.eth2.api.beacon.states.validators.ValidatorsResource
 import org.web3j.eth2.api.schema.BeaconResponse
+import org.web3j.eth2.api.schema.BlockRoot
 import org.web3j.eth2.api.schema.Fork
-import org.web3j.eth2.api.schema.Root
 import org.web3j.eth2.api.schema.StateFinalityCheckpoint
 import javax.ws.rs.GET
 import javax.ws.rs.Path
@@ -24,7 +24,7 @@ import javax.ws.rs.Path
 interface StateResource {
 
     /**
-     * Calculates state SSZ HashTreeRoot. If stateId is root, same value will be returned.
+     * Calculates state SSZ HashTreeRoot. If `stateId` is root, same value will be returned.
      *
      * @throws javax.ws.rs.BadRequestException Invalid state ID.
      * @throws javax.ws.rs.NotFoundException State not found.
@@ -32,7 +32,7 @@ interface StateResource {
      */
     @get:GET
     @get:Path("root")
-    val root: BeaconResponse<Root>
+    val root: BeaconResponse<BlockRoot>
 
     /**
      * Get [org.web3j.eth2.api.schema.Fork] object for state.
