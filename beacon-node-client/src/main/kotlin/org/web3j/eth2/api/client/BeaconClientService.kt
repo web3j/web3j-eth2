@@ -12,8 +12,6 @@
  */
 package org.web3j.eth2.api.client
 
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
@@ -35,7 +33,6 @@ class BeaconClientService(
 ) : AutoCloseable {
 
     private val mapper = jacksonObjectMapper()
-        .setDefaultSetterInfo(JsonSetter.Value.forContentNulls(Nulls.AS_EMPTY))
 //        .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
         .enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING)
         .enable(DeserializationFeature.READ_ENUMS_USING_TO_STRING)
