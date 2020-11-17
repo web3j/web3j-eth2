@@ -130,7 +130,7 @@ object BeaconClientFactory {
                         "Unexpected exception while invoking method $method: " +
                                 (error.message ?: error::class.java.canonicalName)
                     }
-                    error.targetException
+                    it
                 }
             }
         }
