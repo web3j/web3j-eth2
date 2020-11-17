@@ -3,6 +3,7 @@ package org.web3j.eth2.api.client
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotEmpty
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -60,6 +61,7 @@ class BeaconNodeApiTest {
 
                 @Test
                 @DisplayName("/")
+                @Disabled("Too long")
                 fun `find all state validators`() {
                     assertThat(stateResource.validators.findAll().data).isNotEmpty()
                 }
@@ -67,22 +69,23 @@ class BeaconNodeApiTest {
                 @Test
                 @DisplayName("/{validator_id}")
                 fun `find state validator by ID`() {
-                    val validatorId = stateResource.validators.findAll().data.first().validator.publicKey
-                    assertThat(stateResource.validators.findById(validatorId).data.index).isNotEmpty()
+                    val validator = stateResource.validators.findById("0").data
+                    assertThat(validator.index).isEqualTo("0")
                 }
 
                 @Test
-                @DisplayName("/?status=active&...")
+                @DisplayName("?status=pending_initialized")
                 fun `find state validators by status`() {
-                    val allStatuses = EnumSet.allOf(ValidatorStatus::class.java)
-                    assertThat(stateResource.validators.findByStatus(allStatuses).data).isNotEmpty()
+                    val statuses = EnumSet.of(ValidatorStatus.PENDING_INITIALIZED)
+                    val validators = stateResource.validators.findByStatus(statuses).data
+                    assertThat(validators.first().status).isEqualTo(ValidatorStatus.PENDING_INITIALIZED)
                 }
 
                 @Test
-                @DisplayName("/?id=...")
+                @DisplayName("?id=0")
                 fun `find state validators by IDs`() {
-                    val allIds = stateResource.validators.findAll().data.map { it.validator.publicKey }
-                    assertThat(stateResource.validators.findByIds(allIds).data).isNotEmpty()
+                    val validators = stateResource.validators.findByIds(listOf("0")).data
+                    assertThat(validators.first().index).isEqualTo("0")
                 }
             }
         }
