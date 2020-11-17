@@ -47,7 +47,7 @@ interface ValidatorsResource {
     /**
      * Returns filterable list of validators with their balance, status and index.
      *
-     * @param ids Either hex encoded public key (with 0x prefix) or validator index (optional).
+     * @param ids Either hex encoded public key (with 0x prefix) or validator index.
      *
      * @throws javax.ws.rs.BadRequestException Invalid state or validator ID.
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
@@ -70,8 +70,8 @@ interface ValidatorsResource {
     /**
      * Returns filterable list of validators with their balance, status and index.
      *
-     * @param ids Either hex encoded public key (with 0x prefix) or validator index (optional).
-     * @param statuses [Validator status specification](https://hackmd.io/ofFJ5gOmQpu1jjHilHbdQQ) (optional).
+     * @param ids Either hex encoded public key (with 0x prefix) or validator index.
+     * @param statuses [Validator status specification](https://hackmd.io/ofFJ5gOmQpu1jjHilHbdQQ).
      *
      * @throws javax.ws.rs.BadRequestException Invalid state or validator ID, or status.
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
