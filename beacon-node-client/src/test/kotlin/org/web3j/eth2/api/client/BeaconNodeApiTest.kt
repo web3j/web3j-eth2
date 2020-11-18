@@ -2,12 +2,14 @@ package org.web3j.eth2.api.client
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import assertk.assertions.isGreaterThan
 import assertk.assertions.isNotEmpty
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.web3j.eth2.api.BeaconNodeApi
+import org.web3j.eth2.api.schema.NamedBlockId
 import org.web3j.eth2.api.schema.NamedStateId
 import org.web3j.eth2.api.schema.ValidatorStatus
 import java.util.EnumSet
@@ -26,6 +28,7 @@ class BeaconNodeApiTest {
     @DisplayName("/beacon")
     inner class BeaconTest {
         
+        @Test
         @DisplayName("/genesis")
         fun `get genesis`() {
             assertThat(client.beacon.genesis.time).isNotEmpty()
@@ -35,7 +38,7 @@ class BeaconNodeApiTest {
         @DisplayName("/states/{state_id}")
         inner class StatesTest {
 
-            val stateResource = client.beacon.states.withId(NamedStateId.HEAD)
+            private val stateResource = client.beacon.states.withId(NamedStateId.HEAD)
 
             @Test
             @DisplayName("/root")
@@ -93,13 +96,45 @@ class BeaconNodeApiTest {
         @Nested
         @DisplayName("/headers")
         inner class HeadersTest {
-            
+
+            @Test
+            @DisplayName("/")
+            fun `find all headers`() {
+                assertThat(client.beacon.headers.findAll().data).is
+            }
         }
 
         @Nested
         @DisplayName("/blocks")
         inner class BlocksTest {
             
+            private val headBlock = client.beacon.blocks.withId(NamedBlockId.HEAD)
+            
+            @Test
+            @DisplayName("/{block_id}")
+            fun `get block by ID`() {
+                val block = client.beacon.blocks.findById(NamedBlockId.HEAD).data
+                assertThat(block.signature).isNotEmpty()
+            }
+
+            @Test
+            @DisplayName("/{block_id}/attestations")
+            fun `find all attestations`() {
+                assertThat(headBlock.attestations.findAll().data).isNotEmpty()
+            }
+
+            @Test
+            @DisplayName("/{block_id}/root")
+            fun `find block root`() {
+                assertThat(headBlock.root.data.root).isNotEmpty()
+            }
+            
+            @Test
+            @Disabled("TODO")
+            @DisplayName("/")
+            fun `publish block`() {
+                TODO()
+            }
         }
 
         @Nested

@@ -32,7 +32,7 @@ interface HeadersResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findAll(): BeaconResponse<BlockHeader>
+    fun findAll(): BeaconResponse<List<BlockHeader>>
 
     /**
      * Retrieves block headers matching given query. By default it will fetch current head slot blocks.
@@ -42,7 +42,7 @@ interface HeadersResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findBySlot(@QueryParam("slot") slot: Slot): BeaconResponse<BlockHeader>
+    fun findBySlot(@QueryParam("slot") slot: Slot): BeaconResponse<List<BlockHeader>>
 
     /**
      * Retrieves block headers matching given query. By default it will fetch current head slot blocks.
@@ -52,7 +52,7 @@ interface HeadersResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findByParentRoot(@QueryParam("parent_root") parentRoot: Root): BeaconResponse<BlockHeader>
+    fun findByParentRoot(@QueryParam("parent_root") parentRoot: Root): BeaconResponse<List<BlockHeader>>
 
     /**
      * Retrieves block headers matching given query. By default it will fetch current head slot blocks.
@@ -65,7 +65,7 @@ interface HeadersResource {
     fun findBySlotAndParentRoot(
         @QueryParam("slot") slot: Slot,
         @QueryParam("parent_root") parentRoot: Root
-    ): BeaconResponse<BlockHeader>
+    ): BeaconResponse<List<BlockHeader>>
 
     /**
      * Retrieves block header for given block ID.
