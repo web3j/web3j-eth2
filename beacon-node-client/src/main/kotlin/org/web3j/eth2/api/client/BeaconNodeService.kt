@@ -26,7 +26,7 @@ import java.util.logging.Logger
 import javax.ws.rs.client.Client
 import javax.ws.rs.client.ClientBuilder
 
-class BeaconClientService(
+class BeaconNodeService(
     val uri: String,
     readTimeout: Int = DEFAULT_READ_TIMEOUT,
     connectTimeout: Int = DEFAULT_CONNECT_TIMEOUT
@@ -59,6 +59,6 @@ class BeaconClientService(
             SLF4JBridgeHandler.install()
         }
 
-        private val logger = Logger.getLogger(BeaconClientService::class.java.canonicalName)!!
+        private val logger = Logger.getLogger(BeaconNodeService::class.java.canonicalName)!!
     }
 }

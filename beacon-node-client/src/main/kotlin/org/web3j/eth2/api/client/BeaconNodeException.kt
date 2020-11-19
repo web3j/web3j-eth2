@@ -19,7 +19,7 @@ import javax.ws.rs.core.MediaType
 /**
  * Beacon Node API exception containing error data.
  */
-class BeaconClientException private constructor(
+class BeaconNodeException private constructor(
     val status: Int,
     override val message: String,
     val stacktraces: List<String> = emptyList()
@@ -27,14 +27,14 @@ class BeaconClientException private constructor(
     companion object {
 
         @JvmStatic
-        fun of(exception: WebApplicationException): BeaconClientException {
+        fun of(exception: WebApplicationException): BeaconNodeException {
             return with(exception.response) {
                 if (hasEntity() && mediaType == MediaType.APPLICATION_JSON_TYPE) {
                     readEntity(ErrorMessage::class.java).let {
-                        BeaconClientException(it.status, it.message, it.stacktraces)
+                        BeaconNodeException(it.status, it.message, it.stacktraces)
                     }
                 } else {
-                    BeaconClientException(
+                    BeaconNodeException(
                         status = exception.response.status,
                         message = exception.response.statusInfo.reasonPhrase
                     )

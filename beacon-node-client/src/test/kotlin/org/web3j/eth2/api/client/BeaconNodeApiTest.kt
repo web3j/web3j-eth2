@@ -20,7 +20,7 @@ abstract class BeaconNodeApiTest {
         @JvmStatic
         protected val client: BeaconNodeApi by lazy {
             BeaconNodeClientFactory.create(
-                BeaconNodeClientService("http://localhost:5051")
+                BeaconNodeService("http://localhost:5051")
             )
         }   
     }

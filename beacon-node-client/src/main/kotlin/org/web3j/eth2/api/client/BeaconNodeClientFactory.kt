@@ -42,7 +42,7 @@ object BeaconNodeClientFactory {
      */
     @JvmStatic
     @JvmOverloads
-    fun create(service: BeaconNodeClientService, token: String? = null): BeaconNodeApi {
+    fun create(service: BeaconNodeService, token: String? = null): BeaconNodeApi {
         val target = service.client.target(service.uri)
         token?.run { target.register(AuthenticationFilter(token)) }
 
@@ -133,7 +133,7 @@ object BeaconNodeClientFactory {
                 "Client exception while invoking method $method: " +
                         (error.message ?: error.response.statusInfo.reasonPhrase)
             }
-            return BeaconNodeClientException.of(error)
+            return BeaconNodeException.of(error)
         }
 
         private fun clientTarget(topics: EnumSet<BeaconEventType>): WebTarget {
