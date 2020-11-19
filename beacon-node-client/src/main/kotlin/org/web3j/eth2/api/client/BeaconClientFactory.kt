@@ -25,6 +25,7 @@ import java.net.URL
 import java.util.EnumSet
 import java.util.concurrent.CompletableFuture
 import javax.ws.rs.ClientErrorException
+import javax.ws.rs.WebApplicationException
 import javax.ws.rs.client.ClientRequestContext
 import javax.ws.rs.client.ClientRequestFilter
 import javax.ws.rs.client.WebTarget
@@ -115,16 +116,16 @@ object BeaconClientFactory {
                     }
                 }
             } catch (e: InvocationTargetException) {
-                throw handleInvocationException(e, method)
-            } catch (e: ClientErrorException) {
-                throw handleClientError(e, method)
+                throw handleException(e, method)
+            } catch (e: WebApplicationException) {
+                throw handleException(e, method)
             }
         }
 
-        private fun handleInvocationException(error: InvocationTargetException, method: Method): Throwable {
+        private fun handleException(error: InvocationTargetException, method: Method): Throwable {
             return error.targetException.let {
-                if (it is ClientErrorException) {
-                    handleClientError(it, method)
+                if (it is WebApplicationException) {
+                    handleException(it, method)
                 } else {
                     logger.error {
                         "Unexpected exception while invoking method $method: " +
@@ -135,7 +136,7 @@ object BeaconClientFactory {
             }
         }
 
-        private fun handleClientError(error: ClientErrorException, method: Method): RuntimeException {
+        private fun handleException(error: WebApplicationException, method: Method): RuntimeException {
             logger.error {
                 "Client exception while invoking method $method: " +
                         (error.message ?: error.response.statusInfo.reasonPhrase)

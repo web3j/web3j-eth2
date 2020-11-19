@@ -18,18 +18,18 @@ package org.web3j.eth2.api.schema
 data class ErrorMessage(
 
     /**
-     * Either specific error code in case of invalid request or HTTP status code
+     * Either specific error code in case of invalid request or HTTP status code.
      *
      */
-    val code: Int,
+    val status: Int,
 
     /**
-     * Message describing error
+     * Message describing error.
      */
     val message: String,
 
     /**
-     * Optional stacktraces, sent when node is in debug mode
+     * Optional stacktraces, sent when node is in debug mode.
      */
-    val stacktraces: List<String>
+    val stacktraces: List<String> = emptyList()
 )

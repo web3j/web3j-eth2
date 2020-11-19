@@ -13,7 +13,7 @@
 package org.web3j.eth2.api.client
 
 import org.web3j.eth2.api.schema.ErrorMessage
-import javax.ws.rs.ClientErrorException
+import javax.ws.rs.WebApplicationException
 import javax.ws.rs.core.MediaType
 
 /**
@@ -25,14 +25,14 @@ class BeaconClientException internal constructor(
     companion object {
 
         @JvmStatic
-        fun of(exception: ClientErrorException): BeaconClientException {
+        fun of(exception: WebApplicationException): BeaconClientException {
             return with(exception.response) {
                 if (hasEntity() && mediaType == MediaType.APPLICATION_JSON_TYPE) {
                     BeaconClientException(readEntity(ErrorMessage::class.java))
                 } else {
                     BeaconClientException(
                         ErrorMessage(
-                            code = exception.response.status,
+                            status = exception.response.status,
                             message = exception.response.statusInfo.reasonPhrase,
                             stacktraces = emptyList()
                         )
