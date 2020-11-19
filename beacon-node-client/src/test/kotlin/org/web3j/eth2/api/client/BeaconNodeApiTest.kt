@@ -15,10 +15,13 @@ package org.web3j.eth2.api.client
 import org.web3j.eth2.api.BeaconNodeApi
 
 abstract class BeaconNodeApiTest {
-
-    protected val client: BeaconNodeApi by lazy {
-        BeaconClientFactory.create(
-            BeaconClientService("http://localhost:5051")
-        )
+    companion object {
+        
+        @JvmStatic
+        protected val client: BeaconNodeApi by lazy {
+            BeaconNodeClientFactory.create(
+                BeaconNodeClientService("http://localhost:5051")
+            )
+        }   
     }
 } 
