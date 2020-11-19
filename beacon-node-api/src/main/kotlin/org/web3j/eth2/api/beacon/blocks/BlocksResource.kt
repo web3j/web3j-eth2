@@ -15,10 +15,12 @@ package org.web3j.eth2.api.beacon.blocks
 import org.web3j.eth2.api.schema.BeaconResponse
 import org.web3j.eth2.api.schema.NamedBlockId
 import org.web3j.eth2.api.schema.SignedBeaconBlock
+import javax.ws.rs.Consumes
 import javax.ws.rs.GET
 import javax.ws.rs.POST
 import javax.ws.rs.Path
 import javax.ws.rs.PathParam
+import javax.ws.rs.core.MediaType
 
 interface BlocksResource {
 
@@ -96,5 +98,6 @@ interface BlocksResource {
      * @throws javax.ws.rs.ServiceUnavailableException Beacon node is currently syncing, try again later.
      */
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     fun publish(body: SignedBeaconBlock)
 }

@@ -30,8 +30,6 @@ import javax.ws.rs.core.MediaType
  * which enables users to query and participate in Ethereum 2.0 phase 0 beacon chain.
  */
 @Path("/eth/v1")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 interface BeaconNodeApi {
 
     /**
