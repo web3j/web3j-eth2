@@ -64,8 +64,8 @@ interface ValidatorsResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findByStatus(@QueryParam("status") statuses: EnumSet<ValidatorStatus>)
-            : BeaconResponse<List<StateValidator>>
+    fun findByStatus(@QueryParam("status") statuses: EnumSet<ValidatorStatus>):
+            BeaconResponse<List<StateValidator>>
 
     /**
      * Returns filterable list of validators with their balance, status and index.

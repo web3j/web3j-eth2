@@ -16,7 +16,7 @@ enum class NamedBlockId {
     HEAD,
     GENESIS,
     FINALIZED;
-    
+
     override fun toString() = name.toLowerCase()
 
     companion object {
