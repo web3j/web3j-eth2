@@ -15,15 +15,18 @@ package org.web3j.eth2.api.client
 import mu.KLogging
 import org.glassfish.jersey.client.proxy.WebResourceFactory
 import org.web3j.eth2.api.BeaconNodeApi
-import org.web3j.eth2.api.schema.ErrorMessage
+import org.web3j.eth2.api.schema.BeaconEvent
+import org.web3j.eth2.api.schema.BeaconEventType
+import org.web3j.eth2.api.schema.FinalizedCheckpointEvent
+import org.web3j.eth2.api.schema.HeadEvent
 import java.lang.reflect.InvocationHandler
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
-import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Proxy
 import java.net.URL
 import java.util.EnumSet
 import java.util.concurrent.CompletableFuture
+import java.util.function.Consumer
 import javax.ws.rs.ClientErrorException
 import javax.ws.rs.WebApplicationException
 import javax.ws.rs.client.ClientRequestContext
@@ -32,14 +35,14 @@ import javax.ws.rs.client.WebTarget
 import javax.ws.rs.core.HttpHeaders
 import javax.ws.rs.sse.SseEventSource
 
-object BeaconClientFactory {
+object BeaconNodeClientFactory {
 
     /**
      * Builds a JAX-RS client with the given service and optional token.
      */
     @JvmStatic
     @JvmOverloads
-    fun create(service: BeaconClientService, token: String? = null): BeaconNodeApi {
+    fun create(service: BeaconNodeClientService, token: String? = null): BeaconNodeApi {
         val target = service.client.target(service.uri)
         token?.run { target.register(AuthenticationFilter(token)) }
 
@@ -53,19 +56,6 @@ object BeaconClientFactory {
             handler
         ) as BeaconNodeApi
     }
-
-    /**
-     * Extension value to deserialize error message from a response.
-     */
-    val ClientErrorException.errorMessage: ErrorMessage
-        get() = response.readEntity(ErrorMessage::class.java)
-
-    /**
-     * Unmarshall error message from a response.
-     */
-    @JvmStatic
-    fun unmarshall(exception: ClientErrorException): ErrorMessage =
-        exception.response.readEntity(ErrorMessage::class.java)
 
     /**
      * Invocation handler for proxied resources.
@@ -83,18 +73,20 @@ object BeaconClientFactory {
         override fun invoke(proxy: Any, method: Method, args: Array<out Any>?): Any? {
             return if (method.isEvent()) {
                 logger.trace { "Invoking event method: $method" }
-                invokeOnEvent(args!![0])
+                @Suppress("UNCHECKED_CAST")
+                invokeOnEvent(args!![0] as EnumSet<BeaconEventType>, args[1] as Consumer<BeaconEvent>)
             } else {
                 logger.trace { "Invoking client method: $method" }
                 invokeClient(method, args)
             }
         }
 
-        private fun invokeOnEvent(onEvent: Any): CompletableFuture<Void> {
-            @Suppress("UNCHECKED_CAST")
-            val eventType = (onEvent as (Any) -> Unit).typeArguments[0]
-            val source = SseEventSource.target(clientTarget()).build()
-            return SseEventSourceResult(source, onEvent, eventType).also {
+        private fun invokeOnEvent(
+            topics: EnumSet<BeaconEventType>,
+            onEvent: Consumer<BeaconEvent>
+        ): CompletableFuture<Void> {
+            val source = SseEventSource.target(clientTarget(topics)).build()
+            return SseEventSourceResult(source, onEvent).also {
                 it.open()
             }
         }
@@ -141,36 +133,40 @@ object BeaconClientFactory {
                 "Client exception while invoking method $method: " +
                         (error.message ?: error.response.statusInfo.reasonPhrase)
             }
-            return BeaconClientException.of(error)
+            return BeaconNodeClientException.of(error)
         }
 
-        private fun clientTarget(): WebTarget {
+        private fun clientTarget(topics: EnumSet<BeaconEventType>): WebTarget {
             val resourcePath = client.toString()
                 .removePrefix("JerseyWebTarget { ")
                 .removeSuffix(" }")
                 .run { URL(this).path }
             return target.path(resourcePath)
+                .queryParam("topics", *topics.toTypedArray())
         }
 
         private fun Method.isEvent() = parameterTypes.size == 2 &&
                 parameterTypes[0] == EnumSet::class.java &&
-                parameterTypes[1] == Function1::class.java &&
+                parameterTypes[1] == Consumer::class.java &&
                 returnType == CompletableFuture::class.java
 
-        private val Any.typeArguments: List<Class<*>>
-            get() {
-                val parameterizedType = this::class.java.genericInterfaces[0] as ParameterizedType
-                return parameterizedType.actualTypeArguments.map { it as Class<*> }
-            }
-
-        private class SseEventSourceResult<T>(
+        private class SseEventSourceResult(
             private val source: SseEventSource,
-            onEvent: (T) -> Unit,
-            eventType: Class<T>
+            onEvent: Consumer<BeaconEvent>
         ) : CompletableFuture<Void>() {
             init {
                 source.register(
-                    { onEvent.invoke(it.readData(eventType)) },
+                    { 
+                        val eventType: Class<out BeaconEvent> = when(BeaconEventType.fromString(it.name)) {
+                            BeaconEventType.HEAD -> HeadEvent::class.java
+                            BeaconEventType.BLOCK -> TODO()
+                            BeaconEventType.ATTESTATION -> TODO()
+                            BeaconEventType.VOLUNTARY_EXIT -> TODO()
+                            BeaconEventType.FINALIZED_CHECKPOINT -> FinalizedCheckpointEvent::class.java
+                            BeaconEventType.CHAIN_REORG -> TODO()
+                        }
+                        onEvent.accept(it.readData(eventType) as BeaconEvent)
+                    },
                     { completeExceptionally(it) },
                     { complete(null) }
                 )
@@ -184,7 +180,7 @@ object BeaconClientFactory {
                 Thread {
                     source.open()
                     while (source.isOpen) {
-                        logger.debug { "Listening on event source..." }
+                        logger.debug { "Listening on SSE event source..." }
                         Thread.sleep(5000)
                     }
                 }.start()

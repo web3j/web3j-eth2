@@ -19,10 +19,26 @@ import com.fasterxml.jackson.annotation.JsonProperty
  *
  * See also: [Server-sent_events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format)
  */
-data class BeaconEvent(
+sealed class BeaconEvent(
+    val type: BeaconEventType
+)
+
+/**
+ * The node has finished processing, resulting in a new head.
+ */
+data class HeadEvent(
     val slot: Slot,
     val block: Root,
-    val state: String,
+    val state: Root,
     @JsonProperty("epoch_transition")
     val epochTransition: Boolean
-)
+) : BeaconEvent(BeaconEventType.HEAD)
+
+/**
+ * Finalized checkpoint has been updated.
+ */
+data class FinalizedCheckpointEvent(
+    val block: Root,
+    val state: Root,
+    val epoch: Epoch
+) : BeaconEvent(BeaconEventType.FINALIZED_CHECKPOINT)
