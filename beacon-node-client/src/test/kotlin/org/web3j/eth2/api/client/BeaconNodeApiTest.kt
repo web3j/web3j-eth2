@@ -2,7 +2,6 @@ package org.web3j.eth2.api.client
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import assertk.assertions.isGreaterThan
 import assertk.assertions.isNotEmpty
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
@@ -31,7 +30,7 @@ class BeaconNodeApiTest {
         @Test
         @DisplayName("/genesis")
         fun `get genesis`() {
-            assertThat(client.beacon.genesis.time).isNotEmpty()
+            assertThat(client.beacon.genesis.data.time).isNotEmpty()
         }
 
         @Nested
@@ -77,7 +76,7 @@ class BeaconNodeApiTest {
                 }
 
                 @Test
-                @DisplayName("?status=pending_initialized")
+                @DisplayName("/?status=pending_initialized")
                 fun `find state validators by status`() {
                     val statuses = EnumSet.of(ValidatorStatus.PENDING_INITIALIZED)
                     val validators = stateResource.validators.findByStatus(statuses).data
@@ -85,7 +84,7 @@ class BeaconNodeApiTest {
                 }
 
                 @Test
-                @DisplayName("?id=0")
+                @DisplayName("/?id=0")
                 fun `find state validators by IDs`() {
                     val validators = stateResource.validators.findByIds(listOf("0")).data
                     assertThat(validators.first().index).isEqualTo("0")
@@ -100,7 +99,19 @@ class BeaconNodeApiTest {
             @Test
             @DisplayName("/")
             fun `find all headers`() {
-                assertThat(client.beacon.headers.findAll().data).is
+                assertThat(client.beacon.headers.findAll().data).isNotEmpty()
+            }
+
+            @Test
+            @DisplayName("(?slot=0")
+            fun `find headers by slot`() {
+                assertThat(client.beacon.headers.findBySlot("0").data).isNotEmpty()
+            }
+
+            @Test
+            @DisplayName("/{block_id}")
+            fun `find headers by block ID`() {
+                assertThat(client.beacon.headers.findByBlockId(NamedBlockId.HEAD).data.root).isNotEmpty()
             }
         }
 
@@ -156,19 +167,19 @@ class BeaconNodeApiTest {
         }
 
         @Test
-        @DisplayName("identity")
+        @DisplayName("/identity")
         fun `get node identity`() {
             assertThat(client.node.identity.data.peerId).isNotEmpty()
         }
 
         @Test
-        @DisplayName("version")
+        @DisplayName("/version")
         fun `get node version`() {
             assertThat(client.node.identity.data.peerId).isNotEmpty()
         }
 
         @Test
-        @DisplayName("syncing")
+        @DisplayName("/syncing")
         fun `get node syncing`() {
             assertThat(client.node.syncing.data.syncDistance).isNotEmpty()
         }
