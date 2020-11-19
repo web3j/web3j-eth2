@@ -26,13 +26,18 @@ import org.web3j.eth2.api.schema.AttestationData
 import org.web3j.eth2.api.schema.AttesterSlashing
 import org.web3j.eth2.api.schema.BeaconBlock
 import org.web3j.eth2.api.schema.BeaconBlockBody
+import org.web3j.eth2.api.schema.BeaconBlockHeader
 import org.web3j.eth2.api.schema.Checkpoint
 import org.web3j.eth2.api.schema.Eth1Data
 import org.web3j.eth2.api.schema.IndexedAttestation
 import org.web3j.eth2.api.schema.NamedBlockId
 import org.web3j.eth2.api.schema.NamedStateId
+import org.web3j.eth2.api.schema.ProposerSlashing
 import org.web3j.eth2.api.schema.SignedBeaconBlock
+import org.web3j.eth2.api.schema.SignedBeaconBlockHeader
+import org.web3j.eth2.api.schema.SignedVoluntaryExit
 import org.web3j.eth2.api.schema.ValidatorStatus
+import org.web3j.eth2.api.schema.VoluntaryExit
 import java.util.EnumSet
 import javax.ws.rs.core.Response
 
@@ -168,7 +173,7 @@ class BeaconNodeApiTest {
             }
 
             @Test
-            @DisplayName("POST")
+            @DisplayName("POST /")
             fun `publish block`() {
                 client.beacon.blocks.publish(
                     SignedBeaconBlock(
@@ -225,7 +230,7 @@ class BeaconNodeApiTest {
                 }
 
                 @Test
-                @DisplayName("POST")
+                @DisplayName("POST /")
                 fun `submit attestation`() {
                     client.beacon.pool.attestations.submit(
                         Attestation(
@@ -255,13 +260,13 @@ class BeaconNodeApiTest {
 
                 @Test
                 @DisplayName("GET /")
-                fun `find all attestater slashings`() {
+                fun `find all attester slashings`() {
                     assertThat(client.beacon.pool.attesterSlashings.findAll().data).isEmpty()
                 }
 
                 @Test
-                @DisplayName("POST")
-                fun `submit attester slashings`() {
+                @DisplayName("POST /")
+                fun `submit attester slashing`() {
                     client.beacon.pool.attesterSlashings.submit(
                         AttesterSlashing(
                             attestation1 = IndexedAttestation(
@@ -302,54 +307,117 @@ class BeaconNodeApiTest {
                     )
                 }
             }
-        }
-    }
 
-    @Nested
-    @DisplayName("/node")
-    inner class NodeTest {
+            @Nested
+            @DisplayName("/proposer_slashings")
+            inner class ProposerSlashingsTest {
 
-        @Test
-        @DisplayName("GET /health")
-        fun `node should be healthy`() {
-            assertThat(client.node.health.status)
-                .isEqualTo(Response.Status.PARTIAL_CONTENT.statusCode)
-        }
+                @Test
+                @DisplayName("GET /")
+                fun `find all proposer slashings`() {
+                    assertThat(client.beacon.pool.proposerSlashings.findAll().data).isEmpty()
+                }
 
-        @Test
-        @DisplayName("GET /identity")
-        fun `get node identity`() {
-            assertThat(client.node.identity.data.peerId).isNotEmpty()
-        }
+                @Test
+                @DisplayName("POST /")
+                fun `submit proposer slashing`() {
+                    client.beacon.pool.proposerSlashings.submit(
+                        ProposerSlashing(
+                            signedHeader1 = SignedBeaconBlockHeader(
+                                message = BeaconBlockHeader(
+                                    slot = "0",
+                                    proposerIndex = "0",
+                                    parentRoot = "0x0",
+                                    stateRoot = "0x0",
+                                    bodyRoot = "0x0"
+                                ), signature = "0x0"
+                            ),
+                            signedHeader2 = SignedBeaconBlockHeader(
+                                message = BeaconBlockHeader(
+                                    slot = "0",
+                                    proposerIndex = "0",
+                                    parentRoot = "0x0",
+                                    stateRoot = "0x0",
+                                    bodyRoot = "0x0"
+                                ), signature = "0x0"
+                            )
+                        )
+                    )
+                }
+            }
 
-        @Test
-        @DisplayName("GET /version")
-        fun `get node version`() {
-            assertThat(client.node.identity.data.peerId).isNotEmpty()
-        }
+            @Nested
+            @DisplayName("/voluntary_exits")
+            inner class VoluntaryExitsTest {
 
-        @Test
-        @DisplayName("GET /syncing")
-        fun `get node syncing`() {
-            assertThat(client.node.syncing.data.syncDistance).isNotEmpty()
+                @Test
+                @DisplayName("GET /")
+                fun `find all voluntary exits`() {
+                    assertThat(client.beacon.pool.voluntaryExits.findAll().data).isEmpty()
+                }
+
+                @Test
+                @DisplayName("POST /")
+                fun `submit voluntary exit`() {
+                    client.beacon.pool.voluntaryExits.submit(
+                        SignedVoluntaryExit(
+                            message = VoluntaryExit(
+                                epoch = "0",
+                                validatorIndex = "0"
+                            ),
+                            signature = "0x0"
+                        )
+                    )
+                }
+            }
         }
 
         @Nested
-        @DisplayName("/peers")
-        inner class PeersTest {
+        @DisplayName("/node")
+        inner class NodeTest {
 
             @Test
-            @DisplayName("GET /")
-            fun `find all node peers`() {
-                assertThat(client.node.peers.findAll().data).isNotEmpty()
+            @DisplayName("GET /health")
+            fun `node should be healthy`() {
+                assertThat(client.node.health.status)
+                    .isEqualTo(Response.Status.PARTIAL_CONTENT.statusCode)
             }
 
             @Test
-            @DisplayName("GET /{peer_id}")
-            fun `find node peers by ID`() {
-                val peer = client.node.peers.findAll().data.first()
-                assertThat(client.node.peers.findById(peer.id).data.id).isEqualTo(peer.id)
+            @DisplayName("GET /identity")
+            fun `get node identity`() {
+                assertThat(client.node.identity.data.peerId).isNotEmpty()
+            }
+
+            @Test
+            @DisplayName("GET /version")
+            fun `get node version`() {
+                assertThat(client.node.identity.data.peerId).isNotEmpty()
+            }
+
+            @Test
+            @DisplayName("GET /syncing")
+            fun `get node syncing`() {
+                assertThat(client.node.syncing.data.syncDistance).isNotEmpty()
+            }
+
+            @Nested
+            @DisplayName("/peers")
+            inner class PeersTest {
+
+                @Test
+                @DisplayName("GET /")
+                fun `find all node peers`() {
+                    assertThat(client.node.peers.findAll().data).isNotEmpty()
+                }
+
+                @Test
+                @DisplayName("GET /{peer_id}")
+                fun `find node peers by ID`() {
+                    val peer = client.node.peers.findAll().data.first()
+                    assertThat(client.node.peers.findById(peer.id).data.id).isEqualTo(peer.id)
+                }
             }
         }
     }
-}
+} 
