@@ -30,7 +30,8 @@ interface EventsResource {
      *
      * @param topics Event types to subscribe to.
      * @param onEvent Event reception callback.
-     * @return A future reference to the the empty result to monitor the connection.
+     * @return A [CompletableFuture] that is completed normally when the SSE complete,
+     * and exceptionally upon any error or cancellation.
      *
      * @throws javax.ws.rs.BadRequestException The topics supplied could not be parsed.
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
