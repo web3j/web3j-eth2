@@ -14,8 +14,10 @@ package org.web3j.eth2.api.beacon.pool
 
 import org.web3j.eth2.api.schema.BeaconResponse
 import org.web3j.eth2.api.schema.SignedVoluntaryExit
+import javax.ws.rs.Consumes
 import javax.ws.rs.GET
 import javax.ws.rs.POST
+import javax.ws.rs.core.MediaType
 
 interface VoluntaryExitsResource {
 
@@ -37,5 +39,6 @@ interface VoluntaryExitsResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     fun submit(body: SignedVoluntaryExit)
 }
