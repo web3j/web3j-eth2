@@ -16,6 +16,7 @@ import org.web3j.eth2.api.beacon.blocks.BlocksResource
 import org.web3j.eth2.api.beacon.headers.HeadersResource
 import org.web3j.eth2.api.beacon.pool.PoolResource
 import org.web3j.eth2.api.beacon.states.StatesResource
+import org.web3j.eth2.api.schema.BeaconResponse
 import org.web3j.eth2.api.schema.Genesis
 import javax.ws.rs.GET
 import javax.ws.rs.Path
@@ -45,5 +46,5 @@ interface BeaconResource {
      */
     @get:GET
     @get:Path("genesis")
-    val genesis: Genesis
+    val genesis: BeaconResponse<Genesis>
 }
