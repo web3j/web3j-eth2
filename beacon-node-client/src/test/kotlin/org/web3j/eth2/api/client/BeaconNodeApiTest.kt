@@ -23,10 +23,12 @@ import org.junit.jupiter.api.Test
 import org.web3j.eth2.api.BeaconNodeApi
 import org.web3j.eth2.api.schema.Attestation
 import org.web3j.eth2.api.schema.AttestationData
+import org.web3j.eth2.api.schema.AttesterSlashing
 import org.web3j.eth2.api.schema.BeaconBlock
 import org.web3j.eth2.api.schema.BeaconBlockBody
 import org.web3j.eth2.api.schema.Checkpoint
 import org.web3j.eth2.api.schema.Eth1Data
+import org.web3j.eth2.api.schema.IndexedAttestation
 import org.web3j.eth2.api.schema.NamedBlockId
 import org.web3j.eth2.api.schema.NamedStateId
 import org.web3j.eth2.api.schema.SignedBeaconBlock
@@ -144,7 +146,7 @@ class BeaconNodeApiTest {
             @Nested
             @DisplayName("/{block_id}")
             inner class BlockTest {
-                
+
                 @Test
                 @DisplayName("GET /")
                 fun `get block by ID`() {
@@ -246,6 +248,60 @@ class BeaconNodeApiTest {
                     )
                 }
             }
+
+            @Nested
+            @DisplayName("/attester_slashings")
+            inner class AttesterSlashingsTest {
+
+                @Test
+                @DisplayName("GET /")
+                fun `find all attestater slashings`() {
+                    assertThat(client.beacon.pool.attesterSlashings.findAll().data).isEmpty()
+                }
+
+                @Test
+                @DisplayName("POST")
+                fun `submit attester slashings`() {
+                    client.beacon.pool.attesterSlashings.submit(
+                        AttesterSlashing(
+                            attestation1 = IndexedAttestation(
+                                attestingIndices = emptyList(),
+                                `data` = AttestationData(
+                                    slot = "0",
+                                    index = "0",
+                                    beaconBlockRoot = "0",
+                                    source = Checkpoint(
+                                        epoch = "0",
+                                        root = "0"
+                                    ),
+                                    target = Checkpoint(
+                                        epoch = "0",
+                                        root = "0"
+                                    )
+                                ),
+                                signature = "0x0"
+                            ),
+                            attestation2 = IndexedAttestation(
+                                attestingIndices = emptyList(),
+                                `data` = AttestationData(
+                                    slot = "0",
+                                    index = "0",
+                                    beaconBlockRoot = "0",
+                                    source = Checkpoint(
+                                        epoch = "0",
+                                        root = "0"
+                                    ),
+                                    target = Checkpoint(
+                                        epoch = "0",
+                                        root = "0"
+                                    )
+                                ),
+                                signature = "0x0"
+                            )
+                        )
+                    )
+                }
+            }
         }
     }
 
@@ -279,7 +335,7 @@ class BeaconNodeApiTest {
         }
 
         @Nested
-        @DisplayName("GET /peers")
+        @DisplayName("/peers")
         inner class PeersTest {
 
             @Test
