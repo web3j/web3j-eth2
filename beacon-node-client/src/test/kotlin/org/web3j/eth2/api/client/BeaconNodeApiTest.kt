@@ -13,6 +13,7 @@
 package org.web3j.eth2.api.client
 
 import assertk.assertThat
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotEmpty
 import org.junit.jupiter.api.Disabled
@@ -20,8 +21,15 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.web3j.eth2.api.BeaconNodeApi
+import org.web3j.eth2.api.schema.Attestation
+import org.web3j.eth2.api.schema.AttestationData
+import org.web3j.eth2.api.schema.BeaconBlock
+import org.web3j.eth2.api.schema.BeaconBlockBody
+import org.web3j.eth2.api.schema.Checkpoint
+import org.web3j.eth2.api.schema.Eth1Data
 import org.web3j.eth2.api.schema.NamedBlockId
 import org.web3j.eth2.api.schema.NamedStateId
+import org.web3j.eth2.api.schema.SignedBeaconBlock
 import org.web3j.eth2.api.schema.ValidatorStatus
 import java.util.EnumSet
 import javax.ws.rs.core.Response
@@ -40,31 +48,31 @@ class BeaconNodeApiTest {
     inner class BeaconTest {
 
         @Test
-        @DisplayName("/genesis")
+        @DisplayName("GET /genesis")
         fun `get genesis`() {
             assertThat(client.beacon.genesis.data.time).isNotEmpty()
         }
 
         @Nested
-        @DisplayName("/states/{state_id}")
+        @DisplayName("GET /states/{state_id}")
         inner class StatesTest {
 
             private val stateResource = client.beacon.states.withId(NamedStateId.HEAD)
 
             @Test
-            @DisplayName("/root")
+            @DisplayName("GET /root")
             fun `get state root`() {
                 assertThat(stateResource.root.data.root).isNotEmpty()
             }
 
             @Test
-            @DisplayName("/fork")
+            @DisplayName("GET /fork")
             fun `get state fork`() {
                 assertThat(stateResource.fork.data.currentVersion).isNotEmpty()
             }
 
             @Test
-            @DisplayName("/finality_checkpoints")
+            @DisplayName("GET /finality_checkpoints")
             fun `get state finality checkpoints`() {
                 assertThat(stateResource.finalityCheckpoints.data.finalized.root).isNotEmpty()
             }
@@ -74,21 +82,21 @@ class BeaconNodeApiTest {
             inner class ValidatorsTest {
 
                 @Test
-                @DisplayName("/")
+                @DisplayName("GET /")
                 @Disabled("Too long")
                 fun `find all state validators`() {
                     assertThat(stateResource.validators.findAll().data).isNotEmpty()
                 }
 
                 @Test
-                @DisplayName("/{validator_id}")
+                @DisplayName("GET /{validator_id}")
                 fun `find state validator by ID`() {
                     val validator = stateResource.validators.findById("0").data
                     assertThat(validator.index).isEqualTo("0")
                 }
 
                 @Test
-                @DisplayName("/?status=pending_initialized")
+                @DisplayName("GET /?status=pending_initialized")
                 fun `find state validators by status`() {
                     val statuses = EnumSet.of(ValidatorStatus.PENDING_INITIALIZED)
                     val validators = stateResource.validators.findByStatus(statuses).data
@@ -96,7 +104,7 @@ class BeaconNodeApiTest {
                 }
 
                 @Test
-                @DisplayName("/?id=0")
+                @DisplayName("GET /?id=0")
                 fun `find state validators by IDs`() {
                     val validators = stateResource.validators.findByIds(listOf("0")).data
                     assertThat(validators.first().index).isEqualTo("0")
@@ -109,19 +117,19 @@ class BeaconNodeApiTest {
         inner class HeadersTest {
 
             @Test
-            @DisplayName("/")
+            @DisplayName("GET /")
             fun `find all headers`() {
                 assertThat(client.beacon.headers.findAll().data).isNotEmpty()
             }
 
             @Test
-            @DisplayName("(?slot=0")
+            @DisplayName("GET /?slot=0")
             fun `find headers by slot`() {
                 assertThat(client.beacon.headers.findBySlot("0").data).isNotEmpty()
             }
 
             @Test
-            @DisplayName("/{block_id}")
+            @DisplayName("GET /{block_id}")
             fun `find headers by block ID`() {
                 assertThat(client.beacon.headers.findByBlockId(NamedBlockId.HEAD).data.root).isNotEmpty()
             }
@@ -133,30 +141,58 @@ class BeaconNodeApiTest {
 
             private val headBlock = client.beacon.blocks.withId(NamedBlockId.HEAD)
 
-            @Test
+            @Nested
             @DisplayName("/{block_id}")
-            fun `get block by ID`() {
-                val block = client.beacon.blocks.findById(NamedBlockId.HEAD).data
-                assertThat(block.signature).isNotEmpty()
+            inner class BlockTest {
+                
+                @Test
+                @DisplayName("GET /")
+                fun `get block by ID`() {
+                    val block = client.beacon.blocks.findById(NamedBlockId.HEAD).data
+                    assertThat(block.signature).isNotEmpty()
+                }
+
+                @Test
+                @DisplayName("GET /attestations")
+                fun `find all attestations`() {
+                    assertThat(headBlock.attestations.findAll().data).isNotEmpty()
+                }
+
+                @Test
+                @DisplayName("GET /root")
+                fun `find block root`() {
+                    assertThat(headBlock.root.data.root).isNotEmpty()
+                }
             }
 
             @Test
-            @DisplayName("/{block_id}/attestations")
-            fun `find all attestations`() {
-                assertThat(headBlock.attestations.findAll().data).isNotEmpty()
-            }
-
-            @Test
-            @DisplayName("/{block_id}/root")
-            fun `find block root`() {
-                assertThat(headBlock.root.data.root).isNotEmpty()
-            }
-
-            @Test
-            @Disabled("TODO")
-            @DisplayName("/")
+            @DisplayName("POST")
             fun `publish block`() {
-                TODO()
+                client.beacon.blocks.publish(
+                    SignedBeaconBlock(
+                        message = BeaconBlock(
+                            slot = "0",
+                            proposerIndex = "0",
+                            parentRoot = "0",
+                            stateRoot = "0",
+                            body = BeaconBlockBody(
+                                randaoReveal = "0x0",
+                                eth1Data = Eth1Data(
+                                    depositRoot = "0",
+                                    depositCount = "0",
+                                    blockHash = "0x0"
+                                ),
+                                graffiti = "0",
+                                proposerSlashings = emptyList(),
+                                attesterSlashings = emptyList(),
+                                attestations = emptyList(),
+                                deposits = emptyList(),
+                                voluntaryExits = emptyList()
+                            )
+                        ),
+                        signature = "0x0"
+                    )
+                )
             }
         }
 
@@ -169,9 +205,45 @@ class BeaconNodeApiTest {
             inner class AttestationsTest {
 
                 @Test
-                @DisplayName("/")
+                @DisplayName("GET /")
                 fun `find all attestations`() {
-                    assertThat(client.beacon.pool.attestations.findAll().data).isNotEmpty()
+                    assertThat(client.beacon.pool.attestations.findAll().data).isEmpty()
+                }
+
+                @Test
+                @DisplayName("GET /?slot=0")
+                fun `find attestations by slot`() {
+                    assertThat(client.beacon.pool.attestations.findBySlot("0").data).isEmpty()
+                }
+
+                @Test
+                @DisplayName("GET /?committee_index=0")
+                fun `find attestations by committee index`() {
+                    assertThat(client.beacon.pool.attestations.findByCommitteeIndex("0").data).isEmpty()
+                }
+
+                @Test
+                @DisplayName("POST")
+                fun `submit attestation`() {
+                    client.beacon.pool.attestations.submit(
+                        Attestation(
+                            aggregationBits = "0x1",
+                            signature = "0x0",
+                            data = AttestationData(
+                                slot = "0",
+                                index = "0",
+                                beaconBlockRoot = "0",
+                                source = Checkpoint(
+                                    epoch = "0",
+                                    root = "0"
+                                ),
+                                target = Checkpoint(
+                                    epoch = "0",
+                                    root = "0"
+                                )
+                            )
+                        )
+                    )
                 }
             }
         }
@@ -182,42 +254,42 @@ class BeaconNodeApiTest {
     inner class NodeTest {
 
         @Test
-        @DisplayName("/health")
+        @DisplayName("GET /health")
         fun `node should be healthy`() {
             assertThat(client.node.health.status)
                 .isEqualTo(Response.Status.PARTIAL_CONTENT.statusCode)
         }
 
         @Test
-        @DisplayName("/identity")
+        @DisplayName("GET /identity")
         fun `get node identity`() {
             assertThat(client.node.identity.data.peerId).isNotEmpty()
         }
 
         @Test
-        @DisplayName("/version")
+        @DisplayName("GET /version")
         fun `get node version`() {
             assertThat(client.node.identity.data.peerId).isNotEmpty()
         }
 
         @Test
-        @DisplayName("/syncing")
+        @DisplayName("GET /syncing")
         fun `get node syncing`() {
             assertThat(client.node.syncing.data.syncDistance).isNotEmpty()
         }
 
         @Nested
-        @DisplayName("/peers")
+        @DisplayName("GET /peers")
         inner class PeersTest {
 
             @Test
-            @DisplayName("/")
+            @DisplayName("GET /")
             fun `find all node peers`() {
                 assertThat(client.node.peers.findAll().data).isNotEmpty()
             }
 
             @Test
-            @DisplayName("/{peer_id}")
+            @DisplayName("GET /{peer_id}")
             fun `find node peers by ID`() {
                 val peer = client.node.peers.findAll().data.first()
                 assertThat(client.node.peers.findById(peer.id).data.id).isEqualTo(peer.id)
