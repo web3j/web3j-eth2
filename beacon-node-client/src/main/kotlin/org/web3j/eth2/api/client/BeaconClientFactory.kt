@@ -82,10 +82,10 @@ object BeaconClientFactory {
 
         override fun invoke(proxy: Any, method: Method, args: Array<out Any>?): Any? {
             return if (method.isEvent()) {
-                logger.debug { "Invoking event method: $method" }
+                logger.trace { "Invoking event method: $method" }
                 invokeOnEvent(args!![0])
             } else {
-                logger.debug { "Invoking client method: $method" }
+                logger.trace { "Invoking client method: $method" }
                 invokeClient(method, args)
             }
         }
