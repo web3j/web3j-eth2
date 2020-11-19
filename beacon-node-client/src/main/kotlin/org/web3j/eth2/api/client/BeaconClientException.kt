@@ -17,25 +17,26 @@ import javax.ws.rs.WebApplicationException
 import javax.ws.rs.core.MediaType
 
 /**
- * Client API exception containing error data.
+ * Beacon Node API exception containing error data.
  */
-class BeaconClientException internal constructor(
-    val errorMessage: ErrorMessage?
-) : RuntimeException(errorMessage?.message) {
+class BeaconClientException private constructor(
+    val status: Int,
+    override val message: String,
+    val stacktraces: List<String> = emptyList()
+) : RuntimeException(message) {
     companion object {
 
         @JvmStatic
         fun of(exception: WebApplicationException): BeaconClientException {
             return with(exception.response) {
                 if (hasEntity() && mediaType == MediaType.APPLICATION_JSON_TYPE) {
-                    BeaconClientException(readEntity(ErrorMessage::class.java))
+                    readEntity(ErrorMessage::class.java).let {
+                        BeaconClientException(it.status, it.message, it.stacktraces)
+                    }
                 } else {
                     BeaconClientException(
-                        ErrorMessage(
-                            status = exception.response.status,
-                            message = exception.response.statusInfo.reasonPhrase,
-                            stacktraces = emptyList()
-                        )
+                        status = exception.response.status,
+                        message = exception.response.statusInfo.reasonPhrase
                     )
                 }
             }
