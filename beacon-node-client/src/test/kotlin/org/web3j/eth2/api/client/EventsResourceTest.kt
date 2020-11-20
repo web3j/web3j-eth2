@@ -31,7 +31,7 @@ class EventsResourceTest : BeaconNodeApiTest() {
         val topics = EnumSet.of(BeaconEventType.FINALIZED_CHECKPOINT)
 
         // The node will send a finalized checkpoint soon after
-        val future = client.events.onEvent(topics, Consumer { _ ->
+        val future = client.events.onEvent(topics, Consumer {
             countdownLatch.countDown()
         })
         countdownLatch.await()
