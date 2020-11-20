@@ -52,7 +52,7 @@ interface AttestationsResource {
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
-    fun findByCommitteeIndex(@QueryParam("committee_index") committeeIndex: String): 
+    fun findByCommitteeIndex(@QueryParam("committee_index") committeeIndex: String):
             BeaconResponse<List<Attestation>>
 
     /**

@@ -18,10 +18,7 @@ import org.web3j.eth2.api.debug.DebugResource
 import org.web3j.eth2.api.events.EventsResource
 import org.web3j.eth2.api.node.NodeResource
 import org.web3j.eth2.api.validator.ValidatorResource
-import javax.ws.rs.Consumes
 import javax.ws.rs.Path
-import javax.ws.rs.Produces
-import javax.ws.rs.core.MediaType
 
 /**
  * Ethereum 2.0 Beacon API.
@@ -67,4 +64,27 @@ interface BeaconNodeApi {
      */
     @get:Path("validator")
     val validator: ValidatorResource
+
+    /*companion object {
+
+        *//**
+         * Builds a Beacon Node API client with the given service and optional token.
+         *//*
+        @JvmStatic
+        @JvmOverloads
+        fun build(service: BeaconNodeService, token: String? = null): BeaconNodeApi {
+            val target = service.client.target(service.uri)
+            token?.run { target.register(AuthenticationFilter(token)) }
+
+            val client = WebResourceFactory.newResource(BeaconNodeApi::class.java, target)
+            val handler = ClientInvocationHandler(target, client)
+
+            @Suppress("UNCHECKED_CAST")
+            return Proxy.newProxyInstance(
+                BeaconNodeApi::class.java.classLoader,
+                arrayOf(BeaconNodeApi::class.java),
+                handler
+            ) as BeaconNodeApi
+        }
+    }*/
 }

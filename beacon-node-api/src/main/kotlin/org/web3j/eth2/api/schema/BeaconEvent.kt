@@ -40,7 +40,7 @@ data class HeadEvent(
 data class BlockEvent(
     val slot: Slot,
     val block: Root
-): BeaconEvent(BeaconEventType.BLOCK)
+) : BeaconEvent(BeaconEventType.BLOCK)
 
 /**
  * The node has received an attestation (from P2P or API).
@@ -50,7 +50,7 @@ data class AttestationEvent(
     val aggregationBits: Hex,
     val signature: BLSSignature,
     val `data`: AttestationData
-): BeaconEvent(BeaconEventType.ATTESTATION)
+) : BeaconEvent(BeaconEventType.ATTESTATION)
 
 /**
  * The node has received a voluntary exit (from P2P or API).
@@ -58,7 +58,7 @@ data class AttestationEvent(
 data class VoluntaryExitEvent(
     val message: VoluntaryExit,
     val signature: BLSSignature
-): BeaconEvent(BeaconEventType.VOLUNTARY_EXIT)
+) : BeaconEvent(BeaconEventType.VOLUNTARY_EXIT)
 
 /**
  * Finalized checkpoint has been updated.
