@@ -25,7 +25,7 @@ abstract class BeaconNodeApiTest {
 
         @JvmStatic
         protected val client: BeaconNodeApi by lazy {
-            BeaconNodeClientFactory.create(
+            BeaconNodeClientFactory.build(
                 BeaconNodeService("http://${teku.host}:${teku.firstMappedPort}")
             )
         }
