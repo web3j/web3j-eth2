@@ -10,24 +10,20 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package org.web3j.eth2.api.client
+package org.web3j.eth2.teku
 
-import org.testcontainers.junit.jupiter.Testcontainers
-import org.web3j.eth2.api.BeaconNodeApi
-import org.web3j.eth2.teku.TekuContainer
+import org.testcontainers.containers.GenericContainer
+import org.testcontainers.containers.wait.strategy.Wait
 
-@Testcontainers
-abstract class BeaconNodeApiTest {
-    companion object {
-
-        @JvmStatic
-        private val teku = TekuContainer().apply { start() }
-
-        @JvmStatic
-        protected val client: BeaconNodeApi by lazy {
-            BeaconNodeClientFactory.create(
-                BeaconNodeService("http://${teku.host}:${teku.firstMappedPort}")
-            )
-        }
+class TekuContainer : GenericContainer<TekuContainer>("pegasyseng/teku:latest") {
+    init {
+        withCommand("--rest-api-enabled=true")
+        withLogConsumer { print(it.utf8String) }
+        withExposedPorts(5051)
+        waitingFor(
+            Wait.forHttp("/eth/v1/node/health")
+                .forStatusCode(206)
+                .forPort(5051)
+        )
     }
 }
