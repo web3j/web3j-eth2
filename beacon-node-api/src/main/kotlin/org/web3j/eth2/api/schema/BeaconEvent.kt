@@ -35,6 +35,32 @@ data class HeadEvent(
 ) : BeaconEvent(BeaconEventType.HEAD)
 
 /**
+ * The node has received a block (from P2P or API).
+ */
+data class BlockEvent(
+    val slot: Slot,
+    val block: Root
+): BeaconEvent(BeaconEventType.BLOCK)
+
+/**
+ * The node has received an attestation (from P2P or API).
+ */
+data class AttestationEvent(
+    @JsonProperty("aggregation_bits")
+    val aggregationBits: Hex,
+    val signature: BLSSignature,
+    val `data`: AttestationData
+): BeaconEvent(BeaconEventType.ATTESTATION)
+
+/**
+ * The node has received a voluntary exit (from P2P or API).
+ */
+data class VoluntaryExitEvent(
+    val message: VoluntaryExit,
+    val signature: BLSSignature
+): BeaconEvent(BeaconEventType.VOLUNTARY_EXIT)
+
+/**
  * Finalized checkpoint has been updated.
  */
 data class FinalizedCheckpointEvent(
@@ -42,3 +68,16 @@ data class FinalizedCheckpointEvent(
     val state: Root,
     val epoch: Epoch
 ) : BeaconEvent(BeaconEventType.FINALIZED_CHECKPOINT)
+
+/**
+ * The node has reorganized its chain.
+ */
+data class ChainReorganizedEvent(
+    val slot: Slot,
+    val depth: Uint64,
+    val old_head_block: Root,
+    val new_head_block: Root,
+    val old_head_state: Root,
+    val new_head_state: Root,
+    val epoch: Epoch
+) : BeaconEvent(BeaconEventType.CHAIN_REORG)
