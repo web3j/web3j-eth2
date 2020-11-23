@@ -13,7 +13,9 @@
 package org.web3j.eth2.api.client
 
 import assertk.assertThat
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
+import assertk.assertions.isNotEmpty
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -42,7 +44,7 @@ class ValidatorResourceTest : BeaconNodeApiTest() {
     @DisplayName("GET /aggregate_attestation")
     fun `get aggregated attestation`() {
         val exception = assertThrows<BeaconNodeException> {
-            client.validator.getAggregatedAttestation(ROOT, "0")
+            client.validator.getAggregatedAttestation("0x01", "0")
         }
         assertThat(exception.status).isEqualTo(Response.Status.SERVICE_UNAVAILABLE.statusCode)
     }
@@ -66,7 +68,7 @@ class ValidatorResourceTest : BeaconNodeApiTest() {
         client.validator.publishAggregateAndProofs(
             SignedAggregateAndProof(
                 message = AggregateAndProof(
-                    index = "0",
+                    aggregatorIndex = "0",
                     attestation = Attestation(
                         aggregationBits = "0x01",
                         signature = SIGNATURE,
@@ -98,22 +100,20 @@ class ValidatorResourceTest : BeaconNodeApiTest() {
         @Test
         @DisplayName("POST /attester/{epoch}")
         fun `get attester duties`() {
-            val exception = assertThrows<BeaconNodeException> {
-                client.validator.duties.attester.atEpoch("0")
-                    .findByValidatorIndices("0", "1")
-            }
-            assertThat(exception.status).isEqualTo(Response.Status.SERVICE_UNAVAILABLE.statusCode)
+            val duties = client.validator.duties.attester.atEpoch("0")
+                    .findByValidatorIndices("0")
+
+            assertThat(duties.data).isEmpty()
         }
 
         @Test
         @DisplayName("GET /proposer/{epoch}")
         fun `get block proposers duties`() {
-            val exception = assertThrows<BeaconNodeException> {
-                client.validator.duties.proposer
-                    .atEpoch("0")
-                    .findAll()
-            }
-            assertThat(exception.status).isEqualTo(Response.Status.SERVICE_UNAVAILABLE.statusCode)
+            val duties = client.validator.duties.proposer
+                .atEpoch("0")
+                .findAll()
+            
+            assertThat(duties.data).isEmpty()
         }
     }
 
