@@ -24,5 +24,5 @@ interface BlocksResource {
      * @param slot The slot for which the block should be proposed.
      */
     @Path("{slot}")
-    fun withSlot(@PathParam("slot") slot: Slot): BlockResource
+    fun atSlot(@PathParam("slot") slot: Slot): BlockResource
 }

@@ -19,5 +19,5 @@ import javax.ws.rs.PathParam
 interface ProposerResource {
 
     @Path("{epoch}")
-    fun withEpoch(@PathParam("epoch") epoch: Epoch): ProposerDutiesResource
+    fun atEpoch(@PathParam("epoch") epoch: Epoch): ProposerDutiesResource
 }
