@@ -80,14 +80,14 @@ internal class BeaconNodeClientInvocationHandler(
                 }
             }
         } catch (e: InvocationTargetException) {
-            throw handleException(e, method)
+            handleException(e, method)
         } catch (e: WebApplicationException) {
-            throw handleException(e, method)
+            handleException(e, method)
         }
     }
 
-    private fun handleException(error: InvocationTargetException, method: Method): Throwable {
-        return error.targetException.let {
+    private fun handleException(error: InvocationTargetException, method: Method): Nothing {
+        throw error.targetException.let {
             if (it is WebApplicationException) {
                 handleException(it, method)
             } else {
@@ -100,12 +100,12 @@ internal class BeaconNodeClientInvocationHandler(
         }
     }
 
-    private fun handleException(error: WebApplicationException, method: Method): RuntimeException {
+    private fun handleException(error: WebApplicationException, method: Method): Nothing {
         logger.error {
             "Client exception while invoking method $method: " +
                     (error.message ?: error.response.statusInfo.reasonPhrase)
         }
-        return BeaconNodeException.of(error)
+        throw BeaconNodeException.of(error)
     }
 
     private fun clientTarget(topics: EnumSet<BeaconEventType>): WebTarget {
