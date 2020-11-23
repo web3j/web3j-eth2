@@ -14,7 +14,6 @@ package org.web3j.eth2.api.client
 
 import org.web3j.eth2.api.schema.ErrorMessage
 import org.web3j.eth2.api.schema.ErrorResponse
-import java.net.URL
 import javax.ws.rs.ProcessingException
 import javax.ws.rs.WebApplicationException
 import javax.ws.rs.core.MediaType
