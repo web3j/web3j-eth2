@@ -19,8 +19,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * object from the Eth2.0 spec.
  */
 data class AttestationData(
-    val slot: String,
-    val index: String,
+    val slot: Slot,
+    val index: Uint64,
     /** LMD GHOST vote */
     @JsonProperty("beacon_block_root")
     val beaconBlockRoot: Root,
