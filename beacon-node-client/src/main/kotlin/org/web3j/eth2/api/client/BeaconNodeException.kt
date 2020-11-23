@@ -13,6 +13,9 @@
 package org.web3j.eth2.api.client
 
 import org.web3j.eth2.api.schema.ErrorMessage
+import org.web3j.eth2.api.schema.ErrorResponse
+import java.net.URL
+import javax.ws.rs.ProcessingException
 import javax.ws.rs.WebApplicationException
 import javax.ws.rs.core.MediaType
 
@@ -21,9 +24,7 @@ import javax.ws.rs.core.MediaType
  */
 class BeaconNodeException private constructor(
     val status: Int,
-    val type: String? = null,
-    override val message: String? = null,
-    val details: List<String> = emptyList(),
+    override val message: String,
     val stacktraces: List<String> = emptyList()
 ) : RuntimeException(message) {
     companion object {
@@ -32,8 +33,24 @@ class BeaconNodeException private constructor(
         fun of(exception: WebApplicationException): BeaconNodeException {
             return with(exception.response) {
                 if (hasEntity() && mediaType == MediaType.APPLICATION_JSON_TYPE) {
-                    readEntity(ErrorMessage::class.java).let {
-                        BeaconNodeException(it.status, it.type, it.message, it.details, it.stacktraces)
+                    try {
+                        // Try to read Beacon node error
+                        readEntity(ErrorMessage::class.java).let {
+                            BeaconNodeException(
+                                status = it.status,
+                                message = it.message,
+                                stacktraces = it.stacktraces
+                            )
+                        }
+                    } catch (pe: ProcessingException) {
+                        // Use server-specific error response
+                        readEntity(ErrorResponse::class.java).let {
+                            BeaconNodeException(
+                                status = it.status,
+                                message = "${it.title}: ${it.type}",
+                                stacktraces = it.details
+                            )
+                        }
                     }
                 } else {
                     BeaconNodeException(
