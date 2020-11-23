@@ -69,7 +69,7 @@ class ValidatorResourceTest : BeaconNodeApiTest() {
             SignedAggregateAndProof(
                 message = AggregateAndProof(
                     aggregatorIndex = "0",
-                    attestation = Attestation(
+                    aggregate = Attestation(
                         aggregationBits = "0x01",
                         signature = SIGNATURE,
                         data = AttestationData(
