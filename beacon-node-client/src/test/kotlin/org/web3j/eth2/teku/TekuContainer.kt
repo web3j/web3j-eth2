@@ -14,6 +14,7 @@ package org.web3j.eth2.teku
 
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.containers.wait.strategy.Wait
+import java.time.Duration
 
 class TekuContainer : GenericContainer<TekuContainer>("pegasyseng/teku:latest") {
     init {
@@ -22,8 +23,8 @@ class TekuContainer : GenericContainer<TekuContainer>("pegasyseng/teku:latest") 
         withExposedPorts(5051)
         waitingFor(
             Wait.forHttp("/eth/v1/node/health")
-                .forStatusCode(206)
-                .forPort(5051)
+                .forStatusCode(206).forPort(5051)
+                .withStartupTimeout(Duration.ofMinutes(2))
         )
     }
 }
