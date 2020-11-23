@@ -15,7 +15,7 @@ package org.web3j.eth2.api.schema
 /**
  * Error message containing meaningful data about the error.
  */
-data class ErrorMessage(
+data class ErrorMessage @JvmOverloads constructor(
 
     /**
      * Either specific error code in case of invalid request or HTTP status code.
@@ -24,9 +24,19 @@ data class ErrorMessage(
     val status: Int,
 
     /**
+     * Information about the error type.
+     */
+    val type: String? = null,
+    
+    /**
      * Message describing error.
      */
-    val message: String,
+    val message: String? = null,
+
+    /**
+     * Detailed information about the error.
+     */
+    val details: List<String> = emptyList(),
 
     /**
      * Optional stacktraces, sent when node is in debug mode.

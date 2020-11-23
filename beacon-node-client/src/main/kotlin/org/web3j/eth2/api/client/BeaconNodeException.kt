@@ -21,7 +21,9 @@ import javax.ws.rs.core.MediaType
  */
 class BeaconNodeException private constructor(
     val status: Int,
-    override val message: String,
+    val type: String? = null,
+    override val message: String? = null,
+    val details: List<String> = emptyList(),
     val stacktraces: List<String> = emptyList()
 ) : RuntimeException(message) {
     companion object {
@@ -31,7 +33,7 @@ class BeaconNodeException private constructor(
             return with(exception.response) {
                 if (hasEntity() && mediaType == MediaType.APPLICATION_JSON_TYPE) {
                     readEntity(ErrorMessage::class.java).let {
-                        BeaconNodeException(it.status, it.message, it.stacktraces)
+                        BeaconNodeException(it.status, it.type, it.message, it.details, it.stacktraces)
                     }
                 } else {
                     BeaconNodeException(
