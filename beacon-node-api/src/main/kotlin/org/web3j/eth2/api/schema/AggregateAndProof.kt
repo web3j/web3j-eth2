@@ -19,7 +19,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * object from the Eth2.0 spec.
  */
 data class AggregateAndProof(
-    val index: ValidatorIndex,
+    @JsonProperty("aggregator_index")
+    val aggregatorIndex: Uint64,
     val attestation: Attestation,
     @JsonProperty("selection_proof")
     val selectionProof: BLSSignature
