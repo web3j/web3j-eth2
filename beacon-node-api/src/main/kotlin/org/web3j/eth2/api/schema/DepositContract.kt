@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class DepositContract(
     /** Id of Eth1 chain on which contract is deployed. */
     @JsonProperty("chain_id")
-    val chainId: Int,
+    val chain: Eth1Chain,
     /** Hex encoded deposit contract address with 0x prefix. */
     val address: Address
 )
