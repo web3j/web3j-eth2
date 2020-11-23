@@ -71,16 +71,18 @@ internal class BeaconNodeClientInvocationHandler(
         try {
             // Invoke the original method on the client
             return method.invoke(client, *(args ?: arrayOf())).let {
-                if (Proxy.isProxyClass(it.javaClass)) {
-                    // The result is a Jersey web resource
-                    // so we need to wrap it again
-                    Proxy.newProxyInstance(
-                        method.returnType.classLoader,
-                        arrayOf(method.returnType),
-                        BeaconNodeClientInvocationHandler(target, it)
-                    )
-                } else {
-                    it
+                when (it) {
+                    null -> it
+                    Proxy.isProxyClass(it.javaClass) -> {
+                        // The result is a Jersey web resource
+                        // so we need to wrap it again
+                        Proxy.newProxyInstance(
+                            method.returnType.classLoader,
+                            arrayOf(method.returnType),
+                            BeaconNodeClientInvocationHandler(target, it)
+                        )
+                    }
+                    else -> it
                 }
             }
         } catch (e: InvocationTargetException) {
