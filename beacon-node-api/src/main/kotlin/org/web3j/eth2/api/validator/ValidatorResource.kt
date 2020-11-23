@@ -20,10 +20,12 @@ import org.web3j.eth2.api.schema.CommitteeSubnetSubscription
 import org.web3j.eth2.api.schema.Root
 import org.web3j.eth2.api.schema.SignedAggregateAndProof
 import org.web3j.eth2.api.schema.Slot
+import javax.ws.rs.Consumes
 import javax.ws.rs.GET
 import javax.ws.rs.POST
 import javax.ws.rs.Path
 import javax.ws.rs.QueryParam
+import javax.ws.rs.core.MediaType
 
 /**
  * Endpoints intended for validator clients.
@@ -70,6 +72,7 @@ interface ValidatorResource {
      * @throws javax.ws.rs.ServiceUnavailableException Beacon node is currently syncing, try again later.
      */
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("beacon_committee_subscriptions")
     fun prepareBeaconCommitteeSubnet(vararg body: CommitteeSubnetSubscription)
 
@@ -100,5 +103,6 @@ interface ValidatorResource {
      */
     @POST
     @Path("aggregate_and_proofs")
+    @Consumes(MediaType.APPLICATION_JSON)
     fun publishAggregateAndProofs(vararg body: SignedAggregateAndProof)
 }
