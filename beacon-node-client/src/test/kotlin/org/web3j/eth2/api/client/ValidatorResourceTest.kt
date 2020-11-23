@@ -15,6 +15,7 @@ package org.web3j.eth2.api.client
 import assertk.assertThat
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
+import assertk.assertions.isNotEmpty
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -118,5 +119,13 @@ class ValidatorResourceTest : BeaconNodeApiTest() {
 
     @Nested
     @DisplayName("/blocks")
-    inner class BlocksResourceTest
+    inner class BlocksResourceTest {
+        
+        @Test
+        @DisplayName("GET /{slot}")
+        fun `request unsigned block`() {
+            val block = client.validator.blocks.atSlot("0").produceBlock(SIGNATURE)
+            assertThat(block.data.stateRoot).isNotEmpty()
+        }
+    }
 }
