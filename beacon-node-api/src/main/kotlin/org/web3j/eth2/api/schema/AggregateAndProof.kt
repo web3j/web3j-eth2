@@ -22,5 +22,5 @@ data class AggregateAndProof(
     val index: ValidatorIndex,
     val attestation: Attestation,
     @JsonProperty("selection_proof")
-    val selectionProof: String
+    val selectionProof: BLSSignature
 )
