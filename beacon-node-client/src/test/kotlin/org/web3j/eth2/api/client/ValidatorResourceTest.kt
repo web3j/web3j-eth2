@@ -12,7 +12,110 @@
  */
 package org.web3j.eth2.api.client
 
+import assertk.assertThat
+import assertk.assertions.isEqualTo
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import org.web3j.eth2.api.schema.AggregateAndProof
+import org.web3j.eth2.api.schema.Attestation
+import org.web3j.eth2.api.schema.AttestationData
+import org.web3j.eth2.api.schema.Checkpoint
+import org.web3j.eth2.api.schema.CommitteeSubnetSubscription
+import org.web3j.eth2.api.schema.SignedAggregateAndProof
+import javax.ws.rs.core.Response
 
 @DisplayName("/eth/v1/validator")
-class ValidatorResourceTest : BeaconNodeApiTest()
+class ValidatorResourceTest : BeaconNodeApiTest() {
+
+    @Test
+    @DisplayName("GET /attestation_data")
+    fun `get attestation data`() {
+        val exception = assertThrows<BeaconNodeException> {
+            client.validator.produceAttestationData("0", "0")
+        }
+        assertThat(exception.status).isEqualTo(Response.Status.SERVICE_UNAVAILABLE.statusCode)
+    }
+
+    @Test
+    @DisplayName("GET /aggregate_attestation")
+    fun `get aggregated attestation`() {
+        val exception = assertThrows<BeaconNodeException> {
+            client.validator.getAggregatedAttestation(ROOT, "0")
+        }
+        assertThat(exception.status).isEqualTo(Response.Status.SERVICE_UNAVAILABLE.statusCode)
+    }
+
+    @Test
+    @DisplayName("POST /beacon_committee_subscriptions")
+    fun `subscribe to a committee subnet`() {
+        client.validator.subscribe(
+            CommitteeSubnetSubscription(
+                committeeIndex = "0",
+                committeesAtSlot = "0",
+                isAggregator = true,
+                slot = "0"
+            )
+        )
+    }
+
+    @Test
+    @DisplayName("POST /aggregate_and_proofs")
+    fun `publish multiple aggregate and proofs`() {
+        client.validator.publishAggregateAndProofs(
+            SignedAggregateAndProof(
+                message = AggregateAndProof(
+                    index = "0",
+                    attestation = Attestation(
+                        aggregationBits = "0x01",
+                        signature = SIGNATURE,
+                        data = AttestationData(
+                            slot = "0",
+                            index = "0",
+                            beaconBlockRoot = "0x01",
+                            source = Checkpoint(
+                                epoch = "0",
+                                root = ROOT
+                            ),
+                            target = Checkpoint(
+                                epoch = "0",
+                                root = ROOT
+                            )
+                        )
+                    ),
+                    selectionProof = "0x01"
+                ),
+                signature = SIGNATURE
+            )
+        )
+    }
+
+    @Nested
+    @DisplayName("/duties")
+    inner class DutiesResourceTest {
+
+        @Test
+        @DisplayName("POST /attester/{epoch}")
+        fun `get attester duties`() {
+            val duties = client.validator.duties.attester.atEpoch("0")
+                .findByValidatorIndices("0", "1")
+        }
+
+        @Test
+        @DisplayName("GET /proposer/{epoch}")
+        fun `get block proposers duties`() {
+            val exception = assertThrows<BeaconNodeException> {
+                client.validator.duties.proposer
+                    .atEpoch("0")
+                    .findAll()
+            }
+
+            assertThat(exception.status).isEqualTo(Response.Status.SERVICE_UNAVAILABLE.statusCode)
+        }
+    }
+
+    @Nested
+    @DisplayName("/blocks")
+    inner class BlocksResourceTest
+}
