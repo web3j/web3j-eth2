@@ -21,11 +21,11 @@ import org.web3j.eth2.api.schema.NamedStateId
 
 @DisplayName("/eth/v1/debug")
 class DebugResourceTest : BeaconNodeApiTest() {
-    
+
     @Nested
     @DisplayName("/beacon")
     inner class BeaconResourceTest {
-        
+
         @Nested
         @DisplayName("/states")
         inner class BeaconResourceTest {

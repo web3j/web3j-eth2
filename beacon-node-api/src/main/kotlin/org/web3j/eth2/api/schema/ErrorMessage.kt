@@ -27,7 +27,7 @@ data class ErrorMessage @JvmOverloads constructor(
      * Information about the error type.
      */
     val type: String? = null,
-    
+
     /**
      * Message describing error.
      */
