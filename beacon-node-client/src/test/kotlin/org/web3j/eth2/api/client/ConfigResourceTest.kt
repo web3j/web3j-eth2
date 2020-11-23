@@ -21,19 +21,19 @@ import org.junit.jupiter.api.Test
 class ConfigResourceTest : BeaconNodeApiTest() {
 
     @Test
-    @DisplayName("/fork_schedule")
+    @DisplayName("GET /fork_schedule")
     fun `get fork schedule`() {
         assertThat(client.config.forkSchedule.data).isNotEmpty()
     }
 
     @Test
-    @DisplayName("/spec")
+    @DisplayName("GET /spec")
     fun `get specification parameters`() {
         assertThat(client.config.specification.data).isNotEmpty()
     }
 
     @Test
-    @DisplayName("/deposit_contract")
+    @DisplayName("GET /deposit_contract")
     fun `get deposit contract address`() {
         assertThat(client.config.depositContract.data.address).isNotEmpty()
     }
