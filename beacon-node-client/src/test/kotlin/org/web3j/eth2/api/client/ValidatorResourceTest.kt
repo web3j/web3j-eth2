@@ -84,7 +84,7 @@ class ValidatorResourceTest : BeaconNodeApiTest() {
                             )
                         )
                     ),
-                    selectionProof = "0x01"
+                    selectionProof = SIGNATURE
                 ),
                 signature = SIGNATURE
             )
