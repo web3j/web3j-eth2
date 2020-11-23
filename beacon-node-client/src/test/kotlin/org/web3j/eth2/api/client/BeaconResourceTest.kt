@@ -222,8 +222,8 @@ class BeaconResourceTest : BeaconNodeApiTest() {
             fun `submit attestation`() {
                 client.beacon.pool.attestations.submit(
                     Attestation(
-                        aggregationBits = "0x1",
-                        signature = "0x0",
+                        aggregationBits = "0x01",
+                        signature = "0x01",
                         data = AttestationData(
                             slot = "0",
                             index = "0",
@@ -262,24 +262,24 @@ class BeaconResourceTest : BeaconNodeApiTest() {
                             `data` = AttestationData(
                                 slot = "0",
                                 index = "0",
-                                beaconBlockRoot = "0",
+                                beaconBlockRoot = "0x01",
                                 source = Checkpoint(
                                     epoch = "0",
-                                    root = "0"
+                                    root = "0x01"
                                 ),
                                 target = Checkpoint(
                                     epoch = "0",
                                     root = "0"
                                 )
                             ),
-                            signature = "0x0"
+                            signature = "0x01"
                         ),
                         attestation2 = IndexedAttestation(
                             attestingIndices = emptyList(),
                             `data` = AttestationData(
                                 slot = "0",
                                 index = "0",
-                                beaconBlockRoot = "0",
+                                beaconBlockRoot = "0x01",
                                 source = Checkpoint(
                                     epoch = "0",
                                     root = "0"
@@ -289,7 +289,7 @@ class BeaconResourceTest : BeaconNodeApiTest() {
                                     root = "0"
                                 )
                             ),
-                            signature = "0x0"
+                            signature = "0x01"
                         )
                     )
                 )
@@ -315,19 +315,19 @@ class BeaconResourceTest : BeaconNodeApiTest() {
                             message = BeaconBlockHeader(
                                 slot = "0",
                                 proposerIndex = "0",
-                                parentRoot = "0x0",
-                                stateRoot = "0x0",
-                                bodyRoot = "0x0"
-                            ), signature = "0x0"
+                                parentRoot = "0x01",
+                                stateRoot = "0x01",
+                                bodyRoot = "0x01"
+                            ), signature = "0x01"
                         ),
                         signedHeader2 = SignedBeaconBlockHeader(
                             message = BeaconBlockHeader(
                                 slot = "0",
                                 proposerIndex = "0",
-                                parentRoot = "0x0",
-                                stateRoot = "0x0",
-                                bodyRoot = "0x0"
-                            ), signature = "0x0"
+                                parentRoot = "0x01",
+                                stateRoot = "0x01",
+                                bodyRoot = "0x01"
+                            ), signature = "0x01"
                         )
                     )
                 )
@@ -353,7 +353,7 @@ class BeaconResourceTest : BeaconNodeApiTest() {
                             epoch = "0",
                             validatorIndex = "0"
                         ),
-                        signature = "0x0"
+                        signature = "0x01"
                     )
                 )
             }

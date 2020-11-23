@@ -12,7 +12,36 @@
  */
 package org.web3j.eth2.api.client
 
+import assertk.assertThat
+import assertk.assertions.isNotEmpty
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
+import org.web3j.eth2.api.schema.NamedStateId
 
 @DisplayName("/eth/v1/debug")
-class DebugResourceTest : BeaconNodeApiTest()
+class DebugResourceTest : BeaconNodeApiTest() {
+    
+    @Nested
+    @DisplayName("/beacon")
+    inner class BeaconResourceTest {
+        
+        @Nested
+        @DisplayName("/states")
+        inner class BeaconResourceTest {
+
+            @Test
+            @DisplayName("/{state_id}")
+            fun `get states`() {
+                assertThat(client.debug.beacon.states.findById(NamedStateId.HEAD)
+                    .data.genesisValidatorsRoot).isNotEmpty()
+            }
+        }
+
+        @Test
+        @DisplayName("/heads")
+        fun `get chain heads`() {
+            assertThat(client.debug.beacon.heads.data).isNotEmpty()
+        }
+    }
+}
