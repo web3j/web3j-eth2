@@ -12,8 +12,11 @@
  */
 package org.web3j.eth2.api.schema
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 data class DepositContract(
     /** Id of Eth1 chain on which contract is deployed. */
+    @JsonProperty("chain_id")
     val chainId: Int,
     /** Hex encoded deposit contract address with 0x prefix. */
     val address: Address
