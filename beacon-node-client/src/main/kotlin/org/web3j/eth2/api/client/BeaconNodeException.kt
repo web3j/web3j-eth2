@@ -46,7 +46,7 @@ class BeaconNodeException private constructor(
                         readEntity(ErrorResponse::class.java).let {
                             BeaconNodeException(
                                 status = it.status,
-                                message = "${it.title}: ${it.type}",
+                                message = it.title,
                                 stacktraces = it.details
                             )
                         }
