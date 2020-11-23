@@ -31,7 +31,7 @@ class DebugResourceTest : BeaconNodeApiTest() {
         inner class BeaconResourceTest {
 
             @Test
-            @DisplayName("/{state_id}")
+            @DisplayName("GET /{state_id}")
             fun `get states`() {
                 assertThat(client.debug.beacon.states.findById(NamedStateId.HEAD)
                     .data.genesisValidatorsRoot).isNotEmpty()
@@ -39,7 +39,7 @@ class DebugResourceTest : BeaconNodeApiTest() {
         }
 
         @Test
-        @DisplayName("/heads")
+        @DisplayName("GET /heads")
         fun `get chain heads`() {
             assertThat(client.debug.beacon.heads.data).isNotEmpty()
         }
