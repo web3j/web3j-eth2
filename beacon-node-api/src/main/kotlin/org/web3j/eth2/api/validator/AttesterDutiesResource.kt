@@ -15,7 +15,9 @@ package org.web3j.eth2.api.validator
 import org.web3j.eth2.api.schema.AttesterDuty
 import org.web3j.eth2.api.schema.BeaconResponse
 import org.web3j.eth2.api.schema.ValidatorIndex
+import javax.ws.rs.Consumes
 import javax.ws.rs.POST
+import javax.ws.rs.core.MediaType
 
 interface AttesterDutiesResource {
     /**
@@ -31,5 +33,6 @@ interface AttesterDutiesResource {
      * @throws javax.ws.rs.ServiceUnavailableException Beacon node is currently syncing, try again later.
      */
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     fun findByValidatorIndices(vararg validatorIndices: ValidatorIndex): BeaconResponse<List<AttesterDuty>>
 }
