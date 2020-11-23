@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class AggregateAndProof(
     @JsonProperty("aggregator_index")
-    val aggregatorIndex: Uint64,
+    val aggregatorIndex: ValidatorIndex,
     val aggregate: Attestation,
     @JsonProperty("selection_proof")
     val selectionProof: BLSSignature
