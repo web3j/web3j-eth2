@@ -12,7 +12,29 @@
  */
 package org.web3j.eth2.api.client
 
+import assertk.assertThat
+import assertk.assertions.isNotEmpty
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
 @DisplayName("/eth/v1/config")
-class ConfigResourceTest : BeaconNodeApiTest()
+class ConfigResourceTest : BeaconNodeApiTest() {
+
+    @Test
+    @DisplayName("/fork_schedule")
+    fun `get fork schedule`() {
+        assertThat(client.config.forkSchedule.data).isNotEmpty()
+    }
+
+    @Test
+    @DisplayName("/spec")
+    fun `get specification parameters`() {
+        assertThat(client.config.specification.data).isNotEmpty()
+    }
+
+    @Test
+    @DisplayName("/deposit_contract")
+    fun `get deposit contract address`() {
+        assertThat(client.config.depositContract.data.address).isNotEmpty()
+    }
+}
