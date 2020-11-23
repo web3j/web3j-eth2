@@ -262,17 +262,17 @@ class BeaconResourceTest : BeaconNodeApiTest() {
                             `data` = AttestationData(
                                 slot = "0",
                                 index = "0",
-                                beaconBlockRoot = "0x01",
+                                beaconBlockRoot = ROOT,
                                 source = Checkpoint(
                                     epoch = "0",
-                                    root = "0x01"
+                                    root = ROOT
                                 ),
                                 target = Checkpoint(
                                     epoch = "0",
                                     root = "0"
                                 )
                             ),
-                            signature = "0x01"
+                            signature = SIGNATURE
                         ),
                         attestation2 = IndexedAttestation(
                             attestingIndices = emptyList(),
@@ -282,11 +282,11 @@ class BeaconResourceTest : BeaconNodeApiTest() {
                                 beaconBlockRoot = "0x01",
                                 source = Checkpoint(
                                     epoch = "0",
-                                    root = "0"
+                                    root = ROOT
                                 ),
                                 target = Checkpoint(
                                     epoch = "0",
-                                    root = "0"
+                                    root = ROOT
                                 )
                             ),
                             signature = "0x01"
@@ -353,7 +353,7 @@ class BeaconResourceTest : BeaconNodeApiTest() {
                             epoch = "0",
                             validatorIndex = "0"
                         ),
-                        signature = "0x01"
+                        signature = SIGNATURE
                     )
                 )
             }
