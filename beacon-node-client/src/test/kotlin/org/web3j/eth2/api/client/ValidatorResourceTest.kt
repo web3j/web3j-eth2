@@ -15,7 +15,6 @@ package org.web3j.eth2.api.client
 import assertk.assertThat
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
-import assertk.assertions.isNotEmpty
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -112,7 +111,7 @@ class ValidatorResourceTest : BeaconNodeApiTest() {
             val duties = client.validator.duties.proposer
                 .atEpoch("0")
                 .findAll()
-            
+
             assertThat(duties.data).isEmpty()
         }
     }
