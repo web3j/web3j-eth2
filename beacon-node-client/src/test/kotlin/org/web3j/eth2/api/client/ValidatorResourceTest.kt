@@ -98,8 +98,11 @@ class ValidatorResourceTest : BeaconNodeApiTest() {
         @Test
         @DisplayName("POST /attester/{epoch}")
         fun `get attester duties`() {
-            val duties = client.validator.duties.attester.atEpoch("0")
-                .findByValidatorIndices("0", "1")
+            val exception = assertThrows<BeaconNodeException> {
+                client.validator.duties.attester.atEpoch("0")
+                    .findByValidatorIndices("0", "1")
+            }
+            assertThat(exception.status).isEqualTo(Response.Status.SERVICE_UNAVAILABLE.statusCode)
         }
 
         @Test
@@ -110,7 +113,6 @@ class ValidatorResourceTest : BeaconNodeApiTest() {
                     .atEpoch("0")
                     .findAll()
             }
-
             assertThat(exception.status).isEqualTo(Response.Status.SERVICE_UNAVAILABLE.statusCode)
         }
     }
