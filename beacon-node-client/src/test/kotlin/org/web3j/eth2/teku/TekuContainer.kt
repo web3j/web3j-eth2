@@ -18,9 +18,9 @@ import java.time.Duration
 
 class TekuContainer : GenericContainer<TekuContainer>("pegasyseng/teku:latest") {
     init {
-        withCommand("--rest-api-enabled=true")
+        withCommand("--rest-api-enabled=true --eth1-endpoint=http://localhost:8545")
         withLogConsumer { print(it.utf8String) }
-        withExposedPorts(5051)
+        withExposedPorts(5051, 8545)
         waitingFor(
             Wait.forHttp("/eth/v1/node/health")
                 .forStatusCode(206).forPort(5051)
