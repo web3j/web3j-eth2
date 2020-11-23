@@ -48,6 +48,7 @@ interface ValidatorResource {
      * @return Returns aggregated [Attestation] object with same [org.web3j.eth2.api.schema.AttestationData] root.
      *
      * @throws javax.ws.rs.BadRequestException Invalid request.
+     * @throws javax.ws.rs.ForbiddenException Beacon node was not assigned to aggregate on that subnet.
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
@@ -74,7 +75,7 @@ interface ValidatorResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("beacon_committee_subscriptions")
-    fun prepareBeaconCommitteeSubnet(vararg body: CommitteeSubnetSubscription)
+    fun subscribe(vararg body: CommitteeSubnetSubscription)
 
     /**
      * Requests that the beacon node produce an [AttestationData].
