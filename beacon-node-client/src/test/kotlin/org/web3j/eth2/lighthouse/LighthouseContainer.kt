@@ -17,7 +17,7 @@ import org.testcontainers.containers.wait.strategy.Wait
 
 class LighthouseContainer : GenericContainer<LighthouseContainer>("sigp/lighthouse:local") {
     init {
-        withCommand("lighthouse beacon --testnet medalla --http --http-address 0.0.0.0")
+        withCommand("lighthouse beacon --network medalla --http --http-address 0.0.0.0")
         withLogConsumer { print(it.utf8String) }
         withExposedPorts(5052, 9000)
         waitingFor(
