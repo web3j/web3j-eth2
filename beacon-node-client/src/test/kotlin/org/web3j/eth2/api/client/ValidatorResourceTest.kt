@@ -37,7 +37,7 @@ class ValidatorResourceTest : BeaconNodeApiTest() {
         val exception = assertThrows<BeaconNodeException> {
             client.validator.produceAttestationData("0", "0")
         }
-        assertThat(exception.status).isEqualTo(Response.Status.SERVICE_UNAVAILABLE.statusCode)
+        assertThat(exception.code).isEqualTo(Response.Status.SERVICE_UNAVAILABLE.statusCode)
     }
 
     @Test
@@ -46,7 +46,7 @@ class ValidatorResourceTest : BeaconNodeApiTest() {
         val exception = assertThrows<BeaconNodeException> {
             client.validator.getAggregatedAttestation("0x01", "0")
         }
-        assertThat(exception.status).isEqualTo(Response.Status.SERVICE_UNAVAILABLE.statusCode)
+        assertThat(exception.code).isEqualTo(Response.Status.SERVICE_UNAVAILABLE.statusCode)
     }
 
     @Test
@@ -120,7 +120,7 @@ class ValidatorResourceTest : BeaconNodeApiTest() {
     @Nested
     @DisplayName("/blocks")
     inner class BlocksResourceTest {
-        
+
         @Test
         @DisplayName("GET /{slot}")
         fun `request unsigned block`() {
