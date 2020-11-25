@@ -13,7 +13,6 @@
 package org.web3j.eth2.api.client
 
 import org.web3j.eth2.api.schema.ErrorMessage
-import org.web3j.eth2.api.schema.ErrorResponse
 import javax.ws.rs.ProcessingException
 import javax.ws.rs.WebApplicationException
 import javax.ws.rs.core.MediaType
@@ -22,7 +21,7 @@ import javax.ws.rs.core.MediaType
  * Beacon Node API exception containing error data.
  */
 class BeaconNodeException private constructor(
-    val status: Int,
+    val code: Int,
     override val message: String,
     val stacktraces: List<String> = emptyList()
 ) : RuntimeException(message) {
@@ -36,24 +35,21 @@ class BeaconNodeException private constructor(
                         // Try to read Beacon node error
                         readEntity(ErrorMessage::class.java).let {
                             BeaconNodeException(
-                                status = it.status,
+                                code = it.code,
                                 message = it.message,
                                 stacktraces = it.stacktraces
                             )
                         }
                     } catch (pe: ProcessingException) {
-                        // Use server-specific error response
-                        readEntity(ErrorResponse::class.java).let {
-                            BeaconNodeException(
-                                status = it.status,
-                                message = it.title,
-                                stacktraces = it.details
-                            )
-                        }
+                        // Read server-specific error response
+                        BeaconNodeException(
+                            code = status,
+                            message = readEntity(String::class.java)
+                        )
                     }
                 } else {
                     BeaconNodeException(
-                        status = exception.response.status,
+                        code = exception.response.status,
                         message = exception.response.statusInfo.reasonPhrase
                     )
                 }

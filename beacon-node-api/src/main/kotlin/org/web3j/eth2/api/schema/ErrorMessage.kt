@@ -21,7 +21,7 @@ data class ErrorMessage(
      * Either specific error code in case of invalid request or HTTP status code.
      *
      */
-    val status: Int,
+    val code: Int,
 
     /**
      * Message describing error.
