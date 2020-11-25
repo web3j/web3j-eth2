@@ -15,6 +15,9 @@ package org.web3j.eth2.api.schema
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class SyncingStatus(
+    /** FIXME: Lighthouse */
+    @JsonProperty("is_syncing")
+    val isSyncing: Boolean,
     /** Head slot node is trying to reach. */
     @JsonProperty("head_slot")
     val headSlot: Uint64,
