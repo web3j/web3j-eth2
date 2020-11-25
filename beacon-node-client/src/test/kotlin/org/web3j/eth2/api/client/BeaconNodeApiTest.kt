@@ -14,7 +14,7 @@ package org.web3j.eth2.api.client
 
 import org.testcontainers.junit.jupiter.Testcontainers
 import org.web3j.eth2.api.BeaconNodeApi
-import org.web3j.eth2.teku.TekuContainer
+import org.web3j.eth2.lighthouse.LighthouseContainer
 
 @Testcontainers
 abstract class BeaconNodeApiTest {
@@ -24,12 +24,12 @@ abstract class BeaconNodeApiTest {
         const val SIGNATURE = "0x1b66ac1fb663c9bc59509846d6ec05345bd908eda73e670af888da41af171505cc411d61252fb6cb3fa0017b679f8bb2305b26a285fa2737f175668d0dff91cc1b66ac1fb663c9bc59509846d6ec05345bd908eda73e670af888da41af171505"
 
         @JvmStatic
-        private val teku = TekuContainer().apply { start() }
+        private val node = LighthouseContainer().apply { start() }
 
         @JvmStatic
         protected val client: BeaconNodeApi by lazy {
             BeaconNodeClientFactory.build(
-                BeaconNodeService("http://${teku.host}:${teku.firstMappedPort}")
+                BeaconNodeService("http://${node.host}:${node.firstMappedPort}")
             )
         }
     }
