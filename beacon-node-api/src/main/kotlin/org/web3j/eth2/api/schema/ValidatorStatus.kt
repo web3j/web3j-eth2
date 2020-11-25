@@ -27,7 +27,7 @@ enum class ValidatorStatus {
     /**
      * Condition: `validator.activation_epoch <= current_epoch < validator.exit_epoch`
      */
-//    ACTIVE,
+    ACTIVE,
 
     /**
      * When you are still active, but filed a voluntary request to exit.
@@ -53,7 +53,7 @@ enum class ValidatorStatus {
     /**
      * Condition: `(validator.exit_epoch <= current_epoch < validator.withdrawable_epoch)`
      */
-//    EXITED,
+    EXITED,
 
     /**
      * When you reach your exit epoch, but were slashed, have to wait for a longer withdrawal period,
@@ -74,7 +74,7 @@ enum class ValidatorStatus {
     /**
      * Condition: `validator.activation_epoch > current_epoch`
      */
-//    PENDING,
+    PENDING,
 
     /**
      * When the first deposit is processed, but not enough funds are available
@@ -96,7 +96,7 @@ enum class ValidatorStatus {
     /**
      * Condition: `validator.withdrawable_epoch <= current_epoch`
      */
-//    WITHDRAWAL,
+    WITHDRAWAL,
 
     /**
      * (not possible in phase0, except slashing full balance) - actually having moved funds away.
