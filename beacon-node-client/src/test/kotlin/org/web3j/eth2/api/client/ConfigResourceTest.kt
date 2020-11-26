@@ -18,7 +18,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.web3j.eth2.api.BeaconNodeApi
 
-abstract class ConfigResourceTest(val client: BeaconNodeApi) {
+abstract class ConfigResourceTest(private val client: BeaconNodeApi) {
 
     @Test
     @DisplayName("GET /fork_schedule")

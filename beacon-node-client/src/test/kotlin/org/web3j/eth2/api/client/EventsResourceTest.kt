@@ -21,7 +21,7 @@ import java.util.EnumSet
 import java.util.concurrent.CountDownLatch
 import java.util.function.Consumer
 
-abstract class EventsResourceTest(val client: BeaconNodeApi) {
+abstract class EventsResourceTest(private val client: BeaconNodeApi) {
 
     @Test
     @Timeout(90)
@@ -35,6 +35,6 @@ abstract class EventsResourceTest(val client: BeaconNodeApi) {
             countdownLatch.countDown()
         })
         countdownLatch.await()
-        future.cancel(true)
+        future.complete(null)
     }
 }
