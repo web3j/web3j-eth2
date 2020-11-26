@@ -24,7 +24,7 @@ import java.util.function.Consumer
 class EventsResourceTest : BeaconNodeApiTest() {
 
     @Test
-    @Timeout(60)
+    @Timeout(90)
     @DisplayName("GET /")
     fun `subscribe to node events`() {
         val countdownLatch = CountDownLatch(1)
