@@ -15,7 +15,8 @@ exec lighthouse \
 	--datadir $BEACON_DIR-2 \
 	--testnet-dir $TESTNET_DIR \
 	--dummy-eth1 \
-	--http-address 0.0.0.0 \
-	--http-port 6052 \
 	--http \
-  --port 9902
+	--http-address 0.0.0.0 \
+  --port 9902 \
+	--http-port 6052 \
+  --boot-nodes $(cat $BEACON_DIR/beacon/network/enr.dat)
