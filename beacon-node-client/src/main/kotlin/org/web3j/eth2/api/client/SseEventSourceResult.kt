@@ -56,7 +56,7 @@ internal class SseEventSourceResult(
             }
             if (error != null) {
                 logger.warn {
-                    "SSE event source finished with exception: ${error.message}"
+                    "SSE event source finished with exception: $error"
                 }
             }
         }
