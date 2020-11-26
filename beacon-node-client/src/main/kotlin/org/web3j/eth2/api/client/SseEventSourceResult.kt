@@ -49,6 +49,7 @@ internal class SseEventSourceResult(
         whenComplete { _, _ ->
             // Close the source gracefully by client
             if (source.isOpen) source.close()
+            logger.debug { "SSE event source closed." }
         }
     }
 
