@@ -18,10 +18,10 @@ import assertk.assertions.isNotEmpty
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.web3j.eth2.api.BeaconNodeApi
 import javax.ws.rs.core.Response
 
-@DisplayName("/eth/v1/node")
-class NodeResourceTest : BeaconNodeApiTest() {
+abstract class NodeResourceTest(val client: BeaconNodeApi) {
 
     @Test
     @DisplayName("GET /health")

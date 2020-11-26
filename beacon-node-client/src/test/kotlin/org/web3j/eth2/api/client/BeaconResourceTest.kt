@@ -20,6 +20,9 @@ import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.web3j.eth2.api.BeaconNodeApi
+import org.web3j.eth2.api.client.BeaconNodeApiTestSuite.Companion.ROOT
+import org.web3j.eth2.api.client.BeaconNodeApiTestSuite.Companion.SIGNATURE
 import org.web3j.eth2.api.schema.Attestation
 import org.web3j.eth2.api.schema.AttestationData
 import org.web3j.eth2.api.schema.AttesterSlashing
@@ -39,8 +42,7 @@ import org.web3j.eth2.api.schema.ValidatorStatus
 import org.web3j.eth2.api.schema.VoluntaryExit
 import java.util.EnumSet
 
-@DisplayName("/eth/v1/beacon")
-class BeaconResourceTest : BeaconNodeApiTest() {
+abstract class BeaconResourceTest(val client: BeaconNodeApi) {
 
     @Test
     @DisplayName("GET /genesis")

@@ -26,6 +26,7 @@ subprojects {
 
     dependencies {
         implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiterVersion"
     }
     
     apply {
@@ -35,7 +36,6 @@ subprojects {
                 'jacoco',
                 'java',
                 'javadoc',
-                'junit',
                 'repositories',
                 'spotless'
         ].each { buildScript ->
@@ -62,11 +62,6 @@ subprojects {
                 }
             }
         }
-    }
-
-    tasks.withType(Test) {
-        reports.html.destination = file("${reporting.baseDir}/${name}")
-        useJUnitPlatform()
     }
 
     compileKotlin {

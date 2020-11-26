@@ -17,10 +17,10 @@ import assertk.assertions.isNotEmpty
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.web3j.eth2.api.BeaconNodeApi
 import org.web3j.eth2.api.schema.NamedStateId
 
-@DisplayName("/eth/v1/debug")
-class DebugResourceTest : BeaconNodeApiTest() {
+abstract class DebugResourceTest(val client: BeaconNodeApi) {
 
     @Nested
     @DisplayName("/beacon")

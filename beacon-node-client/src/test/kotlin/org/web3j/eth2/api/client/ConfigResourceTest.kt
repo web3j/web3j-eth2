@@ -16,9 +16,9 @@ import assertk.assertThat
 import assertk.assertions.isNotEmpty
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.web3j.eth2.api.BeaconNodeApi
 
-@DisplayName("/eth/v1/config")
-class ConfigResourceTest : BeaconNodeApiTest() {
+abstract class ConfigResourceTest(val client: BeaconNodeApi) {
 
     @Test
     @DisplayName("GET /fork_schedule")

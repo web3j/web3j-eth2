@@ -15,13 +15,13 @@ package org.web3j.eth2.api.client
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Timeout
+import org.web3j.eth2.api.BeaconNodeApi
 import org.web3j.eth2.api.schema.BeaconEventType
 import java.util.EnumSet
 import java.util.concurrent.CountDownLatch
 import java.util.function.Consumer
 
-@DisplayName("/eth/v1/events")
-class EventsResourceTest : BeaconNodeApiTest() {
+abstract class EventsResourceTest(val client: BeaconNodeApi) {
 
     @Test
     @Timeout(90)

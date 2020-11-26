@@ -20,6 +20,9 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.web3j.eth2.api.BeaconNodeApi
+import org.web3j.eth2.api.client.BeaconNodeApiTestSuite.Companion.ROOT
+import org.web3j.eth2.api.client.BeaconNodeApiTestSuite.Companion.SIGNATURE
 import org.web3j.eth2.api.schema.AggregateAndProof
 import org.web3j.eth2.api.schema.Attestation
 import org.web3j.eth2.api.schema.AttestationData
@@ -28,8 +31,7 @@ import org.web3j.eth2.api.schema.CommitteeSubnetSubscription
 import org.web3j.eth2.api.schema.SignedAggregateAndProof
 import javax.ws.rs.core.Response
 
-@DisplayName("/eth/v1/validator")
-class ValidatorResourceTest : BeaconNodeApiTest() {
+abstract class ValidatorResourceTest(val client: BeaconNodeApi) {
 
     @Test
     @DisplayName("GET /attestation_data")
@@ -101,7 +103,7 @@ class ValidatorResourceTest : BeaconNodeApiTest() {
         @DisplayName("POST /attester/{epoch}")
         fun `get attester duties`() {
             val duties = client.validator.duties.attester.atEpoch("0")
-                    .findByValidatorIndices("0")
+                .findByValidatorIndices("0")
 
             assertThat(duties.data).isEmpty()
         }
