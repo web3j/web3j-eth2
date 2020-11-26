@@ -113,8 +113,8 @@ internal class BeaconNodeClientInvocationHandler(
             .removePrefix("JerseyWebTarget { ")
             .removeSuffix(" }")
             .run { URL(this).path }
-        return target.path(resourcePath)
-            .queryParam("topics", *topics.toTypedArray())
+        val topicsParam = topics.joinToString(",") { it.toString() }
+        return target.path(resourcePath).queryParam("topics", topicsParam)
     }
 
     private fun Method.isEvent() = parameterTypes.size == 2 &&
