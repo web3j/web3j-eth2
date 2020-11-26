@@ -15,14 +15,14 @@ package org.web3j.eth2.lighthouse
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.containers.wait.strategy.Wait
 
-class LighthouseContainer : GenericContainer<LighthouseContainer>("sigp/lighthouse:latest") {
+class LighthouseContainer : GenericContainer<LighthouseContainer>("sigp/lighthouse:local") {
     init {
         withCommand("lighthouse beacon --network medalla --http --http-address 0.0.0.0")
         withLogConsumer { print(it.utf8String) }
         withExposedPorts(5052, 9000)
         waitingFor(
-            Wait.forHttp("/eth/v1/node/health")
-                .forStatusCode(206)
+            Wait.forHttp("/lighthouse/health")
+                .forStatusCode(200)
                 .forPort(5052)
         )
     }

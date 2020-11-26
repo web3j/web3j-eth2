@@ -16,6 +16,12 @@ import mu.KLogging
 import org.web3j.eth2.api.schema.AttestationEvent
 import org.web3j.eth2.api.schema.BeaconEvent
 import org.web3j.eth2.api.schema.BeaconEventType
+import org.web3j.eth2.api.schema.BeaconEventType.ATTESTATION
+import org.web3j.eth2.api.schema.BeaconEventType.BLOCK
+import org.web3j.eth2.api.schema.BeaconEventType.CHAIN_REORG
+import org.web3j.eth2.api.schema.BeaconEventType.FINALIZED_CHECKPOINT
+import org.web3j.eth2.api.schema.BeaconEventType.HEAD
+import org.web3j.eth2.api.schema.BeaconEventType.VOLUNTARY_EXIT
 import org.web3j.eth2.api.schema.BlockEvent
 import org.web3j.eth2.api.schema.ChainReorganizedEvent
 import org.web3j.eth2.api.schema.FinalizedCheckpointEvent
@@ -23,6 +29,7 @@ import org.web3j.eth2.api.schema.HeadEvent
 import org.web3j.eth2.api.schema.VoluntaryExitEvent
 import java.util.concurrent.CompletableFuture
 import java.util.function.Consumer
+import javax.ws.rs.sse.InboundSseEvent
 import javax.ws.rs.sse.SseEventSource
 
 internal class SseEventSourceResult(
@@ -30,25 +37,28 @@ internal class SseEventSourceResult(
     onEvent: Consumer<BeaconEvent>
 ) : CompletableFuture<Void>() {
     init {
-        source.register(
-            {
-                val eventType: Class<out BeaconEvent> =
-                    when (BeaconEventType.fromString(it.name)) {
-                        BeaconEventType.HEAD -> HeadEvent::class.java
-                        BeaconEventType.BLOCK -> BlockEvent::class.java
-                        BeaconEventType.ATTESTATION -> AttestationEvent::class.java
-                        BeaconEventType.VOLUNTARY_EXIT -> VoluntaryExitEvent::class.java
-                        BeaconEventType.FINALIZED_CHECKPOINT -> FinalizedCheckpointEvent::class.java
-                        BeaconEventType.CHAIN_REORG -> ChainReorganizedEvent::class.java
-                    }
-                onEvent.accept(it.readData(eventType) as BeaconEvent)
-            },
+        source.register({
+            if (it.name != null) {
+                logger.info { "Received SSE event: $it" }
+                val eventType = readEventType(it)
+                onEvent.accept(it.readData(eventType))
+            } else {
+                logger.warn { "Received empty SSE event, will be ignored." }
+            }
+        },
             { completeExceptionally(it) },
-            { complete(null) }
-        )
-        whenComplete { _, _ ->
+            { complete(null) })
+        whenComplete { _, error ->
             // Close the source gracefully by client
-            if (source.isOpen) source.close()
+            if (source.isOpen) {
+                source.close()
+                logger.debug { "SSE event source closed." }
+            }
+            if (error != null) {
+                logger.warn {
+                    "SSE event source finished with exception: $error"
+                }
+            }
         }
     }
 
@@ -60,6 +70,17 @@ internal class SseEventSourceResult(
                 Thread.sleep(5000)
             }
         }.start()
+    }
+
+    private fun readEventType(it: InboundSseEvent): Class<out BeaconEvent> {
+        return when (BeaconEventType.fromString(it.name)) {
+            HEAD -> HeadEvent::class.java
+            BLOCK -> BlockEvent::class.java
+            ATTESTATION -> AttestationEvent::class.java
+            VOLUNTARY_EXIT -> VoluntaryExitEvent::class.java
+            FINALIZED_CHECKPOINT -> FinalizedCheckpointEvent::class.java
+            CHAIN_REORG -> ChainReorganizedEvent::class.java
+        }
     }
 
     companion object : KLogging()

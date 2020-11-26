@@ -24,11 +24,11 @@ import java.util.function.Consumer
 class EventsResourceTest : BeaconNodeApiTest() {
 
     @Test
-    @Timeout(60)
+    @Timeout(90)
     @DisplayName("GET /")
     fun `subscribe to node events`() {
         val countdownLatch = CountDownLatch(1)
-        val topics = EnumSet.of(BeaconEventType.FINALIZED_CHECKPOINT)
+        val topics = EnumSet.of(BeaconEventType.FINALIZED_CHECKPOINT, BeaconEventType.BLOCK)
 
         // The node will send a finalized checkpoint soon after
         val future = client.events.onEvent(topics, Consumer {
