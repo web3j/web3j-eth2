@@ -48,10 +48,17 @@ internal class SseEventSourceResult(
         },
             { completeExceptionally(it) },
             { complete(null) })
-        whenComplete { _, _ ->
+        whenComplete { _, error ->
             // Close the source gracefully by client
-            if (source.isOpen) source.close()
-            logger.info { "SSE event source closed." }
+            if (source.isOpen) {
+                source.close()
+                logger.debug { "SSE event source closed." }
+            }
+            if (error != null) {
+                logger.warn {
+                    "SSE event source finished with exception: ${error.message}"
+                }
+            }
         }
     }
 
