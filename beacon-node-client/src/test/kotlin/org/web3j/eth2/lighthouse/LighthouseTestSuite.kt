@@ -12,11 +12,13 @@
  */
 package org.web3j.eth2.lighthouse
 
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Tag
 import org.testcontainers.containers.ContainerState
 import org.web3j.eth2.api.client.BeaconNodeApiTestSuite
 
 @Tag("lighthouse")
+@DisplayName("Lighthouse")
 class LighthouseTestSuite : BeaconNodeApiTestSuite() {
 
     override val node: ContainerState = lighthouse

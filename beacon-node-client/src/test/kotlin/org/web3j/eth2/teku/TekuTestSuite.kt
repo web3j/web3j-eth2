@@ -12,11 +12,13 @@
  */
 package org.web3j.eth2.teku
 
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Tag
 import org.testcontainers.containers.ContainerState
 import org.web3j.eth2.api.client.BeaconNodeApiTestSuite
 
 @Tag("teku")
+@DisplayName("Teku")
 class TekuTestSuite : BeaconNodeApiTestSuite() {
 
     override val node: ContainerState = teku
