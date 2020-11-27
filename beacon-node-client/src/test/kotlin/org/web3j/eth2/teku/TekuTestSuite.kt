@@ -16,12 +16,20 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Tag
 import org.testcontainers.containers.ContainerState
 import org.web3j.eth2.api.client.BeaconNodeApiTestSuite
+import java.util.concurrent.TimeUnit
 
 @Tag("teku")
 @DisplayName("Teku")
 class TekuTestSuite : BeaconNodeApiTestSuite() {
 
-    override val node: ContainerState = teku
+    override val node: ContainerState by lazy {
+        val service = teku.getContainerByServiceName("teku1")
+        while (!service.isPresent) {
+            println("Service not available, waiting...")
+            TimeUnit.SECONDS.sleep(5)
+        }
+        service.get()
+    }
 
     companion object {
         @JvmStatic

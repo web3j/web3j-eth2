@@ -12,19 +12,38 @@
  */
 package org.web3j.eth2.teku
 
-import org.testcontainers.containers.GenericContainer
+import org.testcontainers.containers.DockerComposeContainer
 import org.testcontainers.containers.wait.strategy.Wait
-import java.time.Duration
+import java.io.File
+import java.time.Instant
+import javax.ws.rs.core.Response
 
-class TekuContainer : GenericContainer<TekuContainer>("pegasyseng/teku:latest") {
+class TekuContainer : DockerComposeContainer<TekuContainer>(File(("src/test/resources/teku/docker-compose.yml"))) {
     init {
-        withCommand("--rest-api-enabled=true --eth1-endpoint=http://localhost:8545")
-        withLogConsumer { print(it.utf8String) }
-        withExposedPorts(5051, 8545)
-        waitingFor(
-            Wait.forHttp("/eth/v1/node/health")
-                .forStatusCode(206).forPort(5051)
-                .withStartupTimeout(Duration.ofMinutes(2))
-        )
+        val waitStrategy = Wait.forHttp("/eth/v1/node/health")
+            .forStatusCode(Response.Status.OK.statusCode)
+            .forPort(LISTEN_PORT)
+        
+        for (index in 1..4) {
+            withExposedService("teku$index", LISTEN_PORT)
+            withLogConsumer("teku$index") { print(it.utf8String) }
+            waitingFor("teku$index", waitStrategy)
+        }
+        withPull(true)
+        with(Instant.now()) {
+            withEnv(
+                mapOf(
+                    "USER" to "root",
+                    "START_DELAY" to START_DELAY.toString(),
+                    "CURRENT_TIME" to epochSecond.toString(),
+                    "GENESIS_TIME" to plusSeconds(START_DELAY).epochSecond.toString()
+                )
+            )
+        }
+    }
+
+    companion object {
+        const val LISTEN_PORT = 5051
+        const val START_DELAY = 30L
     }
 }
