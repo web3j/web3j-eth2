@@ -31,20 +31,17 @@ class TekuContainer : DockerComposeContainer<TekuContainer>(File(("src/test/reso
             withLogConsumer("teku$index") { print(it.utf8String) }
         }
         withPull(true)
-        with(Instant.now()) {
-            withEnv(
-                mapOf(
-                    "USER" to "root",
-                    "START_DELAY" to START_DELAY.toString(),
-                    "CURRENT_TIME" to epochSecond.toString(),
-                    "GENESIS_TIME" to plusSeconds(START_DELAY).epochSecond.toString()
-                )
+        withEnv(
+            mapOf(
+                "USER" to "root",
+                "GENESIS_TIME" to Instant.now()
+                    .plusSeconds(30)
+                    .epochSecond.toString()
             )
-        }
+        )
     }
 
     companion object {
         const val LISTEN_PORT = 5051
-        const val START_DELAY = 30L
     }
 }
