@@ -23,12 +23,7 @@ import java.util.concurrent.TimeUnit
 class TekuTestSuite : BeaconNodeApiTestSuite() {
 
     override val node: ContainerState by lazy {
-        val service = teku.getContainerByServiceName("teku1")
-        while (!service.isPresent) {
-            println("Service not available, waiting...")
-            TimeUnit.SECONDS.sleep(5)
-        }
-        service.get()
+        teku.getContainerByServiceName("teku1_1").get()
     }
 
     companion object {
