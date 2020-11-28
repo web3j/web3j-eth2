@@ -27,7 +27,7 @@ abstract class NodeResourceTest(val client: BeaconNodeApi) {
     @DisplayName("GET /health")
     fun `node should be healthy`() {
         assertThat(client.node.health.status)
-            .isEqualTo(Response.Status.PARTIAL_CONTENT.statusCode)
+            .isEqualTo(Response.Status.OK.statusCode)
     }
 
     @Test
