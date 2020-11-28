@@ -18,14 +18,12 @@ import org.testcontainers.containers.wait.strategy.Wait
 import java.io.File
 import java.time.Duration
 import java.time.Instant
-import javax.ws.rs.core.Response
 
 class TekuContainer : DockerComposeContainer<TekuContainer>(File(("src/test/resources/teku/docker-compose.yml"))) {
     init {
         val waitStrategy = (Wait.forHttp("/eth/v1/node/health")
             .withStartupTimeout(Duration.ofMinutes(10)) as HttpWaitStrategy)
             .withReadTimeout(Duration.ofMinutes(1))
-            .forStatusCode(Response.Status.OK.statusCode)
             .forPort(LISTEN_PORT)
 
         for (index in 1..4) {
