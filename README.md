@@ -11,4 +11,3 @@ Docker Hub registry:
   - `registry.email`
   - `registry.username`
   - `registry.password`
-A
