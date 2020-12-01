@@ -31,7 +31,11 @@ data class HeadEvent(
     val block: Root,
     val state: Root,
     @JsonProperty("epoch_transition")
-    val epochTransition: Boolean
+    val epochTransition: Boolean,
+    @JsonProperty("previous_duty_dependent_root")
+    val previousDutyDependentRoot: Root,
+    @JsonProperty("current_duty_dependent_root")
+    val currentDutyDependentRoot: Root
 ) : BeaconEvent(BeaconEventType.HEAD)
 
 /**
