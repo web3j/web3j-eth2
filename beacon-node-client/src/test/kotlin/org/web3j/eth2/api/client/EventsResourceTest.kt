@@ -28,9 +28,9 @@ abstract class EventsResourceTest(private val client: BeaconNodeApi) {
     @DisplayName("GET /")
     fun `subscribe to node events`() {
         val countdownLatch = CountDownLatch(1)
-        val topics = EnumSet.of(BeaconEventType.FINALIZED_CHECKPOINT, BeaconEventType.BLOCK)
+        val topics = EnumSet.allOf(BeaconEventType::class.java)
 
-        // The node will send a finalized checkpoint soon after
+        // The node should send an event soon after
         val future = client.events.onEvent(topics, Consumer {
             countdownLatch.countDown()
         })

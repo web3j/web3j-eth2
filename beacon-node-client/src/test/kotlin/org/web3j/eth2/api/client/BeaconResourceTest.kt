@@ -80,7 +80,6 @@ abstract class BeaconResourceTest(val client: BeaconNodeApi) {
 
             @Test
             @DisplayName("GET /")
-            @Disabled("Too long")
             fun `find all state validators`() {
                 assertThat(stateResource.validators.findAll().data).isNotEmpty()
             }
@@ -93,11 +92,11 @@ abstract class BeaconResourceTest(val client: BeaconNodeApi) {
             }
 
             @Test
-            @DisplayName("GET /?status=pending_initialized")
+            @DisplayName("GET /?status=active_ongoing")
             fun `find state validators by status`() {
-                val statuses = EnumSet.of(ValidatorStatus.PENDING_INITIALIZED)
+                val statuses = EnumSet.of(ValidatorStatus.ACTIVE_ONGOING)
                 val validators = stateResource.validators.findByStatus(statuses).data
-                assertThat(validators.first().status).isEqualTo(ValidatorStatus.PENDING_INITIALIZED)
+                assertThat(validators.first().status).isEqualTo(ValidatorStatus.ACTIVE_ONGOING)
             }
 
             @Test
@@ -170,12 +169,12 @@ abstract class BeaconResourceTest(val client: BeaconNodeApi) {
                     message = BeaconBlock(
                         slot = "0",
                         proposerIndex = "0",
-                        parentRoot = "0",
-                        stateRoot = "0",
+                        parentRoot = "0x83431ec7fcf92cfc44947fc0418e831c25e1d0806590231c439830db7ad54fda",
+                        stateRoot = "0x83431ec7fcf92cfc44947fc0418e831c25e1d0806590231c439830db7ad54fda",
                         body = BeaconBlockBody(
                             randaoReveal = "0x0",
                             eth1Data = Eth1Data(
-                                depositRoot = "0",
+                                depositRoot = "0x83431ec7fcf92cfc44947fc0418e831c25e1d0806590231c439830db7ad54fda",
                                 depositCount = "0",
                                 blockHash = "0x0"
                             ),
@@ -232,11 +231,11 @@ abstract class BeaconResourceTest(val client: BeaconNodeApi) {
                             beaconBlockRoot = "0",
                             source = Checkpoint(
                                 epoch = "0",
-                                root = "0"
+                                root = "0x83431ec7fcf92cfc44947fc0418e831c25e1d0806590231c439830db7ad54fda"
                             ),
                             target = Checkpoint(
                                 epoch = "0",
-                                root = "0"
+                                root = "0x83431ec7fcf92cfc44947fc0418e831c25e1d0806590231c439830db7ad54fda"
                             )
                         )
                     )
@@ -267,11 +266,11 @@ abstract class BeaconResourceTest(val client: BeaconNodeApi) {
                                 beaconBlockRoot = ROOT,
                                 source = Checkpoint(
                                     epoch = "0",
-                                    root = ROOT
+                                    root = "0x83431ec7fcf92cfc44947fc0418e831c25e1d0806590231c439830db7ad54fda"
                                 ),
                                 target = Checkpoint(
                                     epoch = "0",
-                                    root = "0"
+                                    root = "0x83431ec7fcf92cfc44947fc0418e831c25e1d0806590231c439830db7ad54fda"
                                 )
                             ),
                             signature = SIGNATURE
@@ -284,11 +283,11 @@ abstract class BeaconResourceTest(val client: BeaconNodeApi) {
                                 beaconBlockRoot = "0x01",
                                 source = Checkpoint(
                                     epoch = "0",
-                                    root = ROOT
+                                    root = "0x83431ec7fcf92cfc44947fc0418e831c25e1d0806590231c439830db7ad54fda"
                                 ),
                                 target = Checkpoint(
                                     epoch = "0",
-                                    root = ROOT
+                                    root = "0x83431ec7fcf92cfc44947fc0418e831c25e1d0806590231c439830db7ad54fda"
                                 )
                             ),
                             signature = "0x01"

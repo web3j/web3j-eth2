@@ -126,7 +126,7 @@ abstract class ValidatorResourceTest(val client: BeaconNodeApi) {
         @Test
         @DisplayName("GET /{slot}")
         fun `request unsigned block`() {
-            val block = client.validator.blocks.atSlot("0").produceBlock(SIGNATURE)
+            val block = client.validator.blocks.atSlot("100").produceBlock(SIGNATURE)
             assertThat(block.data.stateRoot).isNotEmpty()
         }
     }
