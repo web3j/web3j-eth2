@@ -27,7 +27,7 @@ import javax.ws.rs.client.Client
 import javax.ws.rs.client.ClientBuilder
 
 /**
- * The Beacon Node API Client service class required to build a [org.web3j.eth2.api.BeaconNodeApi].
+ * The Beacon Node API service required to build [org.web3j.eth2.api.BeaconNodeApi] clients.
  *
  * This class is auto-closeable so its [close] method will be invoked automatically on objects managed by the
  * try-with-resources statement, eg.:
