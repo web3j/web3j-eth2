@@ -1,12 +1,14 @@
-# Web3j Beacon Node API Client
+<img src="https://ethereum.org/static/c48a5f760c34dfadcf05a208dab137cc/ed396/eth-diamond-rainbow.png" alt="Ethereum" style="width:20%;"/>
 
-Client library for the Ethereum 2.0 [Beacon Node API](beacon-node-oapi.yml).
+# Beacon Node API Client
+
+Client library for the Ethereum 2.0 [Beacon Node OpenAPI](beacon-node-oapi.yml).
 
 ## Dependencies
 
 * [JAX-RS 2.1](https://github.com/eclipse-ee4j/jaxrs-api/tree/2.1-Maintenance) (Java RESTful Web Services)
 * [Jackson Annotations 2.11](https://github.com/FasterXML/jackson-annotations)
-* [Jersey 2.32](https://github.com/eclipse-ee4j/jersey)
+* [Jersey Client 2.32](https://github.com/eclipse-ee4j/jersey)
 
 ## Test and build
 
