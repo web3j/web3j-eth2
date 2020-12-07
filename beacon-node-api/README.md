@@ -13,7 +13,7 @@ All URIs are relative to *{server_url}*
 
 Tag          | Operation ID  | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*Beacon* | [**getBlock**](blob/master/beacon-node-api/src/main/kotlin/org/web3j/eth2/api/beacon/blocks/BlocksResource.kt#L53) | **GET** /eth/v1/beacon/blocks/{block_id} | Get block
+*Beacon* | [**getBlock**](src/main/kotlin/org/web3j/eth2/api/beacon/blocks/BlocksResource.kt#L53) | **GET** /eth/v1/beacon/blocks/{block_id} | Get block
 *Beacon* | [**getBlockAttestations**](docs/BeaconApi.md#getblockattestations) | **GET** /eth/v1/beacon/blocks/{block_id}/attestations | Get block attestations
 *Beacon* | [**getBlockHeader**](docs/BeaconApi.md#getblockheader) | **GET** /eth/v1/beacon/headers/{block_id} | Get block header
 *Beacon* | [**getBlockHeaders**](docs/BeaconApi.md#getblockheaders) | **GET** /eth/v1/beacon/headers | Get block headers
