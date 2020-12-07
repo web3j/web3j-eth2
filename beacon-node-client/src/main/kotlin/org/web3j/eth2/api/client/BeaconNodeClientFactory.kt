@@ -15,21 +15,18 @@ package org.web3j.eth2.api.client
 import org.glassfish.jersey.client.proxy.WebResourceFactory
 import org.web3j.eth2.api.BeaconNodeApi
 import java.lang.reflect.Proxy
-import javax.ws.rs.client.ClientRequestContext
-import javax.ws.rs.client.ClientRequestFilter
-import javax.ws.rs.core.HttpHeaders
 
+/**
+ * Factory class for building [BeaconNodeApi] instances.
+ */
 object BeaconNodeClientFactory {
 
     /**
-     * Builds a JAX-RS client with the given service and optional token.
+     * Builds a [BeaconNodeApi] client with the given service.
      */
     @JvmStatic
-    @JvmOverloads
-    fun build(service: BeaconNodeService, token: String? = null): BeaconNodeApi {
+    fun build(service: BeaconNodeService): BeaconNodeApi {
         val target = service.client.target(service.uri)
-        token?.run { target.register(AuthenticationFilter(token)) }
-
         val client = WebResourceFactory.newResource(BeaconNodeApi::class.java, target)
         val handler = BeaconNodeClientInvocationHandler(target, client)
 
@@ -39,12 +36,5 @@ object BeaconNodeClientFactory {
             arrayOf(BeaconNodeApi::class.java),
             handler
         ) as BeaconNodeApi
-    }
-
-    private class AuthenticationFilter(private val token: String) : ClientRequestFilter {
-
-        override fun filter(requestContext: ClientRequestContext) {
-            requestContext.headers.putSingle(HttpHeaders.AUTHORIZATION, "Bearer $token")
-        }
     }
 }
