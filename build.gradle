@@ -50,6 +50,11 @@ subprojects {
         }
     }
 
+    tasks.withType(Test) {
+        useJUnitPlatform()
+        reports.html.destination = file("${reporting.baseDir}/${name}")
+    }
+
     publishing {
         publications {
             maven(MavenPublication) {

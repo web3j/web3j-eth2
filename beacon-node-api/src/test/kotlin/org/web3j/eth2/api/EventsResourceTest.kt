@@ -10,12 +10,11 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package org.web3j.eth2.api.client
+package org.web3j.eth2.api
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Timeout
-import org.web3j.eth2.api.BeaconNodeApi
 import org.web3j.eth2.api.schema.BeaconEventType
 import java.util.EnumSet
 import java.util.concurrent.CountDownLatch

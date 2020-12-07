@@ -10,13 +10,12 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package org.web3j.eth2.api.client
+package org.web3j.eth2.api
 
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.testcontainers.containers.ContainerState
 import org.testcontainers.junit.jupiter.Testcontainers
-import org.web3j.eth2.api.BeaconNodeApi
 
 @Testcontainers
 abstract class BeaconNodeApiTestSuite {

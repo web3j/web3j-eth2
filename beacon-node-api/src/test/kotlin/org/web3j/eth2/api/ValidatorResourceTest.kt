@@ -10,7 +10,7 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package org.web3j.eth2.api.client
+package org.web3j.eth2.api
 
 import assertk.assertThat
 import assertk.assertions.isEmpty
@@ -19,9 +19,8 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import org.web3j.eth2.api.BeaconNodeApi
-import org.web3j.eth2.api.client.BeaconNodeApiTestSuite.Companion.ROOT
-import org.web3j.eth2.api.client.BeaconNodeApiTestSuite.Companion.SIGNATURE
+import org.web3j.eth2.api.BeaconNodeApiTestSuite.Companion.ROOT
+import org.web3j.eth2.api.BeaconNodeApiTestSuite.Companion.SIGNATURE
 import org.web3j.eth2.api.schema.AggregateAndProof
 import org.web3j.eth2.api.schema.Attestation
 import org.web3j.eth2.api.schema.AttestationData
