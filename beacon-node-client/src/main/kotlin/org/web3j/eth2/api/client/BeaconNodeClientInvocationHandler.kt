@@ -33,7 +33,7 @@ import javax.ws.rs.sse.SseEventSource
  * Handles contract events using a Server-Sent Event (SSE) request.
  *
  * Also implements an exception mapping mechanism to avoid reporting
- * [javax.ws.rs.ClientErrorException]s to the client.
+ * [javax.ws.rs.WebApplicationException]s to the client.
  */
 internal class BeaconNodeClientInvocationHandler(
     private val target: WebTarget,
@@ -105,7 +105,7 @@ internal class BeaconNodeClientInvocationHandler(
             "Client exception while invoking method $method: " +
                     (error.message ?: error.response.statusInfo.reasonPhrase)
         }
-        throw BeaconNodeException.of(error)
+        throw error
     }
 
     private fun clientTarget(topics: EnumSet<BeaconEventType>): WebTarget {
