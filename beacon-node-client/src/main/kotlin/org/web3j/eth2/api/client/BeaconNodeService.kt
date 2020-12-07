@@ -29,7 +29,7 @@ import javax.ws.rs.client.ClientBuilder
 /**
  * The Beacon Node API service required to build [org.web3j.eth2.api.BeaconNodeApi] clients.
  *
- * This class is auto-closeable, so it will relinquish automatically any resources on objects managed by the
+ * This class is auto-closeable, so it will release automatically any resources on objects managed by the
  * try-with-resources statement, eg.:
  * ```
  * try(service = new BeaconNodeService("http://localhost:5051")) {
