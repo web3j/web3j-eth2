@@ -32,6 +32,9 @@ import java.util.function.Consumer
 import javax.ws.rs.sse.InboundSseEvent
 import javax.ws.rs.sse.SseEventSource
 
+/**
+ * Encapsulates SSE results and notifies a given [Consumer] of each received [BeaconEvent].
+ */
 internal class SseEventSourceResult(
     private val source: SseEventSource,
     onEvent: Consumer<BeaconEvent>

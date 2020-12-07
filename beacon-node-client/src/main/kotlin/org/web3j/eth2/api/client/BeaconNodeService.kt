@@ -26,14 +26,50 @@ import java.util.logging.Logger
 import javax.ws.rs.client.Client
 import javax.ws.rs.client.ClientBuilder
 
+/**
+ * The Beacon Node API Client service class required to build a [org.web3j.eth2.api.BeaconNodeApi].
+ *
+ * This class is auto-closeable so its [close] method will be invoked automatically on objects managed by the
+ * try-with-resources statement, eg.:
+ * ```
+ * try(service = new BeaconNodeService("http://localhost:5051")) {
+ *     var client = BeaconNodeClientFactory.build(service);
+ *     var response = client.beacon.blocks.findById(NamedBlockId.HEAD);
+ *     ...
+ * } catch (WebApplicationException exception) {
+ *     ...
+ * }
+ * ```
+ *
+ * @see [BeaconNodeClientFactory]
+ */
 class BeaconNodeService(
+
+    /**
+     * Beacon Node URI (e.g. `http://public-mainnet-node.ethereum.org/api`).
+     */
     val uri: String,
+
+    /**
+     * Read timeout interval, in milliseconds.
+     *
+     * A value of zero (0) is equivalent to an interval of infinity.
+     *
+     * The default value is [DEFAULT_READ_TIMEOUT].
+     */
     readTimeout: Int = DEFAULT_READ_TIMEOUT,
+
+    /**
+     * Connect timeout interval, in milliseconds.
+     *
+     * A value of zero (0) is equivalent to an interval of infinity.
+     *
+     * The default value is [DEFAULT_CONNECT_TIMEOUT].
+     */
     connectTimeout: Int = DEFAULT_CONNECT_TIMEOUT
 ) : AutoCloseable {
 
     private val mapper = jacksonObjectMapper()
-//        .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
         .enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING)
         .enable(DeserializationFeature.READ_ENUMS_USING_TO_STRING)
 
@@ -48,6 +84,13 @@ class BeaconNodeService(
         ClientBuilder.newClient(config)
     }
 
+    /**
+     * Closes this service by releasing internal resources.
+     *
+     * Calling this method effectively invalidates all [org.web3j.eth2.api.BeaconNodeApi] resource targets.
+     * Invoking any method on such targets once the client is closed would result in an [IllegalStateException]
+     * being thrown.
+     */
     override fun close() = client.close()
 
     companion object {

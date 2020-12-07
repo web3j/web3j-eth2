@@ -16,7 +16,6 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Tag
 import org.testcontainers.containers.ContainerState
 import org.web3j.eth2.api.client.BeaconNodeApiTestSuite
-import java.util.concurrent.TimeUnit
 
 @Tag("teku")
 @DisplayName("Teku")
