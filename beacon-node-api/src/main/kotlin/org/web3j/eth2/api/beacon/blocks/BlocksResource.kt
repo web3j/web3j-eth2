@@ -45,7 +45,6 @@ interface BlocksResource {
      * `genesis`, `finalized`, `<slot>`, `<hex encoded blockRoot with 0x prefix>`.
      *
      * @throws javax.ws.rs.NotFoundException Block not found.
-     * @throws javax.ws.rs.BadRequestException The block ID supplied could not be parsed.
      * @throws javax.ws.rs.InternalServerErrorException Beacon node internal error.
      */
     @GET
