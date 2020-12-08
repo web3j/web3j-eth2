@@ -1,3 +1,5 @@
+<img src="https://avatars1.githubusercontent.com/u/16343502" alt="OpenAPI" width="200"/>
+
 Beacon Node API Client
 ======================
 
