@@ -14,6 +14,7 @@ package org.web3j.eth2.api
 
 import assertk.assertThat
 import assertk.assertions.isEmpty
+import assertk.assertions.isEqualTo
 import assertk.assertions.isNotEmpty
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
@@ -27,6 +28,7 @@ import org.web3j.eth2.api.schema.AttestationData
 import org.web3j.eth2.api.schema.Checkpoint
 import org.web3j.eth2.api.schema.CommitteeSubnetSubscription
 import org.web3j.eth2.api.schema.SignedAggregateAndProof
+import javax.ws.rs.NotFoundException
 import javax.ws.rs.ServiceUnavailableException
 
 abstract class ValidatorResourceTest(val client: BeaconNodeApi) {
@@ -34,15 +36,15 @@ abstract class ValidatorResourceTest(val client: BeaconNodeApi) {
     @Test
     @DisplayName("GET /attestation_data")
     fun `get attestation data`() {
-        assertThrows<ServiceUnavailableException> {
-            client.validator.produceAttestationData("0", "0")
-        }
+        val data = client.validator.produceAttestationData("0", "0").data
+        assertThat(data.slot).isEqualTo("0")
+        assertThat(data.index).isEqualTo("0")
     }
 
     @Test
     @DisplayName("GET /aggregate_attestation")
     fun `get aggregated attestation`() {
-        assertThrows<ServiceUnavailableException> {
+        assertThrows<NotFoundException> {
             client.validator.getAggregatedAttestation("0x01", "0")
         }
     }
