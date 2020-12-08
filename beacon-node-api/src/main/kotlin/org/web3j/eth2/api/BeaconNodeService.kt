@@ -21,6 +21,8 @@ import org.glassfish.jersey.jackson.internal.jackson.jaxrs.cfg.Annotations
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJaxbJsonProvider
 import org.glassfish.jersey.logging.LoggingFeature
 import org.slf4j.bridge.SLF4JBridgeHandler
+import org.web3j.eth2.api.BeaconNodeService.Companion.DEFAULT_CONNECT_TIMEOUT
+import org.web3j.eth2.api.BeaconNodeService.Companion.DEFAULT_READ_TIMEOUT
 import java.util.logging.Level
 import java.util.logging.Logger
 import javax.ws.rs.client.Client
@@ -43,7 +45,7 @@ import javax.ws.rs.client.ClientBuilder
  *
  * @see [BeaconNodeClientFactory]
  */
-class BeaconNodeService(
+class BeaconNodeService @JvmOverloads constructor(
 
     /**
      * Beacon Node URI (e.g. `http://public-mainnet-node.ethereum.org/api`).
