@@ -11,6 +11,26 @@ Client library for the [Eth2 Beacon Node API](https://ethereum.github.io/eth2.0-
 * [Jackson Annotations 2.11](https://github.com/FasterXML/jackson-annotations)
 * [Jersey Client 2.32](https://github.com/eclipse-ee4j/jersey)
 
+## Quickstart
+
+Add this library to your project using either Gradle or Maven.
+
+### Maven
+
+```xml
+<dependency>
+  <groupId>org.web3j.eth2</groupId>
+  <artifactId>beacon-node-api</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+### Gradle
+
+```groovy
+ìmplementation 'org.web3j.eth2:beacon-node-api:1.0.0'
+```
+
 ## Test and build
 
 This library is tested against different Beacon Node API nodes to ensure that it works on all of them.
