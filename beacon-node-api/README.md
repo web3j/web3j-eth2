@@ -1,7 +1,7 @@
 Beacon Node API Client
 ======================
 
-Client library for the Ethereum 2.0 [Beacon Node OpenAPI](beacon-node-oapi.yml).
+Client library for the [Eth2 Beacon Node API](https://ethereum.github.io/eth2.0-APIs/).
 
 ## Dependencies
 
