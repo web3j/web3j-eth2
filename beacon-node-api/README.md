@@ -28,7 +28,7 @@ Add this library to your project using either Gradle or Maven.
 ### Gradle
 
 ```groovy
-ìmplementation 'org.web3j.eth2:beacon-node-api:1.0.0'
+implementation 'org.web3j.eth2:beacon-node-api:1.0.0'
 ```
 
 ## Test and build
