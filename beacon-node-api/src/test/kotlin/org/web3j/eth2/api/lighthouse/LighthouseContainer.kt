@@ -17,7 +17,7 @@ import org.testcontainers.containers.wait.strategy.Wait
 import org.testcontainers.utility.MountableFile.forClasspathResource
 import java.time.Duration
 
-class LighthouseContainer : GenericContainer<LighthouseContainer>("sigp/lighthouse:local") {
+class LighthouseContainer : GenericContainer<LighthouseContainer>("sigp/lighthouse:latest") {
     init {
         withExposedPorts(5052, 9000)
         withLogConsumer { print(it.utf8String) }
