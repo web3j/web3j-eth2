@@ -21,9 +21,7 @@ import org.web3j.eth2.api.validator.ValidatorResource
 import javax.ws.rs.Path
 
 /**
- * Ethereum 2.0 Beacon API.
- *
- * API specification for the beacon node,
+ * Beacon API specification for the beacon node,
  * which enables users to query and participate in Ethereum 2.0 phase 0 beacon chain.
  */
 @Path("/eth/v1")
