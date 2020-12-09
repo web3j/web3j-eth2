@@ -31,9 +31,6 @@ import javax.ws.rs.sse.SseEventSource
  * Invocation handler for proxied resources.
  *
  * Handles contract events using a Server-Sent Event (SSE) request.
- *
- * Also implements an exception mapping mechanism to avoid reporting
- * [javax.ws.rs.WebApplicationException]s to the client.
  */
 internal class BeaconNodeClientInvocationHandler(
     private val target: WebTarget,
