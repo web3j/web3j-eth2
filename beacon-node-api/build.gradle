@@ -12,9 +12,12 @@ dependencies {
             "ch.qos.logback:logback-classic:$logbackVersion",
             "org.slf4j:jul-to-slf4j:$slf4jVersion"
 
-    testImplementation "com.willowtreeapps.assertk:assertk:$assertkVersion",
-            "org.testcontainers:testcontainers:$testcontainersVersion",
+    testImplementation "org.testcontainers:testcontainers:$testcontainersVersion",
             "org.testcontainers:junit-jupiter:$testcontainersVersion"
+    
+    testImplementation("com.willowtreeapps.assertk:assertk:$assertkVersion") {
+        exclude group: 'org.jetbrains.kotlin'
+    }
 }
 
 tasks.withType(Test) {
