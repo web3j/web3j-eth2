@@ -1,4 +1,4 @@
-<img src="https://ethereum.org/static/c48a5f760c34dfadcf05a208dab137cc/ed396/eth-diamond-rainbow.png" alt="Eth2" width="200"/>
+<img src="https://ethereum.org/static/c48a5f760c34dfadcf05a208dab137cc/ed396/eth-diamond-rainbow.png" alt="Eth2" width="150"/>
 
 Beacon Node API Client
 ======================
