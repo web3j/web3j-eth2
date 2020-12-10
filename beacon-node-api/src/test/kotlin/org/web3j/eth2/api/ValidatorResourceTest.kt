@@ -29,7 +29,6 @@ import org.web3j.eth2.api.schema.Checkpoint
 import org.web3j.eth2.api.schema.CommitteeSubnetSubscription
 import org.web3j.eth2.api.schema.SignedAggregateAndProof
 import javax.ws.rs.NotFoundException
-import javax.ws.rs.ServiceUnavailableException
 
 abstract class ValidatorResourceTest(val client: BeaconNodeApi) {
 
