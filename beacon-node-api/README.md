@@ -1,5 +1,4 @@
-<img src="https://blog.ethereum.org/img/avatar-icon.png" alt="Eth2" width="200"/>
-<img src="https://avatars1.githubusercontent.com/u/16343502" alt="OpenAPI" width="200"/>
+<img src="https://ethereum.org/static/c48a5f760c34dfadcf05a208dab137cc/ed396/eth-diamond-rainbow.png" alt="Eth2" width="200"/>
 
 Beacon Node API Client
 ======================
