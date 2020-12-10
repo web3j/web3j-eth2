@@ -1,4 +1,4 @@
-<img src="Web3j-Eth2.png" alt="Ethereum" width="200"/>
+<img src="Web3j-Eth2.png" alt="Web3j Ethereum 2.0" width="200"/>
 
 Web3j - Ethereum 2.0
 ====================
