@@ -5,7 +5,7 @@ Web3j - Ethereum 2.0
 
 This project contains Ethereum 2.0 related modules.
 
-At the moment it only contains the Beacon Node API client described below.
+At the moment it only contains the Beacon Node API client.
 
 ## Beacon Node API Client
 
