@@ -30,7 +30,7 @@ import javax.ws.rs.sse.SseEventSource
 /**
  * Invocation handler for proxied resources.
  *
- * Handles contract events using a Server-Sent Event (SSE) request.
+ * Handles node events using a Server-Sent Event (SSE) request.
  */
 internal class BeaconNodeClientInvocationHandler(
     private val target: WebTarget,
