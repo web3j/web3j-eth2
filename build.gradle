@@ -5,7 +5,7 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
-        classpath 'org.unbroken-dome.gradle-plugins:gradle-testsets-plugin:2.1.1'
+        classpath 'org.unbroken-dome.gradle-plugins:gradle-testsets-plugin:3.0.1'
     }
 }
 
@@ -50,9 +50,26 @@ subprojects {
         }
     }
 
+    apply plugin: 'org.unbroken-dome.test-sets'
+
+    testSets {
+        integrationTest {
+            dirName = 'integration-test'
+        }
+    }
+
     tasks.withType(Test) {
         useJUnitPlatform()
+        systemProperties = [
+                'junit.jupiter.extensions.autodetection.enabled': 'true',
+                'junit.jupiter.testinstance.lifecycle.default'  : 'per_class'
+        ]
         reports.html.destination = file("${reporting.baseDir}/${name}")
+    }
+
+    java {
+        withSourcesJar()
+        withJavadocJar()
     }
 
     publishing {
@@ -73,6 +90,9 @@ subprojects {
         kotlinOptions.jvmTarget = "1.8"
     }
     compileTestKotlin {
+        kotlinOptions.jvmTarget = "1.8"
+    }
+    compileIntegrationTestKotlin {
         kotlinOptions.jvmTarget = "1.8"
     }
 

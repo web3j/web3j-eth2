@@ -12,7 +12,7 @@ dependencies {
             "ch.qos.logback:logback-classic:$logbackVersion",
             "org.slf4j:jul-to-slf4j:$slf4jVersion"
 
-    testImplementation "org.testcontainers:testcontainers:$testcontainersVersion",
+    integrationTestImplementation "org.testcontainers:testcontainers:$testcontainersVersion",
             "org.testcontainers:junit-jupiter:$testcontainersVersion"
 
     testImplementation("com.willowtreeapps.assertk:assertk:$assertkVersion") {
@@ -24,9 +24,4 @@ tasks.withType(Test) {
     useJUnitPlatform {
         includeTags 'lighthouse', 'teku'
     }
-    systemProperties = [
-        'junit.jupiter.extensions.autodetection.enabled': 'true',
-        'junit.jupiter.testinstance.lifecycle.default'  : 'per_class'
-    ]
-    reports.html.destination = file("${reporting.baseDir}/${name}")
 }
