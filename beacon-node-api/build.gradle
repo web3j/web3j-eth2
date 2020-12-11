@@ -14,14 +14,10 @@ dependencies {
 
     integrationTestImplementation "org.testcontainers:testcontainers:$testcontainersVersion",
             "org.testcontainers:junit-jupiter:$testcontainersVersion"
-
-    testImplementation("com.willowtreeapps.assertk:assertk:$assertkVersion") {
-        exclude group: 'org.jetbrains.kotlin'
-    }
 }
 
 tasks.withType(Test) {
     useJUnitPlatform {
-        includeTags 'lighthouse', 'teku'
+        includeTags 'teku'//, 'lighthouse'
     }
 }
