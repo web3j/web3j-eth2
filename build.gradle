@@ -68,11 +68,6 @@ subprojects {
         reports.html.destination = file("${reporting.baseDir}/${name}")
     }
 
-    java {
-        withSourcesJar()
-        withJavadocJar()
-    }
-
     publishing {
         publications {
             maven(MavenPublication) {
