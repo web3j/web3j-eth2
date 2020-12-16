@@ -1,3 +1,5 @@
+apply plugin: 'org.ajoberstar.git-publish'
+
 description = 'Web3j Eth2 Beacon API Client.'
 
 dependencies {
@@ -21,5 +23,34 @@ dependencies {
 tasks.withType(Test) {
     useJUnitPlatform {
         includeTags 'teku'//, 'lighthouse'
+    }
+}
+
+ext {
+    docsPath = 'web3j-eth2/web3j-eth2-docs'
+    ghToken = System.getenv('GITHUB_PERSONAL_ACCESS_TOKEN')
+}
+
+gitPublish {
+    if (ghToken) {
+        repoUri = "https://github.com/${docsPath}.git"
+    } else {
+        repoUri = "git@github.com:${docsPath}.git"
+    }
+
+    // branch will be created if it doesn't exist
+    branch = 'master'
+
+    def coreDocs = files("${buildDir.path}/docs/javadoc/")
+
+    contents {
+        from(coreDocs) {
+            into '/docs/javadoc-api'
+        }
+    }
+
+    // what to keep in the existing branch (include=keep)
+    preserve {
+        include '/**'
     }
 }
