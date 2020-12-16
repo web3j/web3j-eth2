@@ -16,6 +16,7 @@ import assertk.assertThat
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotEmpty
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -97,6 +98,7 @@ abstract class ValidatorResourceTest(val client: BeaconNodeApi) {
     inner class DutiesResourceTest {
 
         @Test
+        @Disabled
         @DisplayName("POST /attester/{epoch}")
         fun `get attester duties`() {
             val duties = client.validator.duties.attester.atEpoch("0")
@@ -106,6 +108,7 @@ abstract class ValidatorResourceTest(val client: BeaconNodeApi) {
         }
 
         @Test
+        @Disabled
         @DisplayName("GET /proposer/{epoch}")
         fun `get block proposers duties`() {
             val duties = client.validator.duties.proposer
@@ -121,6 +124,7 @@ abstract class ValidatorResourceTest(val client: BeaconNodeApi) {
     inner class BlocksResourceTest {
 
         @Test
+        @Disabled
         @DisplayName("GET /{slot}")
         fun `request unsigned block`() {
             val block = client.validator.blocks.atSlot("100").produceBlock(SIGNATURE)

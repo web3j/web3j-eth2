@@ -16,6 +16,7 @@ import assertk.assertThat
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotEmpty
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -160,6 +161,7 @@ abstract class BeaconResourceTest(val client: BeaconNodeApi) {
         }
 
         @Test
+        @Disabled
         @DisplayName("POST /")
         fun `publish block`() {
             client.beacon.blocks.publish(
@@ -199,6 +201,7 @@ abstract class BeaconResourceTest(val client: BeaconNodeApi) {
         inner class AttestationsTest {
 
             @Test
+            @Disabled
             @DisplayName("GET /")
             fun `find all attestations`() {
                 assertThat(client.beacon.pool.attestations.findAll().data).isEmpty()
@@ -211,12 +214,14 @@ abstract class BeaconResourceTest(val client: BeaconNodeApi) {
             }
 
             @Test
+            @Disabled
             @DisplayName("GET /?committee_index=0")
             fun `find attestations by committee index`() {
                 assertThat(client.beacon.pool.attestations.findByCommitteeIndex("0").data).isEmpty()
             }
 
             @Test
+            @Disabled
             @DisplayName("POST /")
             fun `submit attestation`() {
                 client.beacon.pool.attestations.submit(
@@ -252,6 +257,7 @@ abstract class BeaconResourceTest(val client: BeaconNodeApi) {
             }
 
             @Test
+            @Disabled
             @DisplayName("POST /")
             fun `submit attester slashing`() {
                 client.beacon.pool.attesterSlashings.submit(
@@ -306,6 +312,7 @@ abstract class BeaconResourceTest(val client: BeaconNodeApi) {
             }
 
             @Test
+            @Disabled
             @DisplayName("POST /")
             fun `submit proposer slashing`() {
                 client.beacon.pool.proposerSlashings.submit(
@@ -344,6 +351,7 @@ abstract class BeaconResourceTest(val client: BeaconNodeApi) {
             }
 
             @Test
+            @Disabled
             @DisplayName("POST /")
             fun `submit voluntary exit`() {
                 client.beacon.pool.voluntaryExits.submit(
