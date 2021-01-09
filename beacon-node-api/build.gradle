@@ -26,6 +26,8 @@ tasks.withType(Test) {
     }
 }
 
+integrationTest.outputs.upToDateWhen { false }
+
 ext {
     docsPath = 'web3j-eth2/web3j-eth2-docs'
     ghToken = System.getenv('GITHUB_PERSONAL_ACCESS_TOKEN')
