@@ -43,9 +43,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Decrypt secret key
-        run: openssl aes-256-cbc -K ${{ secrets.GPG_KEY }} -iv ${{ secrets.GPG_IV }} -in web3j.asc.enc -out web3j.asc -d
-        if: github.base_ref == ''
       - name: Cache Gradle packages
         uses: actions/cache@v2
         with:
